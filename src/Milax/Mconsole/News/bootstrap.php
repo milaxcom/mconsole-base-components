@@ -50,5 +50,4 @@ return [
     'config' => [],
     'translations' => [],
     'views' => [],
-    'relationships' => [],
 ];
