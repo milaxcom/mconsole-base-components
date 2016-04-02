@@ -4,7 +4,7 @@ namespace Milax\Mconsole\Pages\Http\Controllers;
 
 use Milax;
 use App\Http\Controllers\Controller;
-use Milax\Mconsole\Http\Requests\PageRequest;
+use Milax\Mconsole\Pages\Http\Requests\PageRequest;
 use Milax\Mconsole\Pages\Models\Page;
 use Milax\Mconsole\Contracts\Localizator;
 use Paginatable;
