@@ -25,4 +25,9 @@ class Page extends Model
             $this->attributes['slug'] = str_slug($value);
         }
     }
+    
+    public function links()
+    {
+        return $this->hasMany('Milax\Mconsole\Pages\Models\ContentLink');
+    }
 }
