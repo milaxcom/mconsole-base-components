@@ -18,7 +18,7 @@
     "autoload": {
         "psr-4": {
             "Milax\\Mconsole\\News\\": "src/Milax/Mconsole/News/",
-            "Milax\\Mconsole\\Pages\\": "src/Milax/Mconsole/Pages/",
+            "Milax\\Mconsole\\Pages\\": "src/Milax/Mconsole/Pages/"
         }
     },
     "minimum-stability": "stable"
