@@ -6,6 +6,7 @@ use Milax;
 use App\Http\Controllers\Controller;
 use Milax\Mconsole\Pages\Http\Requests\PageRequest;
 use Milax\Mconsole\Pages\Models\Page;
+use Milax\Mconsole\Pages\Models\ContentLink;
 use Milax\Mconsole\Contracts\Localizator;
 use Paginatable;
 use Redirectable;
@@ -66,7 +67,7 @@ class PagesController extends Controller
             
             foreach ($links as $link) {
                 if (strlen($link['id']) > 0) {
-                    if ($dbLink = Milax\Mconsole\Models\ContentLink::find((int) $link['id'])) {
+                    if ($dbLink = ContentLink::find((int) $link['id'])) {
                         $dbLink->update($link);
                     } else {
                         $page->links()->create($link);
@@ -111,7 +112,7 @@ class PagesController extends Controller
             
             foreach ($links as $link) {
                 if (strlen($link['id']) > 0) {
-                    if ($dbLink = Milax\Mconsole\Models\ContentLink::find((int) $link['id'])) {
+                    if ($dbLink = ContentLink::find((int) $link['id'])) {
                         $dbLink->update($link);
                     } else {
                         $page->links()->create($link);
