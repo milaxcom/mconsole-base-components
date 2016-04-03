@@ -3,6 +3,7 @@
 return [
     'name' => 'News',
     'identifier' => 'mconsole-news',
+    'description' => 'Creates news for website.',
     'menu' => [
         [
             'name' => 'All news',
@@ -47,7 +48,4 @@ return [
         'bindings' => [],
         'dependencies' => [],
     ],
-    'config' => [],
-    'translations' => [],
-    'views' => [],
 ];

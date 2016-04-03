@@ -3,6 +3,7 @@
 return [
     'name' => 'Pages',
     'identifier' => 'mconsole-pages',
+    'description' => 'Creates main content for website.',
     'menu' => [],
     'register' => [
         'middleware' => [],
@@ -11,7 +12,4 @@ return [
         'bindings' => [],
         'dependencies' => [],
     ],
-    'config' => [],
-    'translations' => [],
-    'views' => [],
 ];
