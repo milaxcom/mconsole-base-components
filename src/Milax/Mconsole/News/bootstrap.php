@@ -3,7 +3,7 @@
 return [
     'name' => 'News',
     'identifier' => 'mconsole-news',
-    'description' => 'Creates news for website.',
+    'description' => trans('mconsole::news.module.description'),
     'menu' => [
         'content' => [
             'child' => [

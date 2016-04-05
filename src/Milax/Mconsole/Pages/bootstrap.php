@@ -3,7 +3,7 @@
 return [
     'name' => 'Pages',
     'identifier' => 'mconsole-pages',
-    'description' => 'Creates main content for website.',
+    'description' => trans('mconsole::pages.module.description'),
     'menu' => [
         'content' => [
             'child' => [
