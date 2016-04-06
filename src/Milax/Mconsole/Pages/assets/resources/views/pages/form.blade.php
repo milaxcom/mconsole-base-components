@@ -40,10 +40,12 @@
                 					@include('mconsole::forms.textarea', [
                 						'label' => trans('mconsole::pages.form.preview'),
                 						'name' => 'preview[' . $language->key . ']',
+                                        'size' => '50x2',
                 					])
                 					@include('mconsole::forms.textarea', [
                 						'label' => trans('mconsole::pages.form.text'),
                 						'name' => 'text[' . $language->key . ']',
+                                        'size' => '50x15',
                 					])
                                     <hr />
                                     <h3>{{ trans('mconsole::pages.form.seo') }}</h3>
@@ -83,11 +85,19 @@
 						<div class="tab-content">
 							<div class="tab-pane fade active in" id="tab_1">
                                 @include('mconsole::forms.select', [
+                                    'label' => trans('mconsole::pages.form.enabled.name'),
+                                    'name' => 'enabled',
+                                    'options' => [
+                                        '1' => trans('mconsole::pages.form.enabled.true'),
+                                        '0' => trans('mconsole::pages.form.enabled.false'),
+                                    ],
+                                ])
+                                @include('mconsole::forms.select', [
 									'label' => trans('mconsole::pages.form.hide_heading.name'),
 									'name' => 'hide_heading',
 									'options' => [
+                                        '0' => trans('mconsole::pages.form.hide_heading.false'),
 										'1' => trans('mconsole::pages.form.hide_heading.true'),
-										'0' => trans('mconsole::pages.form.hide_heading.false'),
 									],
 								])
 								@include('mconsole::forms.select', [
@@ -96,14 +106,6 @@
 									'options' => [
 										'0' => trans('mconsole::pages.form.fullwidth.false'),
 										'1' => trans('mconsole::pages.form.fullwidth.true'),
-									],
-								])
-								@include('mconsole::forms.select', [
-									'label' => trans('mconsole::pages.form.enabled.name'),
-									'name' => 'enabled',
-									'options' => [
-										'1' => trans('mconsole::pages.form.enabled.true'),
-										'0' => trans('mconsole::pages.form.enabled.false'),
 									],
 								])
 							</div>
