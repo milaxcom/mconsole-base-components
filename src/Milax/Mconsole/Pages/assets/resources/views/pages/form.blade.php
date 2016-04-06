@@ -111,10 +111,15 @@
 							</div>
 							<div class="tab-pane fade" id="tab_2">
                                 @include('mconsole::forms.hidden', [
-									'label' => trans('mconsole::pages.form.links'),
-									'name' => 'links',
-									'class' => 'links-editor'
-								])
+                                    'label' => trans('mconsole::pages.form.links'),
+                                    'name' => 'links',
+                                    'class' => 'links-editor',
+                                    'hidden' => [
+                                        'title' => trans('mconsole::pages.links.title'),
+                                        'url' => trans('mconsole::pages.links.url'),
+                                        'enabled' => trans('mconsole::pages.links.enabled'),
+                                    ],
+                                ])
 							</div>
 						</div>
 					</div>
