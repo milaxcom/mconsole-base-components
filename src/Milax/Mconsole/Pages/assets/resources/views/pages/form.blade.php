@@ -65,6 +65,15 @@
 			</div>
 		</div>
 		<div class="col-md-4 col-sm-6">
+            <div class="portlet light">
+				<div class="portlet-title">
+					<div class="caption">
+						<span class="caption-subject font-blue sbold uppercase">{{ trans('mconsole::pages.form.gallery') }}</span>
+					</div>
+				</div>
+				<div class="portlet-body form">
+				</div>
+			</div>
 			<div class="portlet light">
 				<div class="portlet-title">
 					<div class="caption">
@@ -79,7 +88,7 @@
 								<a href="#tab_1" data-toggle="tab"> {{ trans('mconsole::pages.form.options') }}  </a>
 							</li>
 							<li>
-								<a href="#tab_2" data-toggle="tab"> {{ trans('mconsole::pages.form.links') }} </a>
+								<a href="#tab_2" data-toggle="tab"> {{ trans('mconsole::pages.form.links.label') }} </a>
 							</li>
 						</ul>
 						<div class="tab-content">
@@ -111,7 +120,7 @@
 							</div>
 							<div class="tab-pane fade" id="tab_2">
                                 @include('mconsole::forms.hidden', [
-                                    'label' => trans('mconsole::pages.form.links'),
+                                    'label' => trans('mconsole::pages.form.links.label'),
                                     'name' => 'links',
                                     'class' => 'links-editor',
                                     'hidden' => [

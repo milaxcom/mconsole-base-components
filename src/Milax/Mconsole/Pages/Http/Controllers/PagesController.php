@@ -92,7 +92,7 @@ class PagesController extends Controller
      */
     public function edit($id)
     {
-        $page = Page::with('links')->find($id);
+        $page = Page::with('links')->with('images')->find($id);
         return view('mconsole::pages.form', [
             'item' => $page,
         ]);
