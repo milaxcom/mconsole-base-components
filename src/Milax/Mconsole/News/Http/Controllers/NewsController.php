@@ -26,10 +26,10 @@ class NewsController extends Controller
         return $this->setPerPage(20)->run('mconsole::news.list', function ($item) {
             return [
                 '#' => $item->id,
-                'Published' => $item->published_at->format('m.d.Y'),
-                'Updated' => $item->updated_at->format('m.d.Y'),
-                'Slug' => $item->slug,
-                'Heading' => $item->heading,
+                trans('mconsole::news.table.published') => $item->published_at->format('m.d.Y'),
+                trans('mconsole::news.table.updated') => $item->updated_at->format('m.d.Y'),
+                trans('mconsole::news.table.slug') => $item->slug,
+                trans('mconsole::news.table.heading') => $item->heading,
             ];
         });
     }
