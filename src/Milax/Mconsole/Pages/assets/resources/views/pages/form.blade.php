@@ -115,9 +115,9 @@
                                     'name' => 'links',
                                     'class' => 'links-editor',
                                     'hidden' => [
-                                        'title' => trans('mconsole::pages.links.title'),
-                                        'url' => trans('mconsole::pages.links.url'),
-                                        'enabled' => trans('mconsole::pages.links.enabled'),
+                                        'title' => trans('mconsole::pages.form.links.title'),
+                                        'url' => trans('mconsole::pages.form.links.url'),
+                                        'enabled' => trans('mconsole::pages.form.links.enabled'),
                                     ],
                                 ])
 							</div>
