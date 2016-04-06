@@ -33,7 +33,7 @@ class PagesController extends Controller
     {
         return $this->setPerPage(20)->run('mconsole::pages.list', function ($item) {
             return [
-                trans('mconsole::pages.table.id') => $item->id,
+                '#' => $item->id,
                 trans('mconsole::pages.table.updated') => $item->updated_at->format('m.d.Y'),
                 trans('mconsole::pages.table.slug') => $item->slug,
                 trans('mconsole::pages.table.heading') => json_encode($item->heading),
