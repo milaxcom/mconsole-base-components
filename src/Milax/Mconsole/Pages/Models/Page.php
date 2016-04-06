@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model
 {
+    use \HasImages;
+    
     protected $fillable = ['slug', 'title', 'heading', 'preview', 'text', 'description', 'hide_heading', 'fullwidth', 'system', 'enabled'];
     
     protected $casts = [
