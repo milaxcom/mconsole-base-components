@@ -19,6 +19,11 @@ class Page extends Model
         'links' => 'array',
     ];
     
+    /**
+     * Automatically generate slug from heading if empty, format for url
+     * 
+     * @param void
+     */
     public function setSlugAttribute($value)
     {
         if (strlen($value) == 0) {
@@ -28,6 +33,11 @@ class Page extends Model
         }
     }
     
+    /**
+     * Relationship to ContentLinks
+     * 
+     * @return HasMany
+     */
     public function links()
     {
         return $this->hasMany('Milax\Mconsole\Pages\Models\ContentLink');
