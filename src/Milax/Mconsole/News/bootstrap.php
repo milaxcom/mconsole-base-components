@@ -52,6 +52,7 @@ return [
         'dependencies' => [],
     ],
     'init' => function () {
+        // Register in search engine
         app('API')->search->register(function ($text) {
             return \Milax\Mconsole\News\Models\News::where('slug', 'like', sprintf('%%%s%%', $text))->orWhere('title', 'like', sprintf('%%%s%%', $text))->orWhere('heading', 'like', sprintf('%%%s%%', $text))->orWhere('preview', 'like', sprintf('%%%s%%', $text))->orWhere('text', 'like', sprintf('%%%s%%', $text))->get()->transform(function ($page) {
                 return [
@@ -60,6 +61,16 @@ return [
                     'link' => sprintf('/mconsole/pages/%s/edit', $page->id),
                 ];
             });
+        });
+        
+        // Register in quick menu
+        app('API')->quickmenu->register(function () {
+            $link = new \stdClass();
+            $link->icon = 'fa fa-plus';
+            $link->color = 'label-success';
+            $link->text = trans('mconsole::news.menu.create.name');
+            $link->link = '/mconsole/news/create';
+            return $link;
         });
     },
 ];
