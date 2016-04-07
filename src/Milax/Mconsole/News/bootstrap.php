@@ -21,7 +21,7 @@ return [
                     'translation' => 'news.menu.create.name',
                     'url' => 'news/create',
                     'description' => 'news.menu.form.description',
-                    'route' => 'mconsole.pages.create',
+                    'route' => 'mconsole.news.create',
                     'visible' => true,
                     'enabled' => true,
                 ],
