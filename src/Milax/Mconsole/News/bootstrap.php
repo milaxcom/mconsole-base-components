@@ -22,7 +22,7 @@ return [
                     'url' => 'news/create',
                     'description' => 'news.menu.form.description',
                     'route' => 'mconsole.news.create',
-                    'visible' => true,
+                    'visible' => false,
                     'enabled' => true,
                 ],
                 'news_update' => [

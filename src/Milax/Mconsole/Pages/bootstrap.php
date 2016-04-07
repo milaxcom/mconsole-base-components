@@ -22,7 +22,7 @@ return [
                     'url' => 'pages/create',
                     'description' => 'pages.menu.form.description',
                     'route' => 'mconsole.pages.create',
-                    'visible' => true,
+                    'visible' => false,
                     'enabled' => true,
                 ],
                 'pages_update' => [
