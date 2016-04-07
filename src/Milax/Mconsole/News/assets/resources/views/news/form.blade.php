@@ -13,7 +13,7 @@
             @include('mconsole::partials.portlet-title', [
                 'title' => trans('mconsole::news.form.main'),
             ])
-            <div class="portlet-body">
+            <div class="portlet-body form">
     			<div class="form-body">
     				@include('mconsole::forms.date', [
     					'label' => trans('mconsole::news.form.date'),
@@ -53,10 +53,10 @@
     						'0' => trans('mconsole::news.form.enabled.false'),
     					],
     				])
-                    <div class="form-actions">
-        				@include('mconsole::forms.submit')
-        			</div>
     			</div>
+                <div class="form-actions">
+                    @include('mconsole::forms.submit')
+                </div>
             </div>
         </div>
 		{!! Form::close() !!}

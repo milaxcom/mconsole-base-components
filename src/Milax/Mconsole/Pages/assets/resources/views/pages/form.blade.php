@@ -14,51 +14,56 @@
                     'title' => trans('mconsole::pages.form.main'),
                 ])
 				<div class="portlet-body form">
-                    @include('mconsole::forms.text', [
-                        'label' => trans('mconsole::pages.form.slug'),
-                        'name' => 'slug',
-                    ])
-                    <div class="tabbable-line">
-						<ul class="nav nav-tabs">
-                            @foreach ($languages as $key => $language)
-    							<li @if ($key == 0) class="active" @endif>
-    								<a href="#lang_{{ $language->id }}" data-toggle="tab"> {{ $language->name }}  </a>
-    							</li>
-                            @endforeach
-						</ul>
-						<div class="tab-content">
-                            @foreach ($languages as $key =>$language)
-    							<div class="tab-pane fade @if ($key == 0) active @endif in" id="lang_{{ $language->id }}">
-                                    @include('mconsole::forms.text', [
-                						'label' => trans('mconsole::pages.form.heading'),
-                						'name' => 'heading[' . $language->key . ']',
-                					])
-                                    <hr />
-                                    <h3>{{ trans('mconsole::pages.form.content') }}</h3>
-                					@include('mconsole::forms.textarea', [
-                						'label' => trans('mconsole::pages.form.preview'),
-                						'name' => 'preview[' . $language->key . ']',
-                                        'size' => '50x2',
-                					])
-                					@include('mconsole::forms.textarea', [
-                						'label' => trans('mconsole::pages.form.text'),
-                						'name' => 'text[' . $language->key . ']',
-                                        'size' => '50x15',
-                					])
-                                    <hr />
-                                    <h3>{{ trans('mconsole::pages.form.seo') }}</h3>
-                                    @include('mconsole::forms.text', [
-    									'label' => trans('mconsole::pages.form.title'),
-    									'name' => 'title[' . $language->key . ']',
-    								])
-    								@include('mconsole::forms.text', [
-    									'label' => trans('mconsole::pages.form.description'),
-    									'name' => 'description[' . $language->key . ']',
-    								])
-    							</div>
-                            @endforeach
-						</div>
-					</div>
+                    <div class="form-body">
+                        @include('mconsole::forms.text', [
+                            'label' => trans('mconsole::pages.form.slug'),
+                            'name' => 'slug',
+                        ])
+                        <div class="tabbable-line">
+    						<ul class="nav nav-tabs">
+                                @foreach ($languages as $key => $language)
+        							<li @if ($key == 0) class="active" @endif>
+        								<a href="#lang_{{ $language->id }}" data-toggle="tab"> {{ $language->name }}  </a>
+        							</li>
+                                @endforeach
+    						</ul>
+    						<div class="tab-content">
+                                @foreach ($languages as $key =>$language)
+        							<div class="tab-pane fade @if ($key == 0) active @endif in" id="lang_{{ $language->id }}">
+                                        @include('mconsole::forms.text', [
+                    						'label' => trans('mconsole::pages.form.heading'),
+                    						'name' => 'heading[' . $language->key . ']',
+                    					])
+                                        <hr />
+                                        <h3>{{ trans('mconsole::pages.form.content') }}</h3>
+                    					@include('mconsole::forms.textarea', [
+                    						'label' => trans('mconsole::pages.form.preview'),
+                    						'name' => 'preview[' . $language->key . ']',
+                                            'size' => '50x2',
+                    					])
+                    					@include('mconsole::forms.textarea', [
+                    						'label' => trans('mconsole::pages.form.text'),
+                    						'name' => 'text[' . $language->key . ']',
+                                            'size' => '50x15',
+                    					])
+                                        <hr />
+                                        <h3>{{ trans('mconsole::pages.form.seo') }}</h3>
+                                        @include('mconsole::forms.text', [
+        									'label' => trans('mconsole::pages.form.title'),
+        									'name' => 'title[' . $language->key . ']',
+        								])
+        								@include('mconsole::forms.text', [
+        									'label' => trans('mconsole::pages.form.description'),
+        									'name' => 'description[' . $language->key . ']',
+        								])
+        							</div>
+                                @endforeach
+    						</div>
+    					</div>
+                    </div>
+                    <div class="form-actions">
+                        @include('mconsole::forms.submit')
+                    </div>
 				</div>
 			</div>
 		</div>
@@ -130,14 +135,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="col-sm-4">
-			<div class="form-actions">
-				@include('mconsole::forms.submit')
 			</div>
 		</div>
 	</div>
