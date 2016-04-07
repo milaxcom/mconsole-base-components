@@ -32,4 +32,18 @@ class Page extends Model
     {
         return $this->hasMany('Milax\Mconsole\Pages\Models\ContentLink');
     }
+    
+    /**
+     * Automatically delete related data
+     * 
+     * @return void
+     */
+    public static function boot()
+    {
+        parent::boot();
+        static::deleted(function ($page) {
+            $page->images()->delete();
+            $page->links()->delete();
+        });
+    }
 }
