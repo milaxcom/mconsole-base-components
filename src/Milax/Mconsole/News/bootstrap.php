@@ -18,10 +18,10 @@ return [
                 ],
                 'news_form' => [
                     'name' => 'Create news',
-                    'translation' => 'news.menu.form.name',
+                    'translation' => 'news.menu.create.name',
                     'url' => 'news/create',
                     'description' => 'news.menu.form.description',
-                    'route' => 'mconsole.news.store',
+                    'route' => 'mconsole.pages.create',
                     'visible' => true,
                     'enabled' => true,
                 ],
@@ -51,4 +51,15 @@ return [
         'bindings' => [],
         'dependencies' => [],
     ],
+    'init' => function () {
+        app('API')->search->register(function ($text) {
+            return \Milax\Mconsole\News\Models\News::where('slug', 'like', sprintf('%%%s%%', $text))->orWhere('title', 'like', sprintf('%%%s%%', $text))->orWhere('heading', 'like', sprintf('%%%s%%', $text))->orWhere('preview', 'like', sprintf('%%%s%%', $text))->orWhere('text', 'like', sprintf('%%%s%%', $text))->get()->transform(function ($page) {
+                return [
+                    'type' => 'page',
+                    'text' => sprintf('%s', $page->slug),
+                    'link' => sprintf('/mconsole/pages/%s/edit', $page->id),
+                ];
+            });
+        });
+    },
 ];
