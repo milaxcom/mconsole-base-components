@@ -52,7 +52,9 @@ class PagesController extends Controller
      */
     public function create()
     {
-        return view('mconsole::pages.form');
+        return view('mconsole::pages.form', [
+            'languages' => \Milax\Mconsole\Models\Language::all(),
+        ]);
     }
 
     /**
@@ -95,6 +97,7 @@ class PagesController extends Controller
         $page = Page::with('links')->with('images')->find($id);
         return view('mconsole::pages.form', [
             'item' => $page,
+            'languages' => \Milax\Mconsole\Models\Language::all(),
         ]);
     }
 
