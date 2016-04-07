@@ -10,11 +10,9 @@
 	<div class="row">
 		<div class="col-md-8 col-sm-6">
 			<div class="portlet light">
-				<div class="portlet-title">
-					<div class="caption">
-						<span class="caption-subject font-blue sbold uppercase">{{ trans('mconsole::pages.form.main') }}</span>
-					</div>
-				</div>
+                @include('mconsole::partials.portlet-title', [
+                    'title' => trans('mconsole::pages.form.main'),
+                ])
 				<div class="portlet-body form">
                     @include('mconsole::forms.text', [
                         'label' => trans('mconsole::pages.form.slug'),

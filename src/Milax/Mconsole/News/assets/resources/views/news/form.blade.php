@@ -3,13 +3,16 @@
 @section('content')
 
 <div class="row">
-	<div class="col-sm-6">
+	<div class="col-md-8 col-sm-6">
         @if (isset($item))
             {!! Form::model($item, ['method' => 'PUT', 'route' => ['mconsole.news.update', $item->id]]) !!}
         @else
             {!! Form::open(['method' => 'POST', 'url' => '/mconsole/news']) !!}
         @endif
         <div class="portlet light">
+            @include('mconsole::partials.portlet-title', [
+                'title' => trans('mconsole::news.form.main'),
+            ])
             <div class="portlet-body">
     			<div class="form-body">
     				@include('mconsole::forms.date', [
