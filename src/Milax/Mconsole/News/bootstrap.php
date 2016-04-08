@@ -20,7 +20,7 @@ return [
                     'name' => 'Create news',
                     'translation' => 'news.menu.create.name',
                     'url' => 'news/create',
-                    'description' => 'news.menu.form.description',
+                    'description' => 'news.menu.create.description',
                     'route' => 'mconsole.news.create',
                     'visible' => false,
                     'enabled' => true,

@@ -20,7 +20,7 @@ return [
                     'name' => 'Create page',
                     'translation' => 'pages.menu.create.name',
                     'url' => 'pages/create',
-                    'description' => 'pages.menu.form.description',
+                    'description' => 'pages.menu.create.description',
                     'route' => 'mconsole.pages.create',
                     'visible' => false,
                     'enabled' => true,
