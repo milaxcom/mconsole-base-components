@@ -3,6 +3,7 @@
 namespace Milax\Mconsole\Pages\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Request;
 
 class Page extends Model
 {
@@ -26,8 +27,14 @@ class Page extends Model
      */
     public function setSlugAttribute($value)
     {
+        foreach (Request::input('heading') as $lang => $heading) {
+            if (strlen($heading) > 0) {
+                break;
+            }
+        }
+        
         if (strlen($value) == 0) {
-            $this->attributes['slug'] = str_slug($this->heading);
+            $this->attributes['slug'] = str_slug($heading);
         } else {
             $this->attributes['slug'] = str_slug($value);
         }
