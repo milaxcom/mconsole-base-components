@@ -58,8 +58,10 @@ class Page extends Model
     public static function boot()
     {
         parent::boot();
-        static::deleted(function ($page) {
-            $page->images()->delete();
+        static::deleting(function ($page) {
+            $page->images->each(function ($image) {
+                $image->delete();
+            });
             $page->links()->delete();
         });
     }
