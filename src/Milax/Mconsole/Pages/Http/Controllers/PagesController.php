@@ -7,22 +7,13 @@ use App\Http\Controllers\Controller;
 use Milax\Mconsole\Pages\Http\Requests\PageRequest;
 use Milax\Mconsole\Pages\Models\Page;
 use Milax\Mconsole\Pages\Models\ContentLink;
-use Milax\Mconsole\Contracts\Localizator;
-use Paginatable;
-use Redirectable;
-use HasQueryTraits;
 
 class PagesController extends Controller
 {
-    use HasQueryTraits, Redirectable, Paginatable;
+    use \HasQueryTraits, \Redirectable, \Paginatable;
 
     protected $redirectTo = '/mconsole/pages';
     protected $model = 'Milax\Mconsole\Pages\Models\Page';
-    
-    public function __construct(Localizator $localizator)
-    {
-        $this->localizator = $localizator;
-    }
     
     /**
      * Display a listing of the resource.
@@ -67,6 +58,9 @@ class PagesController extends Controller
     public function store(PageRequest $request)
     {
         $page = Page::create($request->all());
+        
+        $this->handleImages($page);
+        
         if (strlen($request->input('links')) > 0) {
             $links = collect(json_decode($request->input('links'), true));
             $page->links()->whereNotIn('id', $links->lists('id'))->delete();
@@ -113,6 +107,8 @@ class PagesController extends Controller
     {
         $page = Page::find($id);
         
+        $this->handleImages($page);
+        
         if (strlen($request->input('links')) > 0) {
             $links = collect(json_decode($request->input('links'), true));
             $page->links()->whereNotIn('id', $links->lists('id'))->delete();
@@ -148,5 +144,29 @@ class PagesController extends Controller
         }
 
         Page::destroy($id);
+    }
+    
+    /**
+     * Handle images upload
+     *
+     * @param Milax\Mconsole\Pages\Models\Page $page [Page object]
+     * @return void
+     */
+    protected function handleImages($page)
+    {
+        // Images processing
+        app('API')->images->handle(function ($images) use (&$page) {
+            app('API')->images->attach([
+                'group' => 'gallery',
+                'images' => $images,
+                'related' => $page,
+            ]);
+            app('API')->images->attach([
+                'group' => 'cover',
+                'images' => $images,
+                'related' => $page,
+                'unique' => true,
+            ]);
+        });
     }
 }

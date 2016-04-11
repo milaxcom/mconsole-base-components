@@ -3,12 +3,12 @@
 @section('content')
 	
 	@if (isset($item))
-		{!! Form::model($item, ['method' => 'PUT', 'route' => ['mconsole.pages.update', $item->id]]) !!}
+		{!! Form::model($item, ['method' => 'PUT', 'route' => ['mconsole.pages.update', $item->id], 'files' => true, 'id' => 'uploadable-form']) !!}
 	@else
-		{!! Form::open(['method' => 'POST', 'url' => '/mconsole/pages']) !!}
+		{!! Form::open(['method' => 'POST', 'url' => '/mconsole/pages', 'files' => true, 'id' => 'uploadable-form']) !!}
 	@endif
 	<div class="row">
-		<div class="col-md-8 col-sm-6">
+		<div class="col-lg-7 col-md-6">
 			<div class="portlet light">
                 @include('mconsole::partials.portlet-title', [
                     'title' => trans('mconsole::pages.form.main'),
@@ -67,7 +67,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4 col-sm-6">
+		<div class="col-lg-5 col-md-6">
+            
             <div class="portlet light">
 				<div class="portlet-title">
 					<div class="caption">
@@ -75,8 +76,33 @@
 					</div>
 				</div>
 				<div class="portlet-body form">
+                    @include('mconsole::partials.upload', [
+                        'multiple' => true,
+                        'group' => 'gallery',
+                        'preset' => 1,
+                        'id' => isset($item) ? $item->id : null,
+                        'model' => 'Milax\Mconsole\Pages\Models\Page',
+                    ])
 				</div>
 			</div>
+            
+            <div class="portlet light">
+				<div class="portlet-title">
+					<div class="caption">
+						<span class="caption-subject font-blue sbold uppercase">{{ trans('mconsole::pages.form.gallery') }}</span>
+					</div>
+				</div>
+				<div class="portlet-body form">
+                    @include('mconsole::partials.upload', [
+                        'group' => 'cover',
+                        'multiple' => 'false',
+                        'preset' => 1,
+                        'id' => isset($item) ? $item->id : null,
+                        'model' => 'Milax\Mconsole\Pages\Models\Page',
+                    ])
+				</div>
+			</div>
+            
 			<div class="portlet light">
 				<div class="portlet-title">
 					<div class="caption">
