@@ -79,24 +79,7 @@
                     @include('mconsole::partials.upload', [
                         'multiple' => true,
                         'group' => 'gallery',
-                        'preset' => 1,
-                        'id' => isset($item) ? $item->id : null,
-                        'model' => 'Milax\Mconsole\Pages\Models\Page',
-                    ])
-				</div>
-			</div>
-            
-            <div class="portlet light">
-				<div class="portlet-title">
-					<div class="caption">
-						<span class="caption-subject font-blue sbold uppercase">{{ trans('mconsole::pages.form.gallery') }}</span>
-					</div>
-				</div>
-				<div class="portlet-body form">
-                    @include('mconsole::partials.upload', [
-                        'group' => 'cover',
-                        'multiple' => 'false',
-                        'preset' => 1,
+                        'preset' => 'pages',
                         'id' => isset($item) ? $item->id : null,
                         'model' => 'Milax\Mconsole\Pages\Models\Page',
                     ])
