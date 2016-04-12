@@ -62,11 +62,7 @@ class Installer implements ModuleInstaller
     
     public static function install()
     {
-        foreach (self::$options as $option) {
-            if (MconsoleOption::where('key', $option['key'])->count() == 0) {
-                MconsoleOption::create($option);
-            }
-        }
+        app('API')->options->install(self::$options);
         
         foreach (self::$presets as $preset) {
             if (MconsoleUploadPreset::where('key', $preset['key'])->count() == 0) {
@@ -77,9 +73,7 @@ class Installer implements ModuleInstaller
     
     public static function uninstall()
     {
-        foreach (self::$options as $option) {
-            MconsoleOption::where('key', $option['key'])->delete();
-        }
+        app('API')->options->uninstall(self::$options);
         
         foreach (self::$presets as $preset) {
             MconsoleUploadPreset::where('key', $preset['key'])->delete();

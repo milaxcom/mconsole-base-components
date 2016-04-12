@@ -1,6 +1,5 @@
 <?php
 
-use Milax\Mconsole\Models\MconsoleOption;
 use Milax\Mconsole\News\Installer;
 
 return [
