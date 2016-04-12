@@ -1,5 +1,7 @@
 <?php
 
+use Milax\Mconsole\Pages\Installer;
+
 return [
     'name' => 'Pages',
     'identifier' => 'mconsole-pages',
@@ -51,6 +53,12 @@ return [
         'bindings' => [],
         'dependencies' => [],
     ],
+    'install' => function () {
+        Installer::install();
+    },
+    'uninstall' => function () {
+        Installer::uninstall();
+    },
     'init' => function () {
         // Register in search engine
         app('API')->search->register(function ($text) {
