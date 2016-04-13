@@ -5,13 +5,10 @@ namespace Milax\Mconsole\News\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Milax\Mconsole\News\Http\Requests\NewsRequest;
 use Milax\Mconsole\News\Models\News;
-use Paginatable;
-use Redirectable;
-use HasQueryTraits;
 
 class NewsController extends Controller
 {
-    use HasQueryTraits, Redirectable, Paginatable;
+    use \HasQueryTraits, \HasRedirects, \HasPaginator;
 
     protected $redirectTo = '/mconsole/news';
     protected $model = 'Milax\Mconsole\News\Models\News';

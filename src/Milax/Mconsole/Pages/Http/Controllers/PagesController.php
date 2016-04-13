@@ -10,7 +10,7 @@ use Milax\Mconsole\Pages\Models\ContentLink;
 
 class PagesController extends Controller
 {
-    use \HasQueryTraits, \Redirectable, \Paginatable;
+    use \HasQueryTraits, \HasRedirects, \HasPaginator;
 
     protected $redirectTo = '/mconsole/pages';
     protected $model = 'Milax\Mconsole\Pages\Models\Page';
