@@ -10,6 +10,7 @@ class Installer implements ModuleInstaller
 {
     public static $options = [
         [
+            'group' => 'news.settings.group.name',
             'label' => 'news.settings.index',
             'key' => 'news_index_count',
             'value' => 3,
@@ -17,6 +18,7 @@ class Installer implements ModuleInstaller
             'rules' => ['required', 'integer'],
         ],
         [
+            'group' => 'news.settings.group.name',
             'label' => 'news.settings.archive',
             'key' => 'news_archive_count',
             'value' => 6,
