@@ -12,6 +12,7 @@
 			<div class="portlet light">
                 @include('mconsole::partials.portlet-title', [
                     'title' => trans('mconsole::pages.form.main'),
+                    'fullscreen' => true,
                 ])
 				<div class="portlet-body form">
                     <div class="form-body">
