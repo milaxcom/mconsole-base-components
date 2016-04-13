@@ -28,13 +28,12 @@ class Page extends Model
      */
     public function setSlugAttribute($value)
     {
-        foreach (Request::input('heading') as $lang => $heading) {
-            if (strlen($heading) > 0) {
-                break;
-            }
-        }
-        
         if (strlen($value) == 0) {
+            foreach (Request::input('heading') as $lang => $heading) {
+                if (strlen($heading) > 0) {
+                    break;
+                }
+            }
             $this->attributes['slug'] = str_slug($heading);
         } else {
             $this->attributes['slug'] = str_slug($value);
