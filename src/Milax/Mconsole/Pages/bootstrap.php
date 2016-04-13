@@ -1,6 +1,7 @@
 <?php
 
 use Milax\Mconsole\Pages\Installer;
+use Milax\Mconsole\Pages\Models\Page;
 
 return [
     'name' => 'Pages',
@@ -62,10 +63,15 @@ return [
     'init' => function () {
         // Register in search engine
         app('API')->search->register(function ($text) {
-            return \Milax\Mconsole\Pages\Models\Page::where('slug', 'like', sprintf('%%%s%%', $text))->orWhere('title', 'like', sprintf('%%%s%%', $text))->orWhere('heading', 'like', sprintf('%%%s%%', $text))->orWhere('preview', 'like', sprintf('%%%s%%', $text))->orWhere('text', 'like', sprintf('%%%s%%', $text))->get()->transform(function ($page) {
+            return Page::select('id', 'slug', 'heading')->where('slug', 'like', sprintf('%%%s%%', $text))->orWhere('title', 'like', sprintf('%%%s%%', $text))->orWhere('heading', 'like', sprintf('%%%s%%', $text))->orWhere('preview', 'like', sprintf('%%%s%%', $text))->orWhere('text', 'like', sprintf('%%%s%%', $text))->get()->transform(function ($page) {
+                foreach ($page->heading as $lang => $heading) {
+                    if (strlen($heading) > 0) {
+                        break;
+                    }
+                }
                 return [
-                    'type' => 'page',
-                    'text' => sprintf('%s', $page->slug),
+                    'title' => $heading,
+                    'description' => str_limit(url(sprintf('/%s', $page->slug)), 45),
                     'link' => sprintf('/mconsole/pages/%s/edit', $page->id),
                 ];
             });

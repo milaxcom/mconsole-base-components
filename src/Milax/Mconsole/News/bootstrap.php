@@ -63,11 +63,11 @@ return [
     'init' => function () {
         // Register in search engine
         app('API')->search->register(function ($text) {
-            return News::where('slug', 'like', sprintf('%%%s%%', $text))->orWhere('title', 'like', sprintf('%%%s%%', $text))->orWhere('heading', 'like', sprintf('%%%s%%', $text))->orWhere('preview', 'like', sprintf('%%%s%%', $text))->orWhere('text', 'like', sprintf('%%%s%%', $text))->get()->transform(function ($page) {
+            return News::select('id', 'slug', 'heading')->where('slug', 'like', sprintf('%%%s%%', $text))->orWhere('title', 'like', sprintf('%%%s%%', $text))->orWhere('heading', 'like', sprintf('%%%s%%', $text))->orWhere('preview', 'like', sprintf('%%%s%%', $text))->orWhere('text', 'like', sprintf('%%%s%%', $text))->get()->transform(function ($page) {
                 return [
-                    'type' => 'page',
-                    'text' => sprintf('%s', $page->slug),
-                    'link' => sprintf('/mconsole/pages/%s/edit', $page->id),
+                    'title' => $page->heading,
+                    'description' => sprintf('/%s', $page->slug),
+                    'link' => sprintf('/mconsole/news/%s/edit', $page->id),
                 ];
             });
         });
