@@ -1,6 +1,7 @@
 <?php
 
 use Milax\Mconsole\News\Installer;
+use Milax\Mconsole\News\Models\News;
 
 return [
     'name' => 'News',
