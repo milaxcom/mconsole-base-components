@@ -33,14 +33,28 @@
     					'name' => 'title',
     				])
     				
-    				@include('mconsole::forms.textarea', [
-    					'label' => trans('mconsole::news.form.preview'),
-    					'name' => 'preview',
-    				])
-    				@include('mconsole::forms.textarea', [
-    					'label' => trans('mconsole::news.form.text'),
-    					'name' => 'text',
-    				])
+                    @if (app('API')->options->get('textareatype') == 'ckeditor')
+                        @include('mconsole::forms.ckeditor', [
+                            'label' => trans('mconsole::news.form.preview'),
+                            'name' => 'preview',
+                        ])
+                        @include('mconsole::forms.ckeditor', [
+                            'label' => trans('mconsole::news.form.text'),
+                            'name' => 'text',
+                        ])
+                    @else
+                        @include('mconsole::forms.textarea', [
+                            'label' => trans('mconsole::news.form.preview'),
+                            'name' => 'preview',
+                            'size' => '50x2',
+                        ])
+                        @include('mconsole::forms.textarea', [
+                            'label' => trans('mconsole::news.form.text'),
+                            'name' => 'text',
+                            'size' => '50x15',
+                        ])
+                    @endif
+                    
     				@include('mconsole::forms.textarea', [
     					'label' => trans('mconsole::news.form.description'),
     					'name' => 'description',
