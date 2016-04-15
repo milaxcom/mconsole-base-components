@@ -51,7 +51,10 @@ class NewsController extends Controller
     public function store(NewsRequest $request)
     {
         $news = News::create($request->all());
-        $news->tags()->sync($request->input('tags'));
+        
+        if (!is_null($tags = $request->input('tags'))) {
+            $news->tags()->sync($tags);
+        }
     }
 
     /**
@@ -79,7 +82,13 @@ class NewsController extends Controller
     public function update(NewsRequest $request, $id)
     {
         $news = News::find($id);
-        $news->tags()->sync($request->input('tags'));
+        
+        if (!is_null($tags = $request->input('tags'))) {
+            $news->tags()->sync($tags);
+        } else {
+            $news->tags()->detach();
+        }
+        
         $news->update($request->all());
     }
 
