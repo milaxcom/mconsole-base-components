@@ -70,6 +70,7 @@ return [
                     }
                 }
                 return [
+                    'icon' => 'file-text-o',
                     'title' => $heading,
                     'description' => str_limit(url(sprintf('/%s', $page->slug)), 45),
                     'link' => sprintf('/mconsole/pages/%s/edit', $page->id),
