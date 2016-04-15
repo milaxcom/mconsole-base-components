@@ -50,7 +50,8 @@ class NewsController extends Controller
      */
     public function store(NewsRequest $request)
     {
-        News::create($request->all());
+        $news = News::create($request->all());
+        $news->tags()->sync($request->input('tags'));
     }
 
     /**
@@ -77,7 +78,9 @@ class NewsController extends Controller
      */
     public function update(NewsRequest $request, $id)
     {
-        News::find($id)->update($request->all());
+        $news = News::find($id);
+        $news->tags()->sync($request->input('tags'));
+        $news->update($request->all());
     }
 
     /**

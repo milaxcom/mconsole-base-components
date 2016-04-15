@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="row">
-	<div class="col-md-8 col-sm-6">
+	<div class="col-lg-7 col-md-6">
         @if (isset($item))
             {!! Form::model($item, ['method' => 'PUT', 'route' => ['mconsole.news.update', $item->id]]) !!}
         @else
@@ -74,8 +74,29 @@
                 </div>
             </div>
         </div>
-		{!! Form::close() !!}
 	</div>
+    
+    <div class="col-lg-5 col-md-6">
+        <div class="portlet light">
+			<div class="portlet-title">
+				<div class="caption">
+					<span class="caption-subject font-blue sbold uppercase">{{ trans('mconsole::forms.tags.label') }}</span>
+				</div>
+			</div>
+			<div class="portlet-body form">
+                @if (isset($item))
+                    @include('mconsole::forms.tags', [
+                        'tags' => $item->tags,
+                    ])
+                @else
+                    @include('mconsole::forms.tags')
+                @endif
+			</div>
+		</div>
+    </div>
+    
+    {!! Form::close() !!}
+    
 </div>
 
 @endsection
