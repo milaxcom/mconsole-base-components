@@ -8,7 +8,6 @@ use Request;
 class Page extends Model
 {
     use \HasImages;
-    use \HasTags;
     
     protected $fillable = ['slug', 'title', 'heading', 'preview', 'text', 'description', 'hide_heading', 'fullwidth', 'system', 'enabled'];
     
@@ -59,9 +58,6 @@ class Page extends Model
     {
         parent::boot();
         static::deleting(function ($page) {
-            $page->images->each(function ($image) {
-                $image->delete();
-            });
             $page->links()->delete();
         });
     }
