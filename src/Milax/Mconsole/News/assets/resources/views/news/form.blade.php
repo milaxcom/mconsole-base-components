@@ -11,6 +11,7 @@
         @endif
         <div class="portlet light">
             @include('mconsole::partials.portlet-title', [
+                'back' => '/mconsole/news',
                 'title' => trans('mconsole::news.form.main'),
                 'fullscreen' => true,
             ])
