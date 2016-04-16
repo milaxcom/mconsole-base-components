@@ -30,14 +30,14 @@ class NewsRequest extends Request
             case 'PUT':
             case 'UPDATE':
                 return [
-                    'slug' => 'max:255|unique:pages,slug,' . $new->id,
+                    'slug' => 'required|max:255|unique:news,slug,' . $new->id,
                     'heading' => 'required|max:255',
                 ];
                 break;
             
             default:
                 return [
-                    'slug' => 'max:255|unique:pages',
+                    'slug' => 'required|max:255|unique:news',
                     'heading' => 'required|max:255',
                 ];
         }
