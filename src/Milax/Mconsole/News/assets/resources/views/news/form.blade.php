@@ -59,15 +59,9 @@
     					'label' => trans('mconsole::news.form.description'),
     					'name' => 'description',
     				])
-
-    				@include('mconsole::forms.select', [
-    					'label' => trans('mconsole::news.form.enabled.name'),
-    					'name' => 'enabled',
-    					'options' => [
-    						'1' => trans('mconsole::news.form.enabled.true'),
-    						'0' => trans('mconsole::news.form.enabled.false'),
-    					],
-    				])
+                    
+                    @include('mconsole::forms.state')
+                    
     			</div>
                 <div class="form-actions">
                     @include('mconsole::forms.submit')
