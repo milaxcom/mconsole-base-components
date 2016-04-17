@@ -147,10 +147,12 @@
                                 @include('mconsole::forms.hidden', [
                                     'name' => 'links',
                                     'class' => 'links-editor',
-                                    'hidden' => [
-                                        'title' => trans('mconsole::pages.form.links.title'),
-                                        'url' => trans('mconsole::pages.form.links.url'),
-                                        'enabled' => trans('mconsole::pages.form.links.enabled'),
+                                ])
+                                @include('mconsole::partials.trans', [
+                                    'lang' => [
+                                        'links-editor-title' => trans('mconsole::pages.form.links.title'),
+                                        'links-editor-url' => trans('mconsole::pages.form.links.url'),
+                                        'links-editor-enabled' => trans('mconsole::pages.form.links.enabled'),
                                     ],
                                 ])
 							</div>
