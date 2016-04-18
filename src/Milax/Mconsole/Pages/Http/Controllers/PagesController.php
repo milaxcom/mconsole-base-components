@@ -88,7 +88,7 @@ class PagesController extends Controller
      */
     public function edit($id)
     {
-        $page = Page::with('links')->with('images')->find($id);
+        $page = Page::with('links')->with('uploads')->find($id);
         return view('mconsole::pages.form', [
             'item' => $page,
             'languages' => \Milax\Mconsole\Models\Language::all(),
@@ -155,13 +155,13 @@ class PagesController extends Controller
     protected function handleImages($page)
     {
         // Images processing
-        app('API')->images->handle(function ($images) use (&$page) {
-            app('API')->images->attach([
+        app('API')->uploads->handle(function ($images) use (&$page) {
+            app('API')->uploads->attach([
                 'group' => 'gallery',
                 'images' => $images,
                 'related' => $page,
             ]);
-            app('API')->images->attach([
+            app('API')->uploads->attach([
                 'group' => 'cover',
                 'images' => $images,
                 'related' => $page,

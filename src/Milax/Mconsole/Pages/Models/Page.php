@@ -7,7 +7,7 @@ use Request;
 
 class Page extends Model
 {
-    use \HasImages;
+    use \HasUploads;
     
     protected $fillable = ['slug', 'title', 'heading', 'preview', 'text', 'description', 'hide_heading', 'fullwidth', 'system', 'enabled'];
     
