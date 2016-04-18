@@ -30,6 +30,7 @@ class Installer implements ModuleInstaller
     public static $presets = [
         [
             'key' => 'news',
+            'type' => MX_UPLOADTYPE_IMAGE,
             'name' => 'News',
             'path' => 'news',
             'extensions' => ['jpg', 'jpeg', 'png'],
