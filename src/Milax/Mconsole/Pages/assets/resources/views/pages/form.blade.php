@@ -90,7 +90,7 @@
 				</div>
 				<div class="portlet-body form">
                     @include('mconsole::forms.upload', [
-                        'type' => MX_UPLOADTYPE_IMAGE,
+                        'type' => MX_UPLOAD_TYPE_IMAGE,
                         'multiple' => true,
                         'group' => 'gallery',
                         'preset' => 'pages',
