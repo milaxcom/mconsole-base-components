@@ -120,28 +120,24 @@
 						<div class="tab-content">
 							<div class="tab-pane fade active in" id="tab_1">
                                 @include('mconsole::forms.select', [
-                                    'label' => trans('mconsole::pages.form.enabled.name'),
+                                    'label' => trans('mconsole::pages.form.enabled'),
                                     'name' => 'enabled',
-                                    'options' => [
-                                        '1' => trans('mconsole::pages.form.enabled.true'),
-                                        '0' => trans('mconsole::pages.form.enabled.false'),
-                                    ],
+                                    'type' => MX_SELECT_YESNO,
                                 ])
                                 @include('mconsole::forms.select', [
-									'label' => trans('mconsole::pages.form.hide_heading.name'),
+									'label' => trans('mconsole::pages.form.hide_heading'),
 									'name' => 'hide_heading',
-									'options' => [
-                                        '0' => trans('mconsole::pages.form.hide_heading.false'),
-										'1' => trans('mconsole::pages.form.hide_heading.true'),
-									],
+                                    'type' => MX_SELECT_YESNO,
 								])
 								@include('mconsole::forms.select', [
-									'label' => trans('mconsole::pages.form.fullwidth.name'),
+									'label' => trans('mconsole::pages.form.fullwidth'),
 									'name' => 'fullwidth',
-									'options' => [
-										'0' => trans('mconsole::pages.form.fullwidth.false'),
-										'1' => trans('mconsole::pages.form.fullwidth.true'),
-									],
+                                    'type' => MX_SELECT_YESNO,
+								])
+								@include('mconsole::forms.select', [
+									'label' => trans('mconsole::pages.form.indexing'),
+									'name' => 'index',
+                                    'type' => MX_SELECT_STATE,
 								])
 							</div>
 							<div class="tab-pane fade" id="tab_2">

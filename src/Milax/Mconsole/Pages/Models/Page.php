@@ -9,7 +9,7 @@ class Page extends Model
 {
     use \HasUploads;
     
-    protected $fillable = ['slug', 'title', 'heading', 'preview', 'text', 'description', 'hide_heading', 'fullwidth', 'system', 'enabled'];
+    protected $fillable = ['slug', 'title', 'heading', 'preview', 'text', 'description', 'hide_heading', 'fullwidth', 'indexing', 'system', 'enabled'];
     
     protected $casts = [
         'heading' => 'array',
