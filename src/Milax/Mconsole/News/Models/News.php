@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
-    use \HasTags;
+    use \HasTags, \HasUploads;
     
     protected $fillable = ['slug', 'title', 'heading', 'preview', 'text', 'description', 'indexing', 'enabled', 'published_at', 'published'];
     
@@ -72,5 +72,21 @@ class News extends Model
     public function getPublishedAttribute()
     {
         return $this->published_at->format('m/d/Y');
+    }
+    
+    /**
+     * Automatically delete related data
+     * 
+     * @return void
+     */
+    public static function boot()
+    {
+        parent::boot();
+        self::deleting(function ($object) {
+            $object->uploads->each(function ($upload) {
+                $upload->delete();
+            });
+            $object->tags()->detach();
+        });
     }
 }

@@ -12,7 +12,7 @@
 			<div class="portlet light">
                 @include('mconsole::partials.portlet-title', [
                     'back' => '/mconsole/pages',
-                    'title' => trans('mconsole::pages.form.main'),
+                    'title' => trans('mconsole::forms.tabs.main'),
                     'fullscreen' => true,
                 ])
 				<div class="portlet-body form">
@@ -103,7 +103,7 @@
 			<div class="portlet light">
 				<div class="portlet-title">
 					<div class="caption">
-						<span class="caption-subject font-blue sbold uppercase">{{ trans('mconsole::pages.form.additional') }}</span>
+						<span class="caption-subject font-blue sbold uppercase">{{ trans('mconsole::forms.tabs.settings') }}</span>
 					</div>
 				</div>
 				<div class="portlet-body form">

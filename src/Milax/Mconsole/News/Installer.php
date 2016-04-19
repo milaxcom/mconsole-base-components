@@ -25,6 +25,14 @@ class Installer implements ModuleInstaller
             'type' => 'text',
             'rules' => ['required', 'integer'],
         ],
+        [
+            'group' => 'news.settings.group.name',
+            'label' => 'news.settings.gallery',
+            'key' => 'news_has_gallery',
+            'value' => 1,
+            'type' => 'select',
+            'options' => ['1' => 'settings.options.on', '0' => 'settings.options.off'],
+        ],
     ];
     
     public static $presets = [

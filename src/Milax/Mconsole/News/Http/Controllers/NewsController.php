@@ -58,6 +58,8 @@ class NewsController extends Controller
     {
         $news = News::create($request->all());
         
+        $this->handleImages($news);
+        
         if (!is_null($tags = $request->input('tags'))) {
             $news->tags()->sync($tags);
         }
@@ -90,6 +92,8 @@ class NewsController extends Controller
     {
         $news = News::find($id);
         
+        $this->handleImages($news);
+        
         if (!is_null($tags = $request->input('tags'))) {
             $news->tags()->sync($tags);
         } else {
@@ -109,5 +113,23 @@ class NewsController extends Controller
     public function destroy($id)
     {
         News::destroy($id);
+    }
+    
+    /**
+     * Handle images upload
+     *
+     * @param Milax\Mconsole\News\Models\News $news [News object]
+     * @return void
+     */
+    protected function handleImages($news)
+    {
+        // Images processing
+        app('API')->uploads->handle(function ($images) use (&$news) {
+            app('API')->uploads->attach([
+                'group' => 'gallery',
+                'images' => $images,
+                'related' => $news,
+            ]);
+        });
     }
 }

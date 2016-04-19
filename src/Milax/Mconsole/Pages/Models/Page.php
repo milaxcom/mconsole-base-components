@@ -59,6 +59,9 @@ class Page extends Model
         parent::boot();
         static::deleting(function ($page) {
             $page->links()->delete();
+            $object->uploads->each(function ($upload) {
+                $upload->delete();
+            });
         });
     }
 }
