@@ -46,6 +46,9 @@ class News extends Model
         }
     }
     
+    /**
+     * Set published_at date
+     */
     public function setPublishedAttribute($value)
     {
         if (strlen($value) > 0) {
@@ -53,6 +56,11 @@ class News extends Model
         }
     }
     
+    /**
+     * Get published_at as string
+     * 
+     * @return string
+     */
     public function getPublishedAttribute()
     {
         return $this->published_at->format('m/d/Y');
