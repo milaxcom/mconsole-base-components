@@ -68,18 +68,15 @@
                                             'size' => '50x15',
                                         ])
                                     @endif
-                                    
-                    				@include('mconsole::forms.textarea', [
+                                    @include('mconsole::forms.textarea', [
                     					'label' => trans('mconsole::news.form.description'),
                     					'name' => 'description[' . $language->key . ']',
+                                        'size' => '50x3',
                     				])
                                 </div>
                             @endforeach
                         </div>
                     </div>
-                    
-                    @include('mconsole::forms.state')
-                    
     			</div>
                 <div class="form-actions">
                     @include('mconsole::forms.submit')
@@ -103,6 +100,24 @@
                 @else
                     @include('mconsole::forms.tags')
                 @endif
+			</div>
+		</div>
+    </div>
+    
+    <div class="col-lg-5 col-md-6">
+        <div class="portlet light">
+			<div class="portlet-title">
+				<div class="caption">
+					<span class="caption-subject font-blue sbold uppercase">{{ trans('mconsole::forms.tabs.settings') }}</span>
+				</div>
+			</div>
+			<div class="portlet-body form">
+                @include('mconsole::forms.state')
+                @include('mconsole::forms.select', [
+                    'label' => trans('mconsole::news.form.indexing'),
+                    'name' => 'indexing',
+                    'type' => MX_SELECT_STATE,
+                ])
 			</div>
 		</div>
     </div>

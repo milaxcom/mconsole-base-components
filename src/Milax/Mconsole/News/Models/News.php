@@ -8,7 +8,7 @@ class News extends Model
 {
     use \HasTags;
     
-    protected $fillable = ['slug', 'title', 'heading', 'preview', 'text', 'description', 'enabled', 'published_at', 'published'];
+    protected $fillable = ['slug', 'title', 'heading', 'preview', 'text', 'description', 'indexing', 'enabled', 'published_at', 'published'];
     
     protected $dates = [
         'published_at',
