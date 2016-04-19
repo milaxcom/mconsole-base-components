@@ -26,7 +26,11 @@ class NewsController extends Controller
                 trans('mconsole::news.table.published') => $item->published_at->format('m.d.Y'),
                 trans('mconsole::news.table.updated') => $item->updated_at->format('m.d.Y'),
                 trans('mconsole::news.table.slug') => $item->slug,
-                trans('mconsole::news.table.heading') => $item->heading,
+                trans('mconsole::news.table.heading') => collect($item->heading)->transform(function ($val, $key) {
+                    if (strlen($val) > 0) {
+                        return sprintf('<div class="label label-info">%s</div> %s', $key, $val);
+                    }
+                })->values()->implode('<br />'),
             ];
         });
     }
@@ -38,7 +42,9 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('mconsole::news.form');
+        return view('mconsole::news.form', [
+            'languages' => \Milax\Mconsole\Models\Language::all(),
+        ]);
     }
 
     /**
@@ -68,6 +74,7 @@ class NewsController extends Controller
     {
         return view('mconsole::news.form', [
             'item' => News::find($id),
+            'languages' => \Milax\Mconsole\Models\Language::all(),
         ]);
     }
 
@@ -75,7 +82,7 @@ class NewsController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */

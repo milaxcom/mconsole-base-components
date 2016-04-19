@@ -16,6 +16,14 @@ class News extends Model
         'updated_at',
     ];
     
+    protected $casts = [
+        'heading' => 'array',
+        'preview' => 'array',
+        'text' => 'array',
+        'title' => 'array',
+        'description' => 'array',
+    ];
+    
     /**
      * Transform updated_at proerty.
      * 

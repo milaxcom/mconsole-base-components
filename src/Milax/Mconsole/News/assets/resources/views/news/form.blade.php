@@ -2,13 +2,14 @@
 
 @section('content')
 
+@if (isset($item))
+    {!! Form::model($item, ['method' => 'PUT', 'route' => ['mconsole.news.update', $item->id]]) !!}
+@else
+    {!! Form::open(['method' => 'POST', 'url' => '/mconsole/news']) !!}
+@endif
+
 <div class="row">
 	<div class="col-lg-7 col-md-6">
-        @if (isset($item))
-            {!! Form::model($item, ['method' => 'PUT', 'route' => ['mconsole.news.update', $item->id]]) !!}
-        @else
-            {!! Form::open(['method' => 'POST', 'url' => '/mconsole/news']) !!}
-        @endif
         <div class="portlet light">
             @include('mconsole::partials.portlet-title', [
                 'back' => '/mconsole/news',
@@ -17,49 +18,65 @@
             ])
             <div class="portlet-body form">
     			<div class="form-body">
-    				@include('mconsole::forms.date', [
-    					'label' => trans('mconsole::news.form.date'),
-    					'name' => 'published',
-    				])
-    				@include('mconsole::forms.text', [
-    					'label' => trans('mconsole::news.form.heading'),
-    					'name' => 'heading',
-    				])
-    				@include('mconsole::forms.text', [
+                    @include('mconsole::forms.text', [
     					'label' => trans('mconsole::news.form.slug'),
     					'name' => 'slug',
     				])
-    				@include('mconsole::forms.text', [
-    					'label' => trans('mconsole::news.form.title'),
-    					'name' => 'title',
+                    @include('mconsole::forms.date', [
+    					'label' => trans('mconsole::news.form.date'),
+    					'name' => 'published',
     				])
-    				
-                    @if (app('API')->options->get('textareatype') == 'ckeditor')
-                        @include('mconsole::forms.ckeditor', [
-                            'label' => trans('mconsole::news.form.preview'),
-                            'name' => 'preview',
-                        ])
-                        @include('mconsole::forms.ckeditor', [
-                            'label' => trans('mconsole::news.form.text'),
-                            'name' => 'text',
-                        ])
-                    @else
-                        @include('mconsole::forms.textarea', [
-                            'label' => trans('mconsole::news.form.preview'),
-                            'name' => 'preview',
-                            'size' => '50x2',
-                        ])
-                        @include('mconsole::forms.textarea', [
-                            'label' => trans('mconsole::news.form.text'),
-                            'name' => 'text',
-                            'size' => '50x15',
-                        ])
-                    @endif
                     
-    				@include('mconsole::forms.textarea', [
-    					'label' => trans('mconsole::news.form.description'),
-    					'name' => 'description',
-    				])
+                    <div class="tabbable-line">
+                        <ul class="nav nav-tabs">
+                            @foreach ($languages as $key => $language)
+                                <li @if ($key == 0) class="active" @endif>
+                                    <a href="#lang_{{ $language->id }}" data-toggle="tab"> {{ $language->name }}  </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                        <div class="tab-content">
+                            @foreach ($languages as $key =>$language)
+                                <div class="tab-pane fade @if ($key == 0) active @endif in" id="lang_{{ $language->id }}">
+                    				@include('mconsole::forms.text', [
+                    					'label' => trans('mconsole::news.form.heading'),
+                    					'name' => 'heading[' . $language->key . ']',
+                    				])
+                    				@include('mconsole::forms.text', [
+                    					'label' => trans('mconsole::news.form.title'),
+                    					'name' => 'title[' . $language->key . ']',
+                    				])
+                                    <hr />
+                                    @if (app('API')->options->get('textareatype') == 'ckeditor')
+                                        @include('mconsole::forms.ckeditor', [
+                                            'label' => trans('mconsole::news.form.preview'),
+                                            'name' => 'preview[' . $language->key . ']',
+                                        ])
+                                        @include('mconsole::forms.ckeditor', [
+                                            'label' => trans('mconsole::news.form.text'),
+                                            'name' => 'text[' . $language->key . ']',
+                                        ])
+                                    @else
+                                        @include('mconsole::forms.textarea', [
+                                            'label' => trans('mconsole::news.form.preview'),
+                                            'name' => 'preview[' . $language->key . ']',
+                                            'size' => '50x2',
+                                        ])
+                                        @include('mconsole::forms.textarea', [
+                                            'label' => trans('mconsole::news.form.text'),
+                                            'name' => 'text[' . $language->key . ']',
+                                            'size' => '50x15',
+                                        ])
+                                    @endif
+                                    
+                    				@include('mconsole::forms.textarea', [
+                    					'label' => trans('mconsole::news.form.description'),
+                    					'name' => 'description[' . $language->key . ']',
+                    				])
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
                     
                     @include('mconsole::forms.state')
                     
@@ -90,8 +107,8 @@
 		</div>
     </div>
     
-    {!! Form::close() !!}
-    
 </div>
+
+{!! Form::close() !!}
 
 @endsection
