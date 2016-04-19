@@ -29,7 +29,7 @@ class PagesController extends Controller
                 trans('mconsole::pages.table.slug') => $item->slug,
                 trans('mconsole::pages.table.heading') => collect($item->heading)->transform(function ($val, $key) {
                     if (strlen($val) > 0) {
-                        return sprintf('%s (%s)', $val, $key);
+                        return sprintf('<div class="label label-info">%s</div> %s', $key, $val);
                     }
                 })->values()->implode('<br />'),
             ];
