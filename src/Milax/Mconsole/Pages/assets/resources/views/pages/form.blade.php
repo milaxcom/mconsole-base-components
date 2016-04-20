@@ -145,12 +145,10 @@
                                     'name' => 'links',
                                     'class' => 'links-editor',
                                 ])
-                                @include('mconsole::partials.trans', [
-                                    'lang' => [
-                                        'links-editor-title' => trans('mconsole::pages.form.links.title'),
-                                        'links-editor-url' => trans('mconsole::pages.form.links.url'),
-                                        'links-editor-enabled' => trans('mconsole::pages.form.links.enabled'),
-                                    ],
+                                @trans([
+                                    'links-editor-title' => trans('mconsole::pages.form.links.title'),
+                                    'links-editor-url' => trans('mconsole::pages.form.links.url'),
+                                    'links-editor-enabled' => trans('mconsole::pages.form.links.enabled'),
                                 ])
 							</div>
 						</div>
