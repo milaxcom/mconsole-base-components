@@ -107,6 +107,26 @@
 			</div>
         @endif
         
+        @if (app('API')->options->get('news_has_cover'))
+            <div class="portlet light">
+				<div class="portlet-title">
+					<div class="caption">
+						<span class="caption-subject font-blue sbold uppercase">{{ trans('mconsole::news.form.cover') }}</span>
+					</div>
+				</div>
+				<div class="portlet-body form">
+                    @include('mconsole::forms.upload', [
+                        'type' => MX_UPLOAD_TYPE_IMAGE,
+                        'multiple' => false,
+                        'group' => 'cover',
+                        'preset' => 'news',
+                        'id' => isset($item) ? $item->id : null,
+                        'model' => 'Milax\Mconsole\News\Models\News',
+                    ])
+				</div>
+			</div>
+        @endif
+        
         <div class="portlet light">
 			<div class="portlet-title">
 				<div class="caption">

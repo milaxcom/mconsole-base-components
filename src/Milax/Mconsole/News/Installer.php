@@ -33,6 +33,14 @@ class Installer implements ModuleInstaller
             'type' => 'select',
             'options' => ['1' => 'settings.options.on', '0' => 'settings.options.off'],
         ],
+        [
+            'group' => 'news.settings.group.name',
+            'label' => 'news.settings.cover',
+            'key' => 'news_has_cover',
+            'value' => 1,
+            'type' => 'select',
+            'options' => ['1' => 'settings.options.on', '0' => 'settings.options.off'],
+        ],
     ];
     
     public static $presets = [

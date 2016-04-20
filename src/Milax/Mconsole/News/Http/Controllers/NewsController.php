@@ -58,7 +58,7 @@ class NewsController extends Controller
     {
         $news = News::create($request->all());
         
-        $this->handleImages($news);
+        $this->handleFiles($news);
         
         if (!is_null($tags = $request->input('tags'))) {
             $news->tags()->sync($tags);
@@ -72,10 +72,10 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(News $news)
     {
         return view('mconsole::news.form', [
-            'item' => News::find($id),
+            'item' => $news,
             'languages' => \Milax\Mconsole\Models\Language::all(),
         ]);
     }
@@ -92,7 +92,7 @@ class NewsController extends Controller
     {
         $news = News::find($id);
         
-        $this->handleImages($news);
+        $this->handleFiles($news);
         
         if (!is_null($tags = $request->input('tags'))) {
             $news->tags()->sync($tags);
@@ -116,19 +116,25 @@ class NewsController extends Controller
     }
     
     /**
-     * Handle images upload
+     * Handle files upload
      *
      * @param Milax\Mconsole\News\Models\News $news [News object]
      * @return void
      */
-    protected function handleImages($news)
+    protected function handleFiles($news)
     {
         // Images processing
-        app('API')->uploads->handle(function ($images) use (&$news) {
+        app('API')->uploads->handle(function ($files) use (&$news) {
             app('API')->uploads->attach([
                 'group' => 'gallery',
-                'images' => $images,
+                'uploads' => $files,
                 'related' => $news,
+            ]);
+            app('API')->uploads->attach([
+                'group' => 'cover',
+                'uploads' => $files,
+                'related' => $news,
+                'unique' => true,
             ]);
         });
     }
