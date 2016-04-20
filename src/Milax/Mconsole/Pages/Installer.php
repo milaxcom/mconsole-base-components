@@ -45,17 +45,11 @@ class Installer implements ModuleInstaller
     
     public static function install()
     {
-        foreach (self::$presets as $preset) {
-            if (MconsoleUploadPreset::where('key', $preset['key'])->count() == 0) {
-                MconsoleUploadPreset::create($preset);
-            }
-        }
+        app('API')->presets->install(self::$presets);
     }
     
     public static function uninstall()
     {
-        foreach (self::$presets as $preset) {
-            MconsoleUploadPreset::where('key', $preset['key'])->delete();
-        }
+        app('API')->presets->uninstall(self::$presets);
     }
 }
