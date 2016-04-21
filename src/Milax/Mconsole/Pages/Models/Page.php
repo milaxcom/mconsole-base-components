@@ -57,8 +57,8 @@ class Page extends Model
     public static function boot()
     {
         parent::boot();
-        static::deleting(function ($page) {
-            $page->links()->delete();
+        static::deleting(function ($object) {
+            $object->links()->delete();
             $object->uploads->each(function ($upload) {
                 $upload->delete();
             });
