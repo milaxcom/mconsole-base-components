@@ -5,14 +5,23 @@ namespace Milax\Mconsole\News\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Milax\Mconsole\News\Http\Requests\NewsRequest;
 use Milax\Mconsole\News\Models\News;
+use ListRenderer;
 
 class NewsController extends Controller
 {
-    use \HasQueryTraits, \HasRedirects, \HasPaginator;
+    use \HasRedirects;
 
     protected $redirectTo = '/mconsole/news';
     protected $model = 'Milax\Mconsole\News\Models\News';
-
+    
+    /**
+     * Create new class instance
+     */
+    public function __construct(ListRenderer $renderer)
+    {
+        $this->renderer = $renderer;
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +29,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return $this->setPerPage(20)->run('mconsole::news.list', function ($item) {
+        return $this->renderer->setQuery(News::query())->setPerPage(20)->render('news/create', function ($item) {
             return [
                 '#' => $item->id,
                 trans('mconsole::news.table.published') => $item->published_at->format('m.d.Y'),

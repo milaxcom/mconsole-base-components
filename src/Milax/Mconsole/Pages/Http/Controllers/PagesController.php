@@ -7,13 +7,22 @@ use App\Http\Controllers\Controller;
 use Milax\Mconsole\Pages\Http\Requests\PageRequest;
 use Milax\Mconsole\Pages\Models\Page;
 use Milax\Mconsole\Pages\Models\ContentLink;
+use ListRenderer;
 
 class PagesController extends Controller
 {
-    use \HasQueryTraits, \HasRedirects, \HasPaginator;
+    use \HasRedirects;
 
     protected $redirectTo = '/mconsole/pages';
     protected $model = 'Milax\Mconsole\Pages\Models\Page';
+    
+    /**
+     * Create new class instance
+     */
+    public function __construct(ListRenderer $renderer)
+    {
+        $this->renderer = $renderer;
+    }
     
     /**
      * Display a listing of the resource.
@@ -22,7 +31,7 @@ class PagesController extends Controller
      */
     public function index()
     {
-        return $this->setPerPage(20)->run('mconsole::pages.list', function ($item) {
+        return $this->renderer->setQuery(Page::query())->setPerPage(20)->render('pages/create', function ($item) {
             return [
                 '#' => $item->id,
                 trans('mconsole::pages.table.updated') => $item->updated_at->format('m.d.Y'),
