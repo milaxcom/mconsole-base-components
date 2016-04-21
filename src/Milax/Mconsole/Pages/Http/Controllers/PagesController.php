@@ -68,7 +68,7 @@ class PagesController extends Controller
     {
         $page = Page::create($request->all());
         
-        $this->handleImages($page);
+        $this->handleUploads($page);
         
         if (strlen($request->input('links')) > 0) {
             $links = collect(json_decode($request->input('links'), true));
@@ -116,7 +116,7 @@ class PagesController extends Controller
     {
         $page = Page::find($id);
         
-        $this->handleImages($page);
+        $this->handleUploads($page);
         
         if (strlen($request->input('links')) > 0) {
             $links = collect(json_decode($request->input('links'), true));
@@ -156,23 +156,23 @@ class PagesController extends Controller
     }
     
     /**
-     * Handle images upload
+     * Handle uploads upload
      *
      * @param Milax\Mconsole\Pages\Models\Page $page [Page object]
      * @return void
      */
-    protected function handleImages($page)
+    protected function handleUploads($page)
     {
         // Images processing
-        app('API')->uploads->handle(function ($images) use (&$page) {
+        app('API')->uploads->handle(function ($uploads) use (&$page) {
             app('API')->uploads->attach([
                 'group' => 'gallery',
-                'images' => $images,
+                'uploads' => $uploads,
                 'related' => $page,
             ]);
             app('API')->uploads->attach([
                 'group' => 'cover',
-                'images' => $images,
+                'uploads' => $uploads,
                 'related' => $page,
                 'unique' => true,
             ]);

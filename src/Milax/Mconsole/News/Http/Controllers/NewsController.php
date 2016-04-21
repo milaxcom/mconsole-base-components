@@ -67,7 +67,7 @@ class NewsController extends Controller
     {
         $news = News::create($request->all());
         
-        $this->handleFiles($news);
+        $this->handleUploads($news);
         
         if (!is_null($tags = $request->input('tags'))) {
             $news->tags()->sync($tags);
@@ -101,7 +101,7 @@ class NewsController extends Controller
     {
         $news = News::find($id);
         
-        $this->handleFiles($news);
+        $this->handleUploads($news);
         
         if (!is_null($tags = $request->input('tags'))) {
             $news->tags()->sync($tags);
@@ -130,18 +130,18 @@ class NewsController extends Controller
      * @param Milax\Mconsole\News\Models\News $news [News object]
      * @return void
      */
-    protected function handleFiles($news)
+    protected function handleUploads($news)
     {
         // Images processing
-        app('API')->uploads->handle(function ($files) use (&$news) {
+        app('API')->uploads->handle(function ($uploads) use (&$news) {
             app('API')->uploads->attach([
                 'group' => 'gallery',
-                'uploads' => $files,
+                'uploads' => $uploads,
                 'related' => $news,
             ]);
             app('API')->uploads->attach([
                 'group' => 'cover',
-                'uploads' => $files,
+                'uploads' => $uploads,
                 'related' => $news,
                 'unique' => true,
             ]);
