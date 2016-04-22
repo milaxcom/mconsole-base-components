@@ -69,6 +69,11 @@
         									'label' => trans('mconsole::pages.form.description'),
         									'name' => 'description[' . $language->key . ']',
         								])
+                                        @include('mconsole::forms.select', [
+                                            'label' => trans('mconsole::pages.form.indexing'),
+                                            'name' => 'index',
+                                            'type' => MX_SELECT_STATE,
+                                        ])
         							</div>
                                 @endforeach
     						</div>
@@ -133,11 +138,6 @@
 									'label' => trans('mconsole::pages.form.fullwidth'),
 									'name' => 'fullwidth',
                                     'type' => MX_SELECT_YESNO,
-								])
-								@include('mconsole::forms.select', [
-									'label' => trans('mconsole::pages.form.indexing'),
-									'name' => 'index',
-                                    'type' => MX_SELECT_STATE,
 								])
 							</div>
 							<div class="tab-pane fade" id="tab_2">

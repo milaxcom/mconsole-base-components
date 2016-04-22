@@ -42,10 +42,6 @@
                     					'label' => trans('mconsole::news.form.heading'),
                     					'name' => 'heading[' . $language->key . ']',
                     				])
-                    				@include('mconsole::forms.text', [
-                    					'label' => trans('mconsole::news.form.title'),
-                    					'name' => 'title[' . $language->key . ']',
-                    				])
                                     <hr />
                                     @if (app('API')->options->get('textareatype') == 'ckeditor')
                                         @include('mconsole::forms.ckeditor', [
@@ -68,11 +64,22 @@
                                             'size' => '50x15',
                                         ])
                                     @endif
+                                    <hr />
+                                    <h3>{{ trans('mconsole::news.form.seo') }}</h3>
+                                    @include('mconsole::forms.text', [
+                    					'label' => trans('mconsole::news.form.title'),
+                    					'name' => 'title[' . $language->key . ']',
+                    				])
                                     @include('mconsole::forms.textarea', [
                     					'label' => trans('mconsole::news.form.description'),
                     					'name' => 'description[' . $language->key . ']',
                                         'size' => '50x3',
                     				])
+                                    @include('mconsole::forms.select', [
+                                        'label' => trans('mconsole::news.form.indexing'),
+                                        'name' => 'indexing',
+                                        'type' => MX_SELECT_STATE,
+                                    ])
                                 </div>
                             @endforeach
                         </div>
@@ -86,6 +93,25 @@
 	</div>
     
     <div class="col-lg-5 col-md-6">
+        @if (app('API')->options->get('news_has_cover'))
+            <div class="portlet light">
+				<div class="portlet-title">
+					<div class="caption">
+						<span class="caption-subject font-blue sbold uppercase">{{ trans('mconsole::news.form.cover') }}</span>
+					</div>
+				</div>
+				<div class="portlet-body form">
+                    @include('mconsole::forms.upload', [
+                        'type' => MX_UPLOAD_TYPE_IMAGE,
+                        'multiple' => false,
+                        'group' => 'cover',
+                        'preset' => 'news',
+                        'id' => isset($item) ? $item->id : null,
+                        'model' => 'Milax\Mconsole\News\Models\News',
+                    ])
+				</div>
+			</div>
+        @endif
         
         @if (app('API')->options->get('news_has_gallery'))
             <div class="portlet light">
@@ -99,26 +125,6 @@
                         'type' => MX_UPLOAD_TYPE_IMAGE,
                         'multiple' => true,
                         'group' => 'gallery',
-                        'preset' => 'news',
-                        'id' => isset($item) ? $item->id : null,
-                        'model' => 'Milax\Mconsole\News\Models\News',
-                    ])
-				</div>
-			</div>
-        @endif
-        
-        @if (app('API')->options->get('news_has_cover'))
-            <div class="portlet light">
-				<div class="portlet-title">
-					<div class="caption">
-						<span class="caption-subject font-blue sbold uppercase">{{ trans('mconsole::news.form.cover') }}</span>
-					</div>
-				</div>
-				<div class="portlet-body form">
-                    @include('mconsole::forms.upload', [
-                        'type' => MX_UPLOAD_TYPE_IMAGE,
-                        'multiple' => false,
-                        'group' => 'cover',
                         'preset' => 'news',
                         'id' => isset($item) ? $item->id : null,
                         'model' => 'Milax\Mconsole\News\Models\News',
@@ -152,11 +158,6 @@
 			</div>
 			<div class="portlet-body form">
                 @include('mconsole::forms.state')
-                @include('mconsole::forms.select', [
-                    'label' => trans('mconsole::news.form.indexing'),
-                    'name' => 'indexing',
-                    'type' => MX_SELECT_STATE,
-                ])
 			</div>
 		</div>
     </div>
