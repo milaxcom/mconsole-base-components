@@ -42,4 +42,17 @@ class NewsRequest extends Request
                 ];
         }
     }
+    
+    /**
+     * Set custom validator attribute names
+     *
+     * @return Validator
+     */
+    protected function getValidatorInstance()
+    {
+        $validator = parent::getValidatorInstance();
+        $validator->setAttributeNames(trans('mconsole::news.form'));
+        
+        return $validator;
+    }
 }
