@@ -7,7 +7,7 @@ use Request;
 
 class Page extends Model
 {
-    use \HasUploads;
+    use \HasUploads, \HasState, \System;
     
     protected $fillable = ['slug', 'title', 'heading', 'preview', 'text', 'description', 'hide_heading', 'fullwidth', 'indexing', 'system', 'enabled'];
     

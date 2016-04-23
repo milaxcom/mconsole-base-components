@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
-    use \HasTags, \HasUploads;
+    use \HasTags, \HasUploads, \HasState;
     
     protected $fillable = ['slug', 'title', 'heading', 'preview', 'text', 'description', 'indexing', 'enabled', 'published_at', 'published'];
     
