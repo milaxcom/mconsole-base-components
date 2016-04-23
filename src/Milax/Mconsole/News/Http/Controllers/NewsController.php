@@ -29,7 +29,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return $this->renderer->setQuery(News::query())->setPerPage(20)->render('news/create', function ($item) {
+        return $this->renderer->setQuery(News::query())->setPerPage(20)->setAddAction('news/create')->render(function ($item) {
             return [
                 '#' => $item->id,
                 trans('mconsole::news.table.published') => $item->published_at->format('m.d.Y'),

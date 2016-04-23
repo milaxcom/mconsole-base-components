@@ -31,7 +31,7 @@ class PagesController extends Controller
      */
     public function index()
     {
-        return $this->renderer->setQuery(Page::query())->setPerPage(20)->render('pages/create', function ($item) {
+        return $this->renderer->setQuery(Page::query())->setPerPage(20)->setAddAction('pages/create')->render(function ($item) {
             return [
                 '#' => $item->id,
                 trans('mconsole::pages.table.updated') => $item->updated_at->format('m.d.Y'),
