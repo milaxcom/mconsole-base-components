@@ -31,6 +31,13 @@ class PagesController extends Controller
      */
     public function index()
     {
+        $this->renderer->setText(trans('mconsole::pages.form.heading'), 'heading')
+            ->setText(trans('mconsole::pages.form.text'), 'text')
+            ->setSelect(trans('mconsole::settings.options.enabled'), 'enabled', [
+                '1' => trans('mconsole::settings.options.on'),
+                '0' => trans('mconsole::settings.options.off'),
+            ], true);
+        
         return $this->renderer->setQuery(Page::query())->setPerPage(20)->setAddAction('pages/create')->render(function ($item) {
             return [
                 '#' => $item->id,

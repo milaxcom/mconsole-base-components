@@ -29,6 +29,13 @@ class NewsController extends Controller
      */
     public function index()
     {
+        $this->renderer->setText(trans('mconsole::news.form.heading'), 'heading')
+            ->setText(trans('mconsole::news.form.text'), 'text')
+            ->setSelect(trans('mconsole::settings.options.enabled'), 'enabled', [
+                '1' => trans('mconsole::settings.options.on'),
+                '0' => trans('mconsole::settings.options.off'),
+            ], true);
+        
         return $this->renderer->setQuery(News::query())->setPerPage(20)->setAddAction('news/create')->render(function ($item) {
             return [
                 '#' => $item->id,
