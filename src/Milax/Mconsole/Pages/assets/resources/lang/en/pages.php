@@ -44,6 +44,7 @@ return [
         'fullwidth' => 'Full width',
         'enabled' => 'Published',
         'links' => [
+            'set' => 'Attach links from another page',
             'label' => 'Links',
             'title' => 'Text',
             'url' => 'URL',
