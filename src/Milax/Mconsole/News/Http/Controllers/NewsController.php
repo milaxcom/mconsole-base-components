@@ -5,7 +5,8 @@ namespace Milax\Mconsole\News\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Milax\Mconsole\News\Http\Requests\NewsRequest;
 use Milax\Mconsole\News\Models\News;
-use ListRenderer;
+use Milax\Mconsole\Contracts\ListRenderer;
+use Milax\Mconsole\Contracts\FormRenderer;
 
 class NewsController extends Controller
 {
@@ -17,9 +18,10 @@ class NewsController extends Controller
     /**
      * Create new class instance
      */
-    public function __construct(ListRenderer $renderer)
+    public function __construct(ListRenderer $list, FormRenderer $form)
     {
-        $this->renderer = $renderer;
+        $this->list = $list;
+        $this->form = $form;
     }
     
     /**
@@ -29,14 +31,14 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $this->renderer->setText(trans('mconsole::news.form.heading'), 'heading')
+        $this->list->setText(trans('mconsole::news.form.heading'), 'heading')
             ->setText(trans('mconsole::news.form.text'), 'text')
             ->setSelect(trans('mconsole::settings.options.enabled'), 'enabled', [
                 '1' => trans('mconsole::settings.options.on'),
                 '0' => trans('mconsole::settings.options.off'),
             ], true);
         
-        return $this->renderer->setQuery(News::query())->setPerPage(20)->setAddAction('news/create')->render(function ($item) {
+        return $this->list->setQuery(News::query())->setPerPage(20)->setAddAction('news/create')->render(function ($item) {
             return [
                 '#' => $item->id,
                 trans('mconsole::news.table.published') => $item->published_at->format('m.d.Y'),
@@ -58,7 +60,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('mconsole::news.form', [
+        return $this->form->render('mconsole::news.form', [
             'languages' => \Milax\Mconsole\Models\Language::all(),
         ]);
     }
@@ -90,7 +92,7 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
-        return view('mconsole::news.form', [
+        return $this->form->render('mconsole::news.form', [
             'item' => $news,
             'languages' => \Milax\Mconsole\Models\Language::all(),
         ]);

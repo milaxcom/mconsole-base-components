@@ -1,7 +1,3 @@
-@extends('mconsole::app')
-
-@section('content')
-
 @if (isset($item))
     {!! Form::model($item, ['method' => 'PUT', 'route' => ['mconsole.news.update', $item->id]]) !!}
 @else
@@ -165,5 +161,3 @@
 </div>
 
 {!! Form::close() !!}
-
-@endsection

@@ -7,7 +7,8 @@ use App\Http\Controllers\Controller;
 use Milax\Mconsole\Pages\Http\Requests\PageRequest;
 use Milax\Mconsole\Pages\Models\Page;
 use Milax\Mconsole\Pages\Models\ContentLink;
-use ListRenderer;
+use Milax\Mconsole\Contracts\ListRenderer;
+use Milax\Mconsole\Contracts\FormRenderer;
 
 class PagesController extends Controller
 {
@@ -19,9 +20,10 @@ class PagesController extends Controller
     /**
      * Create new class instance
      */
-    public function __construct(ListRenderer $renderer)
+    public function __construct(ListRenderer $list, FormRenderer $form)
     {
-        $this->renderer = $renderer;
+        $this->list = $list;
+        $this->form = $form;
     }
     
     /**
@@ -31,14 +33,14 @@ class PagesController extends Controller
      */
     public function index()
     {
-        $this->renderer->setText(trans('mconsole::pages.form.heading'), 'heading')
+        $this->list->setText(trans('mconsole::pages.form.heading'), 'heading')
             ->setText(trans('mconsole::pages.form.text'), 'text')
             ->setSelect(trans('mconsole::settings.options.enabled'), 'enabled', [
                 '1' => trans('mconsole::settings.options.on'),
                 '0' => trans('mconsole::settings.options.off'),
             ], true);
         
-        return $this->renderer->setQuery(Page::query())->setPerPage(20)->setAddAction('pages/create')->render(function ($item) {
+        return $this->list->setQuery(Page::query())->setPerPage(20)->setAddAction('pages/create')->render(function ($item) {
             return [
                 '#' => $item->id,
                 trans('mconsole::pages.table.updated') => $item->updated_at->format('m.d.Y'),
@@ -59,7 +61,7 @@ class PagesController extends Controller
      */
     public function create()
     {
-        return view('mconsole::pages.form', [
+        return $this->form->render('mconsole::pages.form', [
             'languages' => \Milax\Mconsole\Models\Language::all(),
         ]);
     }
@@ -105,7 +107,7 @@ class PagesController extends Controller
     public function edit($id)
     {
         $page = Page::with('links')->with('uploads')->find($id);
-        return view('mconsole::pages.form', [
+        return $this->form->render('mconsole::pages.form', [
             'item' => $page,
             'languages' => \Milax\Mconsole\Models\Language::all(),
         ]);
