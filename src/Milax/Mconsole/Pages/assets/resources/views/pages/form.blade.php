@@ -137,6 +137,11 @@
 							])
 						</div>
 						<div class="tab-pane fade" id="tab_2">
+                            @include('mconsole::forms.select', [
+                                'label' => 'Прикрепить ссылки со страницы',
+                                'name' => 'links_page_id',
+                                'options' =>  isset($item) ? $links_page_id_options->except($item->id)->toArray() : $links_page_id_options->toArray(),
+                            ])
                             @include('mconsole::forms.hidden', [
                                 'name' => 'links',
                                 'class' => 'links-editor',

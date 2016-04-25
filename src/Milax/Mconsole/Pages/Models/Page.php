@@ -9,7 +9,7 @@ class Page extends Model
 {
     use \HasUploads, \HasState, \System;
     
-    protected $fillable = ['slug', 'title', 'heading', 'preview', 'text', 'description', 'hide_heading', 'fullwidth', 'indexing', 'system', 'enabled'];
+    protected $fillable = ['slug', 'links_page_id', 'title', 'heading', 'preview', 'text', 'description', 'hide_heading', 'fullwidth', 'indexing', 'system', 'enabled'];
     
     protected $casts = [
         'heading' => 'array',
@@ -47,6 +47,16 @@ class Page extends Model
     public function links()
     {
         return $this->hasMany('Milax\Mconsole\Pages\Models\ContentLink');
+    }
+    
+    /**
+     * Get all links
+     * 
+     * @return HasMany
+     */
+    public function allLinks()
+    {
+        return $this->hasMany('Milax\Mconsole\Pages\Models\ContentLink')->orWhere('content_links.page_id', $this->links_page_id);
     }
     
     /**
