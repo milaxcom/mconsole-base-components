@@ -106,7 +106,8 @@ class PagesController extends Controller
      */
     public function edit($id)
     {
-        $page = Page::with('links')->with('uploads')->find($id);
+        $page = Page::with('links')->with('uploads')->findOrFail($id);
+        
         return $this->form->render('mconsole::pages.form', [
             'item' => $page,
             'languages' => \Milax\Mconsole\Models\Language::all(),
@@ -123,7 +124,7 @@ class PagesController extends Controller
      */
     public function update(PageRequest $request, $id)
     {
-        $page = Page::find($id);
+        $page = Page::findOrFail($id);
         
         $this->handleUploads($page);
         
@@ -156,7 +157,7 @@ class PagesController extends Controller
      */
     public function destroy($id)
     {
-        $page = Page::find($id);
+        $page = Page::findOrFail($id);
         if ($page->system) {
             return redirect()->back()->withErrors(trans('mconsole::mconsole.errors.system'));
         }

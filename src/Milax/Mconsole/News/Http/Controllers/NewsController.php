@@ -108,7 +108,7 @@ class NewsController extends Controller
      */
     public function update(NewsRequest $request, $id)
     {
-        $news = News::find($id);
+        $news = News::findOrFail($id);
         
         $this->handleUploads($news);
         
