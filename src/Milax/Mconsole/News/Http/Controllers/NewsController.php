@@ -38,7 +38,7 @@ class NewsController extends Controller
                 '0' => trans('mconsole::settings.options.off'),
             ], true);
         
-        return $this->list->setQuery(News::query())->setPerPage(20)->setAddAction('news/create')->render(function ($item) {
+        return $this->list->setQuery(News::query())->setAddAction('news/create')->render(function ($item) {
             return [
                 '#' => $item->id,
                 trans('mconsole::news.table.published') => $item->published_at->format('m.d.Y'),

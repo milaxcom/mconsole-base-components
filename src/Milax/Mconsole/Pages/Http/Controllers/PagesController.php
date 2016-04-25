@@ -40,7 +40,7 @@ class PagesController extends Controller
                 '0' => trans('mconsole::settings.options.off'),
             ], true);
         
-        return $this->list->setQuery(Page::query())->setPerPage(20)->setAddAction('pages/create')->render(function ($item) {
+        return $this->list->setQuery(Page::query())->setAddAction('pages/create')->render(function ($item) {
             return [
                 '#' => $item->id,
                 trans('mconsole::pages.table.updated') => $item->updated_at->format('m.d.Y'),
