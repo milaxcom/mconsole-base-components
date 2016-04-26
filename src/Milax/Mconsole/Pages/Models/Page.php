@@ -7,9 +7,9 @@ use Request;
 
 class Page extends Model
 {
-    use \HasUploads, \HasState, \System;
+    use \HasUploads, \HasLinks, \HasState, \System;
     
-    protected $fillable = ['slug', 'links_page_id', 'title', 'heading', 'preview', 'text', 'description', 'hide_heading', 'fullwidth', 'indexing', 'system', 'enabled'];
+    protected $fillable = ['slug', 'linkable_id', 'title', 'heading', 'preview', 'text', 'description', 'hide_heading', 'fullwidth', 'indexing', 'system', 'enabled'];
     
     protected $casts = [
         'heading' => 'array',
@@ -40,26 +40,6 @@ class Page extends Model
     }
     
     /**
-     * Relationship to ContentLinks
-     * 
-     * @return HasMany
-     */
-    public function links()
-    {
-        return $this->hasMany('Milax\Mconsole\Pages\Models\ContentLink');
-    }
-    
-    /**
-     * Get all links
-     * 
-     * @return HasMany
-     */
-    public function allLinks()
-    {
-        return $this->hasMany('Milax\Mconsole\Pages\Models\ContentLink')->orWhere('content_links.page_id', $this->links_page_id);
-    }
-    
-    /**
      * Automatically delete related data
      * 
      * @return void
@@ -68,7 +48,7 @@ class Page extends Model
     {
         parent::boot();
         static::deleting(function ($object) {
-            $object->links()->delete();
+            app('API')->links->detach($object);
             $object->uploads->each(function ($upload) {
                 $upload->delete();
             });

@@ -137,19 +137,10 @@
 							])
 						</div>
 						<div class="tab-pane fade" id="tab_2">
-                            @include('mconsole::forms.select', [
-                                'label' => trans('mconsole::pages.form.links.set'),
-                                'name' => 'links_page_id',
-                                'options' =>  isset($item) ? $links_page_id_options->except($item->id)->toArray() : $links_page_id_options->toArray(),
-                            ])
-                            @include('mconsole::forms.hidden', [
-                                'name' => 'links',
-                                'class' => 'links-editor',
-                            ])
-                            @trans([
-                                'links-editor-title' => trans('mconsole::pages.form.links.title'),
-                                'links-editor-url' => trans('mconsole::pages.form.links.url'),
-                                'links-editor-enabled' => trans('mconsole::pages.form.links.enabled'),
+                            @include('mconsole::forms.links', [
+                                'item' => isset($item) ? $item : null,
+                                'attribute' => 'slug',
+                                'model' => 'Milax\Mconsole\Pages\Models\Page',
                             ])
 						</div>
 					</div>

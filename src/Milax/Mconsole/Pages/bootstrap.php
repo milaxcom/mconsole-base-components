@@ -9,9 +9,7 @@ return [
     'description' => 'mconsole::pages.module.description',
     'register' => [
         'middleware' => [],
-        'providers' => [
-            \Milax\Mconsole\Pages\Provider::class,
-        ],
+        'providers' => [],
         'aliases' => [],
         'bindings' => [],
         'dependencies' => [],

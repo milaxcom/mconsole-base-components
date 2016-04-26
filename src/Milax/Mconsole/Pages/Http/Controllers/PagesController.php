@@ -76,25 +76,8 @@ class PagesController extends Controller
     public function store(PageRequest $request)
     {
         $page = Page::create($request->all());
-        
         $this->handleUploads($page);
-        
-        if (strlen($request->input('links')) > 0) {
-            $links = collect(json_decode($request->input('links'), true));
-            $page->links()->whereNotIn('id', $links->lists('id'))->delete();
-            
-            foreach ($links as $link) {
-                if (strlen($link['id']) > 0) {
-                    if ($dbLink = ContentLink::find((int) $link['id'])) {
-                        $dbLink->update($link);
-                    } else {
-                        $page->links()->create($link);
-                    }
-                } else {
-                    $page->links()->create($link);
-                }
-            }
-        }
+        app('API')->links->sync($page);
     }
 
     /**
@@ -127,24 +110,7 @@ class PagesController extends Controller
         $page = Page::findOrFail($id);
         
         $this->handleUploads($page);
-        
-        if (strlen($request->input('links')) > 0) {
-            $links = collect(json_decode($request->input('links'), true));
-            $page->links()->whereNotIn('id', $links->lists('id'))->delete();
-            
-            foreach ($links as $link) {
-                if (strlen($link['id']) > 0) {
-                    if ($dbLink = ContentLink::find((int) $link['id'])) {
-                        $dbLink->update($link);
-                    } else {
-                        $page->links()->create($link);
-                    }
-                } else {
-                    $page->links()->create($link);
-                }
-            }
-        }
-        
+        app('API')->links->sync($page);
         $page->update($request->all());
     }
 
