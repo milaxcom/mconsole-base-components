@@ -50,6 +50,7 @@ class PagesController extends Controller
                         return sprintf('<div class="label label-info">%s</div> %s', $key, $val);
                     }
                 })->values()->implode('<br />'),
+                trans('mconsole::tables.state.name') => view('mconsole::indicators.state', $item),
             ];
         });
     }
