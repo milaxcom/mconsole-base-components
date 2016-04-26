@@ -10,7 +10,7 @@ use Milax\Mconsole\Contracts\FormRenderer;
 
 class NewsController extends Controller
 {
-    use \HasRedirects;
+    use \HasRedirects, \DoesNotHaveShow;
 
     protected $redirectTo = '/mconsole/news';
     protected $model = 'Milax\Mconsole\News\Models\News';

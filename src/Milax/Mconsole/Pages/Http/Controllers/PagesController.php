@@ -12,7 +12,7 @@ use Milax\Mconsole\Contracts\FormRenderer;
 
 class PagesController extends Controller
 {
-    use \HasRedirects;
+    use \HasRedirects, \DoesNotHaveShow;
 
     protected $redirectTo = '/mconsole/pages';
     protected $model = 'Milax\Mconsole\Pages\Models\Page';
