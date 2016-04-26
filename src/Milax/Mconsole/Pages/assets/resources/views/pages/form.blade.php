@@ -115,7 +115,7 @@
 							<a href="#tab_1" data-toggle="tab"> {{ trans('mconsole::pages.form.options') }}  </a>
 						</li>
 						<li>
-							<a href="#tab_2" data-toggle="tab"> {{ trans('mconsole::pages.form.links.label') }} </a>
+							<a href="#tab_2" data-toggle="tab"> {{ trans('mconsole::forms.links.label') }} </a>
 						</li>
 					</ul>
 					<div class="tab-content">

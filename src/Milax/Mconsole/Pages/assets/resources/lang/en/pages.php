@@ -43,12 +43,5 @@ return [
         'hide_heading' => 'Hide header',
         'fullwidth' => 'Full width',
         'enabled' => 'Published',
-        'links' => [
-            'set' => 'Attach links from another page',
-            'label' => 'Links',
-            'title' => 'Text',
-            'url' => 'URL',
-            'enabled' => 'Enabled',
-        ],
     ],
 ];
