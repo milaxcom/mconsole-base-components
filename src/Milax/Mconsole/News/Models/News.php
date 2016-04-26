@@ -83,10 +83,10 @@ class News extends Model
     {
         parent::boot();
         self::deleting(function ($object) {
+            app('API')->tags->detach($object);
             $object->uploads->each(function ($upload) {
                 $upload->delete();
             });
-            $object->tags()->detach();
         });
     }
 }

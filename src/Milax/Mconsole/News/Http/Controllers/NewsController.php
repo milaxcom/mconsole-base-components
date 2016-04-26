@@ -77,10 +77,7 @@ class NewsController extends Controller
         $news = News::create($request->all());
         
         $this->handleUploads($news);
-        
-        if (!is_null($tags = $request->input('tags'))) {
-            $news->tags()->sync($tags);
-        }
+        app('API')->tags->sync($news);
     }
 
     /**
@@ -111,12 +108,7 @@ class NewsController extends Controller
         $news = News::findOrFail($id);
         
         $this->handleUploads($news);
-        
-        if (!is_null($tags = $request->input('tags'))) {
-            $news->tags()->sync($tags);
-        } else {
-            $news->tags()->detach();
-        }
+        app('API')->tags->sync($news);
         
         $news->update($request->all());
     }
