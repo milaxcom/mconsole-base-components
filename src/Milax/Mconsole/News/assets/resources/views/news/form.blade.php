@@ -71,15 +71,15 @@
                     					'name' => 'description[' . $language->key . ']',
                                         'size' => '50x3',
                     				])
-                                    @include('mconsole::forms.select', [
-                                        'label' => trans('mconsole::news.form.indexing'),
-                                        'name' => 'indexing',
-                                        'type' => MX_SELECT_STATE,
-                                    ])
                                 </div>
                             @endforeach
                         </div>
                     </div>
+                    @include('mconsole::forms.select', [
+                        'label' => trans('mconsole::news.form.indexing'),
+                        'name' => 'indexing',
+                        'type' => MX_SELECT_STATE,
+                    ])
     			</div>
                 <div class="form-actions">
                     @include('mconsole::forms.submit')
