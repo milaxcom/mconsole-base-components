@@ -7,7 +7,7 @@ use Request;
 
 class Page extends Model
 {
-    use \HasUploads, \HasLinks, \HasState, \System;
+    use \CascadeDelete, \HasUploads, \HasLinks, \HasState, \System;
     
     protected $fillable = ['slug', 'linkable_id', 'title', 'heading', 'preview', 'text', 'description', 'hide_heading', 'fullwidth', 'indexing', 'system', 'enabled'];
     
@@ -37,21 +37,5 @@ class Page extends Model
         } else {
             $this->attributes['slug'] = str_slug($value);
         }
-    }
-    
-    /**
-     * Automatically delete related data
-     * 
-     * @return void
-     */
-    public static function boot()
-    {
-        parent::boot();
-        static::deleting(function ($object) {
-            app('API')->links->detach($object);
-            $object->uploads->each(function ($upload) {
-                $upload->delete();
-            });
-        });
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
-    use \HasTags, \HasUploads, \HasState;
+    use \CascadeDelete, \HasTags, \HasUploads, \HasState;
     
     protected $fillable = ['slug', 'title', 'heading', 'preview', 'text', 'description', 'indexing', 'pinned', 'enabled', 'published_at', 'published'];
     
@@ -72,21 +72,5 @@ class News extends Model
     public function getPublishedAttribute()
     {
         return $this->published_at->format('m/d/Y');
-    }
-    
-    /**
-     * Automatically delete related data
-     * 
-     * @return void
-     */
-    public static function boot()
-    {
-        parent::boot();
-        self::deleting(function ($object) {
-            app('API')->tags->detach($object);
-            $object->uploads->each(function ($upload) {
-                $upload->delete();
-            });
-        });
     }
 }
