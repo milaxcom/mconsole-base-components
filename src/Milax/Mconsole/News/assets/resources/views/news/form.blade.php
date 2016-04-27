@@ -153,6 +153,12 @@
 				</div>
 			</div>
 			<div class="portlet-body form">
+                @include('mconsole::forms.select', [
+                    'label' => trans('mconsole::news.form.pinned'),
+                    'name' => 'pinned',
+                    'value' => isset($item) ? $item->pinned : 0,
+                    'type' => MX_SELECT_YESNO,
+                ])
                 @include('mconsole::forms.state')
 			</div>
 		</div>

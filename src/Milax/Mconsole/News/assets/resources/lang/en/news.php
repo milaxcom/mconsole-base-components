@@ -30,6 +30,7 @@ return [
     ],
     'form' => [
         'indexing' => 'Search engines indexing',
+        'pinned' => 'Pinned to top',
         'date' => 'Date',
         'heading' => 'Title',
         'slug' => 'Slug',
