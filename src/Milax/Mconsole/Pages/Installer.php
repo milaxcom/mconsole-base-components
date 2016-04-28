@@ -2,7 +2,7 @@
 
 namespace Milax\Mconsole\Pages;
 
-use Milax\Mconsole\Contracts\ModuleInstaller;
+use Milax\Mconsole\Contracts\Modules\Installer;
 use Milax\Mconsole\Models\MconsoleUploadPreset;
 
 class Installer implements ModuleInstaller

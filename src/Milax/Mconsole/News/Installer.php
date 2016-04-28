@@ -2,7 +2,7 @@
 
 namespace Milax\Mconsole\News;
 
-use Milax\Mconsole\Contracts\ModuleInstaller;
+use Milax\Mconsole\Contracts\Modules\Installer;
 use Milax\Mconsole\Models\MconsoleOption;
 use Milax\Mconsole\Models\MconsoleUploadPreset;
 
