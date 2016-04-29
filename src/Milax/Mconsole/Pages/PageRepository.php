@@ -2,7 +2,7 @@
 
 namespace Milax\Mconsole\Pages;
 
-use Milax\Mconsole\Abstractions\Modules\EloquentRepository;
+use Milax\Mconsole\Abstractions\Repositories\EloquentRepository;
 
 class PageRepository extends EloquentRepository
 {

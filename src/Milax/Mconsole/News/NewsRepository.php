@@ -2,7 +2,7 @@
 
 namespace Milax\Mconsole\News;
 
-use Milax\Mconsole\Abstractions\Modules\EloquentRepository;
+use Milax\Mconsole\Abstractions\Repositories\EloquentRepository;
 
 class NewsRepository extends EloquentRepository
 {
