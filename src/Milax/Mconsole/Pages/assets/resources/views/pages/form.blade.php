@@ -34,7 +34,7 @@
                 					])
                                     <hr />
                                     <h3>{{ trans('mconsole::pages.form.content') }}</h3>
-                					@if (app('API')->options->get('textareatype') == 'ckeditor')
+                					@if (app('API')->options->getByKey('textareatype') == 'ckeditor')
                                         @include('mconsole::forms.ckeditor', [
                                             'label' => trans('mconsole::pages.form.preview'),
                     						'name' => 'preview[' . $language->key . ']',

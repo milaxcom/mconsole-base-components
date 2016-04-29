@@ -39,7 +39,7 @@
                     					'name' => 'heading[' . $language->key . ']',
                     				])
                                     <hr />
-                                    @if (app('API')->options->get('textareatype') == 'ckeditor')
+                                    @if (app('API')->options->getByKey('textareatype') == 'ckeditor')
                                         @include('mconsole::forms.ckeditor', [
                                             'label' => trans('mconsole::news.form.preview'),
                                             'name' => 'preview[' . $language->key . ']',
@@ -89,7 +89,7 @@
 	</div>
     
     <div class="col-lg-5 col-md-6">
-        @if (app('API')->options->get('news_has_cover'))
+        @if (app('API')->options->getByKey('news_has_cover'))
             <div class="portlet light">
 				<div class="portlet-title">
 					<div class="caption">
@@ -109,7 +109,7 @@
 			</div>
         @endif
         
-        @if (app('API')->options->get('news_has_gallery'))
+        @if (app('API')->options->getByKey('news_has_gallery'))
             <div class="portlet light">
 				<div class="portlet-title">
 					<div class="caption">
