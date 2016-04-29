@@ -9,7 +9,9 @@ return [
     'description' => 'mconsole::news.module.description',
     'register' => [
         'middleware' => [],
-        'providers' => [],
+        'providers' => [
+            \Milax\Mconsole\News\Provider::class,
+        ],
         'aliases' => [],
         'bindings' => [],
         'dependencies' => [],

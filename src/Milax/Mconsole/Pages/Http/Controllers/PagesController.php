@@ -2,13 +2,13 @@
 
 namespace Milax\Mconsole\Pages\Http\Controllers;
 
-use Milax;
 use App\Http\Controllers\Controller;
 use Milax\Mconsole\Pages\Http\Requests\PageRequest;
 use Milax\Mconsole\Pages\Models\Page;
 use Milax\Mconsole\Pages\Models\ContentLink;
 use Milax\Mconsole\Contracts\ListRenderer;
 use Milax\Mconsole\Contracts\FormRenderer;
+use Milax\Mconsole\Contracts\Repository;
 
 class PagesController extends Controller
 {
@@ -20,10 +20,11 @@ class PagesController extends Controller
     /**
      * Create new class instance
      */
-    public function __construct(ListRenderer $list, FormRenderer $form)
+    public function __construct(ListRenderer $list, FormRenderer $form, Repository $repository)
     {
         $this->list = $list;
         $this->form = $form;
+        $this->repository = $repository;
     }
     
     /**
@@ -40,7 +41,7 @@ class PagesController extends Controller
                 '0' => trans('mconsole::settings.options.off'),
             ], true);
         
-        return $this->list->setQuery(Page::query())->setAddAction('pages/create')->render(function ($item) {
+        return $this->list->setQuery($this->repository->index())->setAddAction('pages/create')->render(function ($item) {
             return [
                 '#' => $item->id,
                 trans('mconsole::pages.table.updated') => $item->updated_at->format('m.d.Y'),
@@ -76,7 +77,7 @@ class PagesController extends Controller
      */
     public function store(PageRequest $request)
     {
-        $page = Page::create($request->all());
+        $page = $this->repository->create($request->all());
         $this->handleUploads($page);
         app('API')->links->sync($page);
     }
@@ -90,10 +91,8 @@ class PagesController extends Controller
      */
     public function edit($id)
     {
-        $page = Page::with('links')->with('uploads')->findOrFail($id);
-        
         return $this->form->render('mconsole::pages.form', [
-            'item' => $page,
+            'item' => $this->repository->query()->with('links')->with('uploads')->find($id),
             'languages' => \Milax\Mconsole\Models\Language::all(),
         ]);
     }
@@ -108,7 +107,7 @@ class PagesController extends Controller
      */
     public function update(PageRequest $request, $id)
     {
-        $page = Page::findOrFail($id);
+        $page = $this->repository->find($id);
         
         $this->handleUploads($page);
         app('API')->links->sync($page);
@@ -124,12 +123,13 @@ class PagesController extends Controller
      */
     public function destroy($id)
     {
-        $page = Page::findOrFail($id);
+        $page = $this->repository->find($id);
+        
         if ($page->system) {
             return redirect()->back()->withErrors(trans('mconsole::mconsole.errors.system'));
         }
-
-        Page::destroy($id);
+        
+        $page->delete();
     }
     
     /**

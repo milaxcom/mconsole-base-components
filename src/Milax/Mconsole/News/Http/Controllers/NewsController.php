@@ -7,6 +7,7 @@ use Milax\Mconsole\News\Http\Requests\NewsRequest;
 use Milax\Mconsole\News\Models\News;
 use Milax\Mconsole\Contracts\ListRenderer;
 use Milax\Mconsole\Contracts\FormRenderer;
+use Milax\Mconsole\Contracts\Repository;
 
 class NewsController extends Controller
 {
@@ -18,10 +19,11 @@ class NewsController extends Controller
     /**
      * Create new class instance
      */
-    public function __construct(ListRenderer $list, FormRenderer $form)
+    public function __construct(ListRenderer $list, FormRenderer $form, Repository $repository)
     {
         $this->list = $list;
         $this->form = $form;
+        $this->repository = $repository;
     }
     
     /**
@@ -38,7 +40,7 @@ class NewsController extends Controller
                 '0' => trans('mconsole::settings.options.off'),
             ], true);
         
-        return $this->list->setQuery(News::query())->setAddAction('news/create')->render(function ($item) {
+        return $this->list->setQuery($this->repository->index())->setAddAction('news/create')->render(function ($item) {
             return [
                 '#' => $item->id,
                 trans('mconsole::news.table.published') => $item->published_at->format('m.d.Y'),
@@ -75,7 +77,7 @@ class NewsController extends Controller
      */
     public function store(NewsRequest $request)
     {
-        $news = News::create($request->all());
+        $news = $this->repository->create($request->all());
         
         $this->handleUploads($news);
         app('API')->tags->sync($news);
@@ -88,10 +90,10 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(News $news)
+    public function edit($id)
     {
         return $this->form->render('mconsole::news.form', [
-            'item' => $news,
+            'item' => $this->repository->find($id),
             'languages' => \Milax\Mconsole\Models\Language::all(),
         ]);
     }
@@ -106,7 +108,7 @@ class NewsController extends Controller
      */
     public function update(NewsRequest $request, $id)
     {
-        $news = News::findOrFail($id);
+        $news = $this->repository->find($id);
         
         $this->handleUploads($news);
         app('API')->tags->sync($news);
@@ -123,7 +125,7 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        News::destroy($id);
+        $this->repository->destroy($id);
     }
     
     /**
