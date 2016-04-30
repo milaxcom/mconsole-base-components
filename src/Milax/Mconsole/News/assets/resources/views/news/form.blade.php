@@ -80,6 +80,9 @@
                         'name' => 'indexing',
                         'type' => MX_SELECT_STATE,
                     ])
+                    
+                    {!! app('API')->forms['constructor']->render() !!}
+                    
     			</div>
                 <div class="form-actions">
                     @include('mconsole::forms.submit')
