@@ -1,6 +1,6 @@
 {
     "name": "milax/mconsole-base-components",
-    "description": "",
+    "description": "Base components module for Mconsole",
     "authors": [
         {
             "name": "Eugene Min",
