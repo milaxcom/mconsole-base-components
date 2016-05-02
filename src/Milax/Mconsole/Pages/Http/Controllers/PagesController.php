@@ -92,7 +92,7 @@ class PagesController extends Controller
     public function edit($id)
     {
         return $this->form->render('mconsole::pages.form', [
-            'item' => $this->repository->query()->with('links')->with('uploads')->find($id),
+            'item' => $this->repository->query()->with('links')->with('uploads')->findOrFail($id),
             'languages' => \Milax\Mconsole\Models\Language::all(),
         ]);
     }
