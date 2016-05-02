@@ -23,7 +23,7 @@ return [
         Installer::uninstall();
     },
     'init' => function () {
-        app('API')->menu->push('content', 'news_all', [
+        app('API')->menu->push([
             'name' => 'All news',
             'translation' => 'news.menu.list.name',
             'url' => 'news',
@@ -31,8 +31,8 @@ return [
             'route' => 'mconsole.news.index',
             'visible' => true,
             'enabled' => true,
-        ]);
-        app('API')->menu->push('content', 'news_form', [
+        ], 'news_all', 'content');
+        app('API')->menu->push([
             'name' => 'Create news',
             'translation' => 'news.menu.create.name',
             'url' => 'news/create',
@@ -40,23 +40,23 @@ return [
             'route' => 'mconsole.news.create',
             'visible' => false,
             'enabled' => true,
-        ]);
-        app('API')->menu->push('content', 'news_update', [
+        ], 'news_form', 'content');
+        app('API')->menu->push([
             'name' => 'Edit news',
             'translation' => 'news.menu.update.name',
             'description' => 'news.menu.update.description',
             'route' => 'mconsole.news.edit',
             'visible' => false,
             'enabled' => true,
-        ]);
-        app('API')->menu->push('content', 'news_delete', [
+        ], 'news_update', 'content');
+        app('API')->menu->push([
             'name' => 'Delete news',
             'translation' => 'news.menu.delete.name',
             'description' => 'news.menu.delete.description',
             'route' => 'mconsole.news.destroy',
             'visible' => false,
             'enabled' => true,
-        ]);
+        ], 'news_delete', 'content');
         
         // Register in search engine
         app('API')->search->register(function ($text) {

@@ -23,7 +23,7 @@ return [
         Installer::uninstall();
     },
     'init' => function () {
-        app('API')->menu->push('content', 'pages_all', [
+        app('API')->menu->push([
             'name' => 'All pages',
             'translation' => 'pages.menu.list.name',
             'url' => 'pages',
@@ -31,8 +31,8 @@ return [
             'route' => 'mconsole.pages.index',
             'visible' => true,
             'enabled' => true,
-        ]);
-        app('API')->menu->push('content', 'pages_form', [
+        ], 'pages_all', 'content');
+        app('API')->menu->push([
             'name' => 'Create page',
             'translation' => 'pages.menu.create.name',
             'url' => 'pages/create',
@@ -40,23 +40,23 @@ return [
             'route' => 'mconsole.pages.create',
             'visible' => false,
             'enabled' => true,
-        ]);
-        app('API')->menu->push('content', 'pages_update', [
+        ], 'pages_form', 'content');
+        app('API')->menu->push([
             'name' => 'Edit pages',
             'translation' => 'pages.menu.update.name',
             'description' => 'pages.menu.update.description',
             'route' => 'mconsole.pages.edit',
             'visible' => false,
             'enabled' => true,
-        ]);
-        app('API')->menu->push('content', 'pages_delete', [
+        ], 'pages_update', 'content');
+        app('API')->menu->push([
             'name' => 'Delete pages',
             'translation' => 'pages.menu.delete.name',
             'description' => 'pages.menu.delete.description',
             'route' => 'mconsole.pages.destroy',
             'visible' => false,
             'enabled' => true,
-        ]);
+        ], 'pages_delete', 'content');
         
         // Register in search engine
         app('API')->search->register(function ($text) {
