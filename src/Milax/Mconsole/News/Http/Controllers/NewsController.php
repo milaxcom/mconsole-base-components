@@ -113,7 +113,7 @@ class NewsController extends Controller
         $this->handleUploads($news);
         app('API')->tags->sync($news);
         
-        $news->update($request->all());
+        $this->repository->update($id, $request->all());
     }
 
     /**

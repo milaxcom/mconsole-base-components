@@ -13,7 +13,7 @@ class ModifyNewsTableAddPublishedAtColumn extends Migration
     public function up()
     {
         Schema::table('news', function (Blueprint $table) {
-            $table->timestamp('published_at')->after('enabled');
+            $table->timestamp('published_at')->nullable()->after('enabled');
         });
     }
 
