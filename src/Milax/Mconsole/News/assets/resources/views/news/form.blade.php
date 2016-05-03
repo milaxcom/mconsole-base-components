@@ -20,7 +20,7 @@
     				])
                     @include('mconsole::forms.date', [
     					'label' => trans('mconsole::news.form.date'),
-    					'name' => 'published',
+    					'name' => 'published_at',
     				])
                     
                     <div class="tabbable-line">
