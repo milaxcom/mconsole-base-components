@@ -19,7 +19,7 @@
     					'name' => 'slug',
     				])
                     @include('mconsole::forms.date', [
-    					'label' => trans('mconsole::news.form.date'),
+    					'label' => trans('mconsole::news.form.published_at'),
     					'name' => 'published_at',
     				])
                     

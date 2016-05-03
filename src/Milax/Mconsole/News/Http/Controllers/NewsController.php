@@ -38,7 +38,8 @@ class NewsController extends Controller
             ->setSelect(trans('mconsole::settings.options.enabled'), 'enabled', [
                 '1' => trans('mconsole::settings.options.on'),
                 '0' => trans('mconsole::settings.options.off'),
-            ], true);
+            ], true)
+            ->setDateRange(trans('mconsole::news.form.published_at'), 'published_at');
         
         return $this->list->setQuery($this->repository->index())->setAddAction('news/create')->render(function ($item) {
             return [

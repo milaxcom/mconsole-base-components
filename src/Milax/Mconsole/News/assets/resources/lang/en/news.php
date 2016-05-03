@@ -31,7 +31,7 @@ return [
     'form' => [
         'indexing' => 'Search engines indexing',
         'pinned' => 'Pinned to top',
-        'date' => 'Date',
+        'published_at' => 'Published at',
         'heading' => 'Title',
         'slug' => 'Slug',
         'preview' => 'Preview text',
