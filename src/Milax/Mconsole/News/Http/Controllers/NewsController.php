@@ -43,7 +43,7 @@ class NewsController extends Controller
         return $this->list->setQuery($this->repository->index())->setAddAction('news/create')->render(function ($item) {
             return [
                 '#' => $item->id,
-                trans('mconsole::news.table.published') => $item->published_at->format('m.d.Y'),
+                trans('mconsole::news.table.published') => $item->published_at ? $item->published_at->format('m.d.Y') : null,
                 trans('mconsole::news.table.updated') => $item->updated_at->format('m.d.Y'),
                 trans('mconsole::news.table.slug') => $item->slug,
                 trans('mconsole::news.table.heading') => collect($item->heading)->transform(function ($val, $key) {
