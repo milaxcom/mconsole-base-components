@@ -6,7 +6,7 @@ use Milax\Mconsole\Pages\Models\Page;
 return [
     'name' => 'Pages',
     'identifier' => 'mconsole-pages',
-    'description' => 'mconsole::pages.module.description',
+    'description' => 'mconsole::pages.module',
     'register' => [
         'middleware' => [],
         'providers' => [
@@ -25,10 +25,8 @@ return [
     'init' => function () {
         app('API')->menu->push([
             'name' => 'Pages',
-            'translation' => 'pages.menu.list.name',
+            'translation' => 'pages.menu',
             'url' => 'pages',
-            'description' => 'pages.menu.list.description',
-            'route' => 'mconsole.pages.index',
             'visible' => true,
             'enabled' => true,
         ], 'pages', 'content');

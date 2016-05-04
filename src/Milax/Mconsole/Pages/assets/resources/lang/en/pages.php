@@ -1,27 +1,8 @@
 <?php
 
 return [
-    'module' => [
-        'description' => 'Pages',
-    ],
-    'menu' => [
-        'list' => [
-            'name' => 'Pages',
-            'description' => 'Show page list',
-        ],
-        'create' => [
-            'name' => 'Add page',
-            'description' => 'New pages of the site, with additional links and images',
-        ],
-        'update' => [
-            'name' => 'Edit page',
-            'description' => 'the Update of information, additional links and attached images',
-        ],
-        'delete' => [
-            'name' => 'Delete page',
-            'description' => 'Delete information with additional links and attached images',
-        ],
-    ],
+    'module' => 'Pages',
+    'menu' => 'Show page list',
     'table' => [
         'updated' => 'Updated',
         'slug' => 'Slug',
