@@ -44,4 +44,13 @@ return [
         'fullwidth' => 'Full width',
         'enabled' => 'Published',
     ],
+    'acl' => [
+        'index' => 'Pages: show list',
+        'create' => 'Pages: show create form',
+        'store' => 'Pages: saving',
+        'edit' => 'Pages: show edit form',
+        'update' => 'Pages: updating',
+        'show' => 'Pages: view',
+        'destroy' => 'Pages: delete',
+    ],
 ];

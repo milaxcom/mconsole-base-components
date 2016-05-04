@@ -24,39 +24,24 @@ return [
     },
     'init' => function () {
         app('API')->menu->push([
-            'name' => 'All pages',
+            'name' => 'Pages',
             'translation' => 'pages.menu.list.name',
             'url' => 'pages',
             'description' => 'pages.menu.list.description',
             'route' => 'mconsole.pages.index',
             'visible' => true,
             'enabled' => true,
-        ], 'pages_all', 'content');
-        app('API')->menu->push([
-            'name' => 'Create page',
-            'translation' => 'pages.menu.create.name',
-            'url' => 'pages/create',
-            'description' => 'pages.menu.create.description',
-            'route' => 'mconsole.pages.create',
-            'visible' => false,
-            'enabled' => true,
-        ], 'pages_form', 'content');
-        app('API')->menu->push([
-            'name' => 'Edit pages',
-            'translation' => 'pages.menu.update.name',
-            'description' => 'pages.menu.update.description',
-            'route' => 'mconsole.pages.edit',
-            'visible' => false,
-            'enabled' => true,
-        ], 'pages_update', 'content');
-        app('API')->menu->push([
-            'name' => 'Delete pages',
-            'translation' => 'pages.menu.delete.name',
-            'description' => 'pages.menu.delete.description',
-            'route' => 'mconsole.pages.destroy',
-            'visible' => false,
-            'enabled' => true,
-        ], 'pages_delete', 'content');
+        ], 'pages', 'content');
+        
+        app('API')->acl->register([
+            ['GET', 'pages', 'pages.acl.index', 'pages'],
+            ['GET', 'pages/create', 'pages.acl.create'],
+            ['POST', 'pages', 'pages.acl.store'],
+            ['GET', 'pages/{pages}/edit', 'pages.acl.edit'],
+            ['PUT', 'pages/{pages}', 'pages.acl.update'],
+            ['GET', 'pages/{pages}', 'pages.acl.show'],
+            ['DELETE', 'pages/{pages}', 'pages.acl.destroy'],
+        ]);
         
         // Register in search engine
         app('API')->search->register(function ($text) {

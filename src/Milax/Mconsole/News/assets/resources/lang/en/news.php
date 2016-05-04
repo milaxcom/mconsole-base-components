@@ -51,4 +51,13 @@ return [
             'name' => 'News',
         ],
     ],
+    'acl' => [
+        'index' => 'News: show list',
+        'create' => 'News: show create form',
+        'store' => 'News: saving',
+        'edit' => 'News: show edit form',
+        'update' => 'News: updating',
+        'show' => 'News: view',
+        'destroy' => 'News: delete',
+    ],
 ];
