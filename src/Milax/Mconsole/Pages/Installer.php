@@ -4,6 +4,8 @@ namespace Milax\Mconsole\Pages;
 
 use Milax\Mconsole\Contracts\Modules\ModuleInstaller;
 use Milax\Mconsole\Models\MconsoleUploadPreset;
+use Milax\Mconsole\Pages\PageRepository;
+use Milax\Mconsole\Pages\Models\Page;
 
 class Installer implements ModuleInstaller
 {
@@ -51,5 +53,10 @@ class Installer implements ModuleInstaller
     public static function uninstall()
     {
         app('API')->presets->uninstall(self::$presets);
+        
+        $repository = new PageRepository(Page::class);
+        foreach ($repository->get() as $instance) {
+            $instance->delete();
+        }
     }
 }

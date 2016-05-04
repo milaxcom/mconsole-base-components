@@ -5,6 +5,8 @@ namespace Milax\Mconsole\News;
 use Milax\Mconsole\Contracts\Modules\ModuleInstaller;
 use Milax\Mconsole\Models\MconsoleOption;
 use Milax\Mconsole\Models\MconsoleUploadPreset;
+use Milax\Mconsole\News\NewsRepository;
+use Milax\Mconsole\News\Models\News;
 
 class Installer implements ModuleInstaller
 {
@@ -89,5 +91,10 @@ class Installer implements ModuleInstaller
     {
         app('API')->options->uninstall(self::$options);
         app('API')->presets->uninstall(self::$presets);
+        
+        $repository = new NewsRepository(News::class);
+        foreach ($repository->get() as $instance) {
+            $instance->delete();
+        }
     }
 }
