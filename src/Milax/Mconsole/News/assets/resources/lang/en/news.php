@@ -1,27 +1,8 @@
 <?php
 
 return [
-    'module' => [
-        'description' => 'Manage news',
-    ],
-    'menu' => [
-        'list' => [
-            'name' => 'News',
-            'description' => 'List news',
-        ],
-        'create' => [
-            'name' => 'Add news',
-            'description' => 'Add an entry in news feed',
-        ],
-        'update' => [
-            'name' => 'Edit news',
-            'description' => 'Update information in added news',
-        ],
-        'delete' => [
-            'name' => 'Delete news',
-            'description' => 'Delete from news feed',
-        ],
-    ],
+    'module' => 'Manage news',
+    'menu' => 'News',
     'table' => [
         'published' => 'Published',
         'updated' => 'Updated',

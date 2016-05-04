@@ -6,7 +6,7 @@ use Milax\Mconsole\News\Models\News;
 return [
     'name' => 'News',
     'identifier' => 'mconsole-news',
-    'description' => 'mconsole::news.module.description',
+    'description' => 'mconsole::news.module',
     'register' => [
         'middleware' => [],
         'providers' => [
@@ -25,9 +25,8 @@ return [
     'init' => function () {
         app('API')->menu->push([
             'name' => 'News',
-            'translation' => 'news.menu.list.name',
+            'translation' => 'news.menu',
             'url' => 'news',
-            'description' => 'news.menu.list.description',
             'visible' => true,
             'enabled' => true,
         ], 'news', 'content');
