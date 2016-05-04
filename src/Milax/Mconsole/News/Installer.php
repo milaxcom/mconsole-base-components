@@ -16,6 +16,7 @@ class Installer implements ModuleInstaller
             'value' => 3,
             'type' => 'text',
             'rules' => ['required', 'integer'],
+            'options' => null,
         ],
         [
             'group' => 'news.settings.group.name',
@@ -24,6 +25,7 @@ class Installer implements ModuleInstaller
             'value' => 6,
             'type' => 'text',
             'rules' => ['required', 'integer'],
+            'options' => null,
         ],
         [
             'group' => 'news.settings.group.name',
@@ -31,6 +33,7 @@ class Installer implements ModuleInstaller
             'key' => 'news_has_gallery',
             'value' => 1,
             'type' => 'select',
+            'rules' => null,
             'options' => ['1' => 'settings.options.on', '0' => 'settings.options.off'],
         ],
         [
@@ -39,6 +42,7 @@ class Installer implements ModuleInstaller
             'key' => 'news_has_cover',
             'value' => 1,
             'type' => 'select',
+            'rules' => null,
             'options' => ['1' => 'settings.options.on', '0' => 'settings.options.off'],
         ],
     ];
