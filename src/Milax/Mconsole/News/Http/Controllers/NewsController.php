@@ -64,9 +64,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return $this->form->render('mconsole::news.form', [
-            'languages' => \Milax\Mconsole\Models\Language::all(),
-        ]);
+        return $this->form->render('mconsole::news.form');
     }
 
     /**
@@ -95,7 +93,6 @@ class NewsController extends Controller
     {
         return $this->form->render('mconsole::news.form', [
             'item' => $this->repository->find($id),
-            'languages' => \Milax\Mconsole\Models\Language::all(),
         ]);
     }
 

@@ -63,9 +63,7 @@ class PagesController extends Controller
      */
     public function create()
     {
-        return $this->form->render('mconsole::pages.form', [
-            'languages' => \Milax\Mconsole\Models\Language::all(),
-        ]);
+        return $this->form->render('mconsole::pages.form');
     }
 
     /**
@@ -93,7 +91,6 @@ class PagesController extends Controller
     {
         return $this->form->render('mconsole::pages.form', [
             'item' => $this->repository->query()->with('links')->with('uploads')->findOrFail($id),
-            'languages' => \Milax\Mconsole\Models\Language::all(),
         ]);
     }
 

@@ -13,6 +13,10 @@ class Provider extends ServiceProvider
     
     public function register()
     {
+        view()->composer('mconsole::pages.form', function ($view) {
+            $view->with('languages', app('API')->repositories->languages->get());
+        });
+        
         app('API')->repositories->register('pages', new \Milax\Mconsole\Pages\PageRepository(\Milax\Mconsole\Pages\Models\Page::class));
         
         $this->app->when('\Milax\Mconsole\Pages\Http\Controllers\PagesController')
