@@ -2,7 +2,7 @@
 
 return [
     'module' => 'Pages',
-    'menu' => 'Show page list',
+    'menu' => 'Pages',
     'table' => [
         'updated' => 'Updated',
         'slug' => 'Slug',

@@ -13,10 +13,12 @@ class Provider extends ServiceProvider
     
     public function register()
     {
+        app('API')->repositories->register('pages', new \Milax\Mconsole\Pages\PageRepository(\Milax\Mconsole\Pages\Models\Page::class));
+        
         $this->app->when('\Milax\Mconsole\Pages\Http\Controllers\PagesController')
             ->needs('\Milax\Mconsole\Contracts\Repository')
             ->give(function () {
-                return new \Milax\Mconsole\Pages\PageRepository(\Milax\Mconsole\Pages\Models\Page::class);
+                return app('API')->repositories->pages;
             });
     }
 }
