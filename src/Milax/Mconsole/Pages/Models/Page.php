@@ -19,23 +19,4 @@ class Page extends Model
         'description' => 'array',
         'links' => 'array',
     ];
-    
-    /**
-     * Automatically generate slug from heading if empty, format for url
-     * 
-     * @param void
-     */
-    public function setSlugAttribute($value)
-    {
-        if (strlen($value) == 0) {
-            foreach (Request::input('heading') as $lang => $heading) {
-                if (strlen($heading) > 0) {
-                    break;
-                }
-            }
-            $this->attributes['slug'] = str_slug($heading);
-        } else {
-            $this->attributes['slug'] = str_slug($value);
-        }
-    }
 }

@@ -1,7 +1,7 @@
 @if (isset($item))
 	{!! Form::model($item, ['method' => 'PUT', 'route' => ['mconsole.pages.update', $item->id]]) !!}
 @else
-	{!! Form::open(['method' => 'POST', 'url' => '/mconsole/pages']) !!}
+	{!! Form::open(['method' => 'POST', 'route' => 'mconsole.pages.store']) !!}
 @endif
 <div class="row">
 	<div class="col-lg-7 col-md-6">
