@@ -55,12 +55,10 @@ return [
         
         // Register in quick menu
         app('API')->quickmenu->register(function () {
-            $link = new \stdClass();
-            $link->icon = 'fa fa-plus';
-            $link->color = 'label-success';
-            $link->text = trans('mconsole::news.quickmenu.create');
-            $link->link = '/mconsole/news/create';
-            return $link;
+            return [
+                'text' => trans('mconsole::news.quickmenu.create'),
+                'link' => '/mconsole/news/create',
+            ];
         });
     },
 ];
