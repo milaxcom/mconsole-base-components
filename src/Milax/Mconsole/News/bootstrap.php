@@ -43,12 +43,12 @@ return [
         
         // Register in search engine
         app('API')->search->register(function ($text) {
-            return News::select('id', 'slug', 'heading')->where('slug', 'like', sprintf('%%%s%%', $text))->orWhere('title', 'like', sprintf('%%%s%%', $text))->orWhere('heading', 'like', sprintf('%%%s%%', $text))->orWhere('preview', 'like', sprintf('%%%s%%', $text))->orWhere('text', 'like', sprintf('%%%s%%', $text))->get()->transform(function ($page) {
+            return News::select('id', 'slug', 'heading')->where('slug', 'like', sprintf('%%%s%%', $text))->orWhere('title', 'like', sprintf('%%%s%%', $text))->orWhere('heading', 'like', sprintf('%%%s%%', $text))->orWhere('preview', 'like', sprintf('%%%s%%', $text))->orWhere('text', 'like', sprintf('%%%s%%', $text))->get()->transform(function ($result) {
                 return [
-                    'icon' => 'newspaper-o',
-                    'title' => $page->heading,
-                    'description' => sprintf('/%s', $page->slug),
-                    'link' => sprintf('/mconsole/news/%s/edit', $page->id),
+                    'title' => $result->heading,
+                    'description' => sprintf('/%s', $result->slug),
+                    'link' => sprintf('/mconsole/news/%s/edit', $result->id),
+                    'tags' => ['news', sprintf('#%s', $result->id)],
                 ];
             });
         });

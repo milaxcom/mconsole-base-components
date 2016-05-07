@@ -43,17 +43,17 @@ return [
         
         // Register in search engine
         app('API')->search->register(function ($text) {
-            return Page::select('id', 'slug', 'heading')->where('slug', 'like', sprintf('%%%s%%', $text))->orWhere('title', 'like', sprintf('%%%s%%', $text))->orWhere('heading', 'like', sprintf('%%%s%%', $text))->orWhere('preview', 'like', sprintf('%%%s%%', $text))->orWhere('text', 'like', sprintf('%%%s%%', $text))->get()->transform(function ($page) {
-                foreach ($page->heading as $lang => $heading) {
+            return Page::select('id', 'slug', 'heading')->where('slug', 'like', sprintf('%%%s%%', $text))->orWhere('title', 'like', sprintf('%%%s%%', $text))->orWhere('heading', 'like', sprintf('%%%s%%', $text))->orWhere('preview', 'like', sprintf('%%%s%%', $text))->orWhere('text', 'like', sprintf('%%%s%%', $text))->get()->transform(function ($result) {
+                foreach ($result->heading as $lang => $heading) {
                     if (strlen($heading) > 0) {
                         break;
                     }
                 }
                 return [
-                    'icon' => 'file-text-o',
                     'title' => $heading,
-                    'description' => str_limit(url(sprintf('/%s', $page->slug)), 45),
-                    'link' => sprintf('/mconsole/pages/%s/edit', $page->id),
+                    'description' => str_limit(url(sprintf('/%s', $result->slug)), 45),
+                    'link' => sprintf('/mconsole/pages/%s/edit', $result->id),
+                    'tags' => ['page', sprintf('#%s', $result->id)],
                 ];
             });
         });
