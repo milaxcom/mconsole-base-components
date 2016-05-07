@@ -2,6 +2,9 @@
 
 return [
     'module' => 'Pages',
+    'quickmenu' => [
+        'create' => 'Add page',
+    ],
     'menu' => 'Pages',
     'table' => [
         'updated' => 'Updated',

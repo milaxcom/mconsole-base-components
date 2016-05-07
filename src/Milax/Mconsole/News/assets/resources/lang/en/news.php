@@ -2,6 +2,9 @@
 
 return [
     'module' => 'Manage news',
+    'quickmenu' => [
+        'create' => 'Add news',
+    ],
     'menu' => 'News',
     'table' => [
         'published' => 'Published',
