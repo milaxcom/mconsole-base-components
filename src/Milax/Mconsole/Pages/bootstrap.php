@@ -24,7 +24,7 @@ return [
     },
     'init' => function () {
         app('API')->menu->push([
-            'name' => 'pages.menu',
+            'name' => 'mconsole::pages.menu',
             'url' => 'pages',
             'visible' => true,
             'enabled' => true,

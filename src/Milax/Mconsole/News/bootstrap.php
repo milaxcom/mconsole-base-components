@@ -24,7 +24,7 @@ return [
     },
     'init' => function () {
         app('API')->menu->push([
-            'name' => 'news.menu',
+            'name' => 'mconsole::news.menu',
             'url' => 'news',
             'visible' => true,
             'enabled' => true,
