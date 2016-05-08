@@ -24,7 +24,7 @@ return [
         'title' => 'Title',
         'description' => 'Description',
         'indexing' => 'Search engines indexing',
-        'hide_heading' => 'Hide header',
+        'hide_heading' => 'Hide heading',
         'fullwidth' => 'Full width',
         'enabled' => 'Published',
     ],
