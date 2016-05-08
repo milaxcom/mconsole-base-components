@@ -24,8 +24,7 @@ return [
     },
     'init' => function () {
         app('API')->menu->push([
-            'name' => 'News',
-            'translation' => 'news.menu',
+            'name' => 'news.menu',
             'url' => 'news',
             'visible' => true,
             'enabled' => true,

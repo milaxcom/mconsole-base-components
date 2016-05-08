@@ -24,8 +24,7 @@ return [
     },
     'init' => function () {
         app('API')->menu->push([
-            'name' => 'Pages',
-            'translation' => 'pages.menu',
+            'name' => 'pages.menu',
             'url' => 'pages',
             'visible' => true,
             'enabled' => true,
