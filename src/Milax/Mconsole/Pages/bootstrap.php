@@ -51,7 +51,7 @@ return [
                 return [
                     'title' => $heading,
                     'description' => str_limit(url(sprintf('/%s', $result->slug)), 45),
-                    'link' => sprintf('/mconsole/pages/%s/edit', $result->id),
+                    'link' => mconsole_url(sprintf('pages/%s/edit', $result->id)),
                     'tags' => ['page', sprintf('#%s', $result->id)],
                 ];
             });
@@ -61,7 +61,7 @@ return [
         app('API')->quickmenu->register(function () {
             return [
                 'text' => trans('mconsole::pages.quickmenu.create'),
-                'link' => '/mconsole/pages/create',
+                'link' => mconsole_url('pages/create'),
             ];
         });
     },

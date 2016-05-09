@@ -1,13 +1,13 @@
 @if (isset($item))
-	{!! Form::model($item, ['method' => 'PUT', 'route' => ['mconsole.pages.update', $item->id]]) !!}
+	{!! Form::model($item, ['method' => 'PUT', 'url' => mconsole_url(sprintf('pages/%s', $item->id))]) !!}
 @else
-	{!! Form::open(['method' => 'POST', 'route' => 'mconsole.pages.store']) !!}
+	{!! Form::open(['method' => 'POST', 'url' => mconsole_url('pages')]) !!}
 @endif
 <div class="row">
 	<div class="col-lg-7 col-md-6">
 		<div class="portlet light">
             @include('mconsole::partials.portlet-title', [
-                'back' => '/mconsole/pages',
+                'back' => mconsole_url('pages'),
                 'title' => trans('mconsole::forms.tabs.main'),
                 'fullscreen' => true,
             ])

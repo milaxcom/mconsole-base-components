@@ -46,7 +46,7 @@ return [
                 return [
                     'title' => $result->heading,
                     'description' => sprintf('/%s', $result->slug),
-                    'link' => sprintf('/mconsole/news/%s/edit', $result->id),
+                    'link' => mconsole_url(sprintf('news/%s/edit', $result->id)),
                     'tags' => ['news', sprintf('#%s', $result->id)],
                 ];
             });
@@ -56,7 +56,7 @@ return [
         app('API')->quickmenu->register(function () {
             return [
                 'text' => trans('mconsole::news.quickmenu.create'),
-                'link' => '/mconsole/news/create',
+                'link' => mconsole_url('news/create'),
             ];
         });
     },

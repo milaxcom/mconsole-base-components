@@ -1,14 +1,14 @@
 @if (isset($item))
-    {!! Form::model($item, ['method' => 'PUT', 'route' => ['mconsole.news.update', $item->id]]) !!}
+    {!! Form::model($item, ['method' => 'PUT', 'url' => mconsole_url(sprintf('news/%s', $item->id))]) !!}
 @else
-    {!! Form::open(['method' => 'POST', 'url' => '/mconsole/news']) !!}
+    {!! Form::open(['method' => 'POST', 'url' => mconsole_url('news')]) !!}
 @endif
 
 <div class="row">
 	<div class="col-lg-7 col-md-6">
         <div class="portlet light">
             @include('mconsole::partials.portlet-title', [
-                'back' => '/mconsole/news',
+                'back' => mconsole_url('news'),
                 'title' => trans('mconsole::forms.tabs.main'),
                 'fullscreen' => true,
             ])

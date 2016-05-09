@@ -10,8 +10,8 @@ class Installer implements ModuleInstaller
 {
     public static $options = [
         [
-            'group' => 'news.settings.group.name',
-            'label' => 'news.settings.index',
+            'group' => 'mconsole::news.settings.group.name',
+            'label' => 'mconsole::news.settings.index',
             'key' => 'news_index_count',
             'value' => 3,
             'type' => 'text',
@@ -19,8 +19,8 @@ class Installer implements ModuleInstaller
             'options' => null,
         ],
         [
-            'group' => 'news.settings.group.name',
-            'label' => 'news.settings.archive',
+            'group' => 'mconsole::news.settings.group.name',
+            'label' => 'mconsole::news.settings.archive',
             'key' => 'news_archive_count',
             'value' => 6,
             'type' => 'text',
@@ -28,22 +28,22 @@ class Installer implements ModuleInstaller
             'options' => null,
         ],
         [
-            'group' => 'news.settings.group.name',
-            'label' => 'news.settings.gallery',
+            'group' => 'mconsole::news.settings.group.name',
+            'label' => 'mconsole::news.settings.gallery',
             'key' => 'news_has_gallery',
             'value' => 1,
             'type' => 'select',
             'rules' => null,
-            'options' => ['1' => 'settings.options.on', '0' => 'settings.options.off'],
+            'options' => ['1' => 'mconsole::settings.options.on', '0' => 'mconsole::settings.options.off'],
         ],
         [
-            'group' => 'news.settings.group.name',
-            'label' => 'news.settings.cover',
+            'group' => 'mconsole::news.settings.group.name',
+            'label' => 'mconsole::news.settings.cover',
             'key' => 'news_has_cover',
             'value' => 1,
             'type' => 'select',
             'rules' => null,
-            'options' => ['1' => 'settings.options.on', '0' => 'settings.options.off'],
+            'options' => ['1' => 'mconsole::settings.options.on', '0' => 'mconsole::settings.options.off'],
         ],
     ];
     

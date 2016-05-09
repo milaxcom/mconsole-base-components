@@ -14,7 +14,6 @@ class PagesController extends Controller
 {
     use \HasRedirects, \DoesNotHaveShow;
 
-    protected $redirectTo = '/mconsole/pages';
     protected $model = 'Milax\Mconsole\Pages\Models\Page';
     
     /**
@@ -25,6 +24,7 @@ class PagesController extends Controller
         $this->list = $list;
         $this->form = $form;
         $this->repository = $repository;
+        $this->redirectTo = mconsole_url('pages');
     }
     
     /**

@@ -1,7 +1,7 @@
 <?php
 
 Route::group([
-    'prefix' => 'mconsole',
+    'prefix' => config('mconsole.url'),
     'middleware' => ['web', 'mconsole'],
     'namespace' => 'Milax\Mconsole\Pages\Http\Controllers',
 ], function () {

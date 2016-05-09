@@ -13,7 +13,6 @@ class NewsController extends Controller
 {
     use \HasRedirects, \DoesNotHaveShow;
 
-    protected $redirectTo = '/mconsole/news';
     protected $model = 'Milax\Mconsole\News\Models\News';
     
     /**
@@ -21,6 +20,7 @@ class NewsController extends Controller
      */
     public function __construct(ListRenderer $list, FormRenderer $form, Repository $repository)
     {
+        $this->redirectTo = mconsole_url('news');
         $this->list = $list;
         $this->form = $form;
         $this->repository = $repository;
