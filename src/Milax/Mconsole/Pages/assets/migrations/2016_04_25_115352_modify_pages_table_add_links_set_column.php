@@ -13,7 +13,7 @@ class ModifyPagesTableAddLinksSetColumn extends Migration
     public function up()
     {
         Schema::table('pages', function (Blueprint $table) {
-            $table->integer('links_page_id')->default(0)->after('id');
+            $table->integer('linkable_id')->default(0)->after('id');
         });
     }
 
@@ -25,7 +25,7 @@ class ModifyPagesTableAddLinksSetColumn extends Migration
     public function down()
     {
         Schema::table('pages', function (Blueprint $table) {
-            $table->dropColumn('links_page_id');
+            $table->dropColumn('linkable_id');
         });
     }
 }

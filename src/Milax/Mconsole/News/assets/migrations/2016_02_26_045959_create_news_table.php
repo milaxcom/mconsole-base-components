@@ -14,13 +14,13 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->increments('id');
-			$table->string('slug')->unique();
-            $table->string('title');
-            $table->string('heading');
-            $table->text('preview');
-            $table->text('text');
-            $table->text('description');
-            $table->boolean('enabled');
+            $table->string('slug')->unique();
+            $table->json('heading')->nullable();
+            $table->json('preview')->nullable();
+            $table->json('text')->nullable();
+            $table->json('title')->nullable();
+            $table->json('description')->nullable();
+            $table->boolean('enabled')->default(true);
             $table->timestamps();
         });
     }
