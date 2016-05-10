@@ -162,7 +162,7 @@
                     'value' => isset($item) ? $item->pinned : 0,
                     'type' => MX_SELECT_YESNO,
                 ])
-                @include('mconsole::forms.state')
+                @include('mconsole::forms.state', isset($item) ? $item : [])
 			</div>
 		</div>
     </div>
