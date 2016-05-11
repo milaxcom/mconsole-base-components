@@ -12,7 +12,7 @@ use Milax\Mconsole\Contracts\Repository;
 
 class PagesController extends Controller
 {
-    use \HasRedirects, \DoesNotHaveShow;
+    use \HasRedirects, \DoesNotHaveShow, \UseLayout;
 
     protected $model = 'Milax\Mconsole\Pages\Models\Page';
     
@@ -21,6 +21,7 @@ class PagesController extends Controller
      */
     public function __construct(ListRenderer $list, FormRenderer $form, Repository $repository)
     {
+        $this->setCaption(trans('mconsole::pages.menu'));
         $this->list = $list;
         $this->form = $form;
         $this->repository = $repository;
