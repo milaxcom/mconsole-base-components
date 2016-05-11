@@ -3,6 +3,7 @@
 @else
 	{!! Form::open(['method' => 'POST', 'url' => mconsole_url('pages')]) !!}
 @endif
+
 <div class="row">
 	<div class="col-lg-7 col-md-6">
 		<div class="portlet light">
@@ -65,15 +66,16 @@
     									'label' => trans('mconsole::pages.form.description'),
     									'name' => 'description[' . $language->key . ']',
     								])
-                                    @include('mconsole::forms.select', [
-                                        'label' => trans('mconsole::pages.form.indexing'),
-                                        'name' => 'index',
-                                        'type' => MX_SELECT_STATE,
-                                    ])
     							</div>
                             @endforeach
 						</div>
 					</div>
+                    
+                    @include('mconsole::forms.select', [
+                        'label' => trans('mconsole::pages.form.indexing'),
+                        'name' => 'indexing',
+                        'type' => MX_SELECT_STATE,
+                    ])
                     
                     {!! app('API')->forms['constructor']->render() !!}
                     
