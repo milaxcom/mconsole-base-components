@@ -11,7 +11,7 @@ use Milax\Mconsole\Contracts\Repository;
 
 class NewsController extends Controller
 {
-    use \HasRedirects, \DoesNotHaveShow;
+    use \HasRedirects, \DoesNotHaveShow, \UseLayout;
 
     protected $model = 'Milax\Mconsole\News\Models\News';
     
@@ -20,6 +20,7 @@ class NewsController extends Controller
      */
     public function __construct(ListRenderer $list, FormRenderer $form, Repository $repository)
     {
+        $this->setCaption(trans('mconsole::news.menu'));
         $this->redirectTo = mconsole_url('news');
         $this->list = $list;
         $this->form = $form;
