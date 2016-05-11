@@ -20,10 +20,10 @@ class CreatePagesTable extends Migration
             $table->json('text')->nullable();
             $table->json('title')->nullable();
             $table->json('description')->nullable();
-            $table->boolean('hide_heading')->nullable();
-            $table->boolean('fullwidth')->nullable();
-            $table->boolean('system')->nullable();
-            $table->boolean('enabled')->nullable();
+            $table->boolean('hide_heading')->default(false);
+            $table->boolean('fullwidth')->default(false);
+            $table->boolean('system')->default(false);
+            $table->boolean('enabled')->default(true);
             $table->timestamps();
         });
     }
