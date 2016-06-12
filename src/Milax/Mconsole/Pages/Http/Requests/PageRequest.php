@@ -4,15 +4,16 @@ namespace Milax\Mconsole\Pages\Http\Requests;
 
 use App\Http\Requests\Request;
 use Milax\Mconsole\Pages\Models\Page;
+use Milax\Mconsole\Pages\Contracts\Repositories\PagesRepository;
 
 class PageRequest extends Request
 {
     /**
      * Create new instance
      */
-    public function __construct()
+    public function __construct(PagesRepository $repository)
     {
-        $this->repository = app('API')->repositories->pages;
+        $this->repository = $repository;
     }
     
     /**

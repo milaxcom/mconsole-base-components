@@ -8,21 +8,13 @@ class Provider extends ServiceProvider
 {
     public function boot()
     {
-        //
+        view()->composer('mconsole::pages.form', function ($view) {
+            $view->with('languages', app('Milax\Mconsole\Contracts\Repositories\LanguagesRepository')->get());
+        });
     }
     
     public function register()
     {
-        view()->composer('mconsole::pages.form', function ($view) {
-            $view->with('languages', app('API')->repositories->languages->get());
-        });
-        
-        app('API')->repositories->register('pages', new \Milax\Mconsole\Pages\PageRepository(\Milax\Mconsole\Pages\Models\Page::class));
-        
-        $this->app->when('\Milax\Mconsole\Pages\Http\Controllers\PagesController')
-            ->needs('\Milax\Mconsole\Contracts\Repository')
-            ->give(function () {
-                return app('API')->repositories->pages;
-            });
+        $this->app->bind('Milax\Mconsole\Pages\Contracts\Repositories\PagesRepository', 'Milax\Mconsole\Pages\Repositories\PagesRepository');
     }
 }

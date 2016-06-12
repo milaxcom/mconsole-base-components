@@ -4,15 +4,16 @@ namespace Milax\Mconsole\News\Http\Requests;
 
 use App\Http\Requests\Request;
 use Milax\Mconsole\News\Models\News;
+use Milax\Mconsole\News\Contracts\Repositories\NewsRepository;
 
 class NewsRequest extends Request
 {
     /**
      * Create new instance
      */
-    public function __construct()
+    public function __construct(NewsRepository $repository)
     {
-        $this->repository = app('API')->repositories->news;
+        $this->repository = $repository;
     }
     
     /**

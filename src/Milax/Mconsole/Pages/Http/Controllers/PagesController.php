@@ -8,7 +8,7 @@ use Milax\Mconsole\Pages\Models\Page;
 use Milax\Mconsole\Pages\Models\ContentLink;
 use Milax\Mconsole\Contracts\ListRenderer;
 use Milax\Mconsole\Contracts\FormRenderer;
-use Milax\Mconsole\Contracts\Repository;
+use Milax\Mconsole\Pages\Contracts\Repositories\PagesRepository;
 
 class PagesController extends Controller
 {
@@ -19,7 +19,7 @@ class PagesController extends Controller
     /**
      * Create new class instance
      */
-    public function __construct(ListRenderer $list, FormRenderer $form, Repository $repository)
+    public function __construct(ListRenderer $list, FormRenderer $form, PagesRepository $repository)
     {
         $this->setCaption(trans('mconsole::pages.menu'));
         $this->list = $list;

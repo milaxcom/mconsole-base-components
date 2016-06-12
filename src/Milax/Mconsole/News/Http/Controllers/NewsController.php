@@ -7,7 +7,7 @@ use Milax\Mconsole\News\Http\Requests\NewsRequest;
 use Milax\Mconsole\News\Models\News;
 use Milax\Mconsole\Contracts\ListRenderer;
 use Milax\Mconsole\Contracts\FormRenderer;
-use Milax\Mconsole\Contracts\Repository;
+use Milax\Mconsole\News\Contracts\Repositories\NewsRepository;
 
 class NewsController extends Controller
 {
@@ -18,7 +18,7 @@ class NewsController extends Controller
     /**
      * Create new class instance
      */
-    public function __construct(ListRenderer $list, FormRenderer $form, Repository $repository)
+    public function __construct(ListRenderer $list, FormRenderer $form, NewsRepository $repository)
     {
         $this->setCaption(trans('mconsole::news.menu'));
         $this->redirectTo = mconsole_url('news');
