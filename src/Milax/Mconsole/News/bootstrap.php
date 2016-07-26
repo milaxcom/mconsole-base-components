@@ -31,14 +31,14 @@ return [
         ], 'news', 'content');
         
         app('API')->acl->register([
-            ['GET', 'news', 'mconsole::news.acl.index', 'news'],
+            ['GET', 'news', 'mconsole::news.acl.index'],
             ['GET', 'news/create', 'mconsole::news.acl.create'],
             ['POST', 'news', 'mconsole::news.acl.store'],
             ['GET', 'news/{news}/edit', 'mconsole::news.acl.edit'],
             ['PUT', 'news/{news}', 'mconsole::news.acl.update'],
             ['GET', 'news/{news}', 'mconsole::news.acl.show'],
             ['DELETE', 'news/{news}', 'mconsole::news.acl.destroy'],
-        ]);
+        ], 'news');
         
         // Register in search engine
         app('API')->search->register(function ($text) {

@@ -31,14 +31,14 @@ return [
         ], 'pages', 'content');
         
         app('API')->acl->register([
-            ['GET', 'pages', 'mconsole::pages.acl.index', 'pages'],
+            ['GET', 'pages', 'mconsole::pages.acl.index'],
             ['GET', 'pages/create', 'mconsole::pages.acl.create'],
             ['POST', 'pages', 'mconsole::pages.acl.store'],
             ['GET', 'pages/{pages}/edit', 'mconsole::pages.acl.edit'],
             ['PUT', 'pages/{pages}', 'mconsole::pages.acl.update'],
             ['GET', 'pages/{pages}', 'mconsole::pages.acl.show'],
             ['DELETE', 'pages/{pages}', 'mconsole::pages.acl.destroy'],
-        ]);
+        ], 'pages');
         
         // Register in search engine
         app('API')->search->register(function ($text) {
