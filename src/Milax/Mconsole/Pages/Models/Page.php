@@ -18,5 +18,6 @@ class Page extends Model
         'title' => 'array',
         'description' => 'array',
         'links' => 'array',
+        'settings' => 'array',
     ];
 }
