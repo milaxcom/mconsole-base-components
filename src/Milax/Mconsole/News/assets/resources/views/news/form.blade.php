@@ -104,7 +104,7 @@
                         'type' => MX_UPLOAD_TYPE_IMAGE,
                         'multiple' => false,
                         'group' => 'cover',
-                        'preset' => 'news',
+                        'preset' => 'news_cover',
                         'id' => isset($item) ? $item->id : null,
                         'model' => 'Milax\Mconsole\News\Models\News',
                     ])

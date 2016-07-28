@@ -49,6 +49,39 @@ class Installer implements ModuleInstaller
     
     public static $presets = [
         [
+            'key' => 'news_cover',
+            'type' => MX_UPLOAD_TYPE_IMAGE,
+            'name' => 'News cover',
+            'path' => 'news-cover',
+            'extensions' => ['jpg', 'jpeg', 'png'],
+            'min_width' => 200,
+            'min_height' => 100,
+            'operations' => [
+                [
+                    'operation' => 'resize',
+                    'type' => 'ratio',
+                    'width' => '200',
+                    'height' => '100',
+                ],
+                [
+                    'operation' => 'save',
+                    'path' => 'cover',
+                    'quality' => '',
+                ],
+                [
+                    'operation' => 'resize',
+                    'type' => 'center',
+                    'width' => '90',
+                    'height' => '90',
+                ],
+                [
+                    'operation' => 'save',
+                    'path' => 'preview',
+                    'quality' => '',
+                ],
+            ],
+        ],
+        [
             'key' => 'news',
             'type' => MX_UPLOAD_TYPE_IMAGE,
             'name' => 'News',
