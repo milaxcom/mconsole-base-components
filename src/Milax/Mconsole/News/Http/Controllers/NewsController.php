@@ -44,7 +44,8 @@ class NewsController extends Controller
         
         return $this->list->setQuery($this->repository->index())->setAddAction('news/create')->render(function ($item) {
             return [
-                '#' => $item->id,
+                trans('mconsole::tables.state') => view('mconsole::indicators.state', $item),
+                trans('mconsole::tables.id') => $item->id,
                 trans('mconsole::news.table.published') => $item->published_at ? $item->published_at->format('m.d.Y') : null,
                 trans('mconsole::news.table.updated') => $item->updated_at->format('m.d.Y'),
                 trans('mconsole::news.table.slug') => $item->slug,
@@ -53,7 +54,6 @@ class NewsController extends Controller
                         return sprintf('<div class="label label-info">%s</div> %s', $key, $val);
                     }
                 })->values()->implode('<br />'),
-                trans('mconsole::tables.state.name') => view('mconsole::indicators.state', $item),
             ];
         });
     }

@@ -44,7 +44,8 @@ class PagesController extends Controller
         
         return $this->list->setQuery($this->repository->index())->setAddAction('pages/create')->render(function ($item) {
             return [
-                '#' => $item->id,
+                trans('mconsole::tables.state') => view('mconsole::indicators.state', $item),
+                trans('mconsole::tables.id') => $item->id,
                 trans('mconsole::pages.table.updated') => $item->updated_at->format('m.d.Y'),
                 trans('mconsole::pages.table.slug') => $item->slug,
                 trans('mconsole::pages.table.heading') => collect($item->heading)->transform(function ($val, $key) {
@@ -52,7 +53,6 @@ class PagesController extends Controller
                         return sprintf('<div class="label label-info">%s</div> %s', $key, $val);
                     }
                 })->values()->implode('<br />'),
-                trans('mconsole::tables.state.name') => view('mconsole::indicators.state', $item),
             ];
         });
     }
