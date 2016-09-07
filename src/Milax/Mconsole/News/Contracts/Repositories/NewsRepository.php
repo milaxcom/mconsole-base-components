@@ -9,12 +9,12 @@ interface NewsRepository
      * 
      * @param  DateTime $fromDate
      * @param  DateTime $toDate
-     * @param  int $skip
      * @param  int $take
+     * @param  int $skip
      * 
      * @return Collection
      */
-    public function getByDate($fromDate = null, $toDate = null, $skip = null, $take = null);
+    public function getByDate($fromDate = null, $toDate = null, $take = null, $skip = null);
     
     /**
      * Get localized news
