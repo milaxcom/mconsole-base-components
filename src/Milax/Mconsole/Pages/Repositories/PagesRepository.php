@@ -5,6 +5,7 @@ namespace Milax\Mconsole\Pages\Repositories;
 use Milax\Mconsole\Repositories\EloquentRepository;
 use Milax\Mconsole\Pages\Contracts\Repositories\PagesRepository as Repository;
 use Milax\Mconsole\Contracts\ContentCompiler;
+use View;
 
 class PagesRepository extends EloquentRepository implements Repository
 {
