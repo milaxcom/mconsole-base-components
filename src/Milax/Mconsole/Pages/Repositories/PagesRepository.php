@@ -18,6 +18,11 @@ class PagesRepository extends EloquentRepository implements Repository
     public function findBySlug($slug, $lang = null)
     {
         $page = $this->query()->where('slug', $slug)->firstOrFail();
-        return $this->compiler->set($page)->localize($lang)->render()->get();
+        $localized = $this->compiler->set($page)->localize($lang)->render()->get();
+        
+        View::share('pageTitle', $localized->compiled->title);
+        View::share('pageDescription', $localized->compiled->description);
+        
+        return $localized;
     }
 }
