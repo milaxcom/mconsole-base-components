@@ -5,9 +5,12 @@ namespace Milax\Mconsole\News\Repositories;
 use Milax\Mconsole\Repositories\EloquentRepository;
 use Milax\Mconsole\News\Contracts\Repositories\NewsRepository as Repository;
 use Milax\Mconsole\Contracts\ContentCompiler;
+use Milax\Mconsole\Traits\Repositories\TaggableRepository;
 
 class NewsRepository extends EloquentRepository implements Repository
 {
+    use TaggableRepository;
+    
     public $model = \Milax\Mconsole\News\Models\News::class;
     
     public function __construct(ContentCompiler $compiler)
@@ -15,9 +18,15 @@ class NewsRepository extends EloquentRepository implements Repository
         $this->compiler = $compiler;
     }
     
-    public function getByDate($fromDate = null, $toDate = null, $take = null, $skip = null)
+    public function getByDate($fromDate = null, $toDate = null, $take = null, $skip = null, $tag = null)
     {
-        $query = $this->query()->orderBy('pinned', 'desc')->orderBy('published_at', 'desc');
+        if (!is_null($tag)) {
+            $query = $this->tagQuery($tag);
+        } else {
+            $query = $this->query();
+        }
+        
+        $query = $query->orderBy('pinned', 'desc')->orderBy('published_at', 'desc');
         
         if (!is_null($fromDate)) {
             $query->where('published_at', '>=', $fromDate);
