@@ -60,7 +60,7 @@ class NewsRequest extends FormRequest
         $input = parent::all();
         
         if (strlen($input['slug']) == 0) {
-            foreach (Request::input('heading') as $lang => $heading) {
+            foreach ($this->input('heading') as $lang => $heading) {
                 if (strlen($heading) > 0) {
                     break;
                 }
