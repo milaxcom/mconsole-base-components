@@ -16,6 +16,9 @@ return [
         'bindings' => [],
         'dependencies' => [],
     ],
+    'tags' => [
+        'news',
+    ],
     'install' => function () {
         Installer::install();
     },

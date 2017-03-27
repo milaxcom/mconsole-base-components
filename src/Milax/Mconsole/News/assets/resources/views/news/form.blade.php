@@ -142,9 +142,12 @@
                 @if (isset($item))
                     @include('mconsole::forms.tags', [
                         'tags' => $item->tags,
+                        'categories' => ['news'],
                     ])
                 @else
-                    @include('mconsole::forms.tags')
+                    @include('mconsole::forms.tags', [
+                        'categories' => ['news'],
+                    ])
                 @endif
 			</div>
 		</div>
