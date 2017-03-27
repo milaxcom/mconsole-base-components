@@ -81,6 +81,8 @@ class NewsController extends Controller
         
         $this->handleUploads($news);
         app('API')->tags->sync($news);
+
+        $this->redirect();
     }
 
     /**
@@ -113,6 +115,8 @@ class NewsController extends Controller
         app('API')->tags->sync($news);
         
         $this->repository->update($id, $request->all());
+        
+        $this->redirect();
     }
 
     /**
@@ -125,6 +129,8 @@ class NewsController extends Controller
     public function destroy($id)
     {
         $this->repository->destroy($id);
+        
+        $this->redirect();
     }
     
     /**

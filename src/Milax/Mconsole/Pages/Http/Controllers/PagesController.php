@@ -79,6 +79,8 @@ class PagesController extends Controller
         $page = $this->repository->create($request->all());
         $this->handleUploads($page);
         app('API')->links->sync($page);
+        
+        $this->redirect();
     }
 
     /**
@@ -110,6 +112,8 @@ class PagesController extends Controller
         $this->handleUploads($page);
         app('API')->links->sync($page);
         $page->update($request->all());
+        
+        $this->redirect();
     }
 
     /**
@@ -128,6 +132,8 @@ class PagesController extends Controller
         }
         
         $page->delete();
+        
+        $this->redirect();
     }
     
     /**

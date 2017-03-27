@@ -8,12 +8,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5.9",
-        "illuminate/support": "5.2.*",
-        "laravelcollective/html": "5.2.*",
-        "misterpaladin/cacheable": "*",
-        "intervention/image": "^2.3",
-		"misterpaladin/gravatar": "*"
+        "milax/mconsole": "^0.5"
     },
     "autoload": {
         "psr-4": {

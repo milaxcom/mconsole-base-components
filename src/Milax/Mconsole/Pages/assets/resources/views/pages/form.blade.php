@@ -74,7 +74,7 @@
                     @include('mconsole::forms.select', [
                         'label' => trans('mconsole::pages.form.indexing'),
                         'name' => 'indexing',
-                        'type' => MX_SELECT_STATE,
+                        'type' => MconsoleFormSelectType::OnOff,
                     ])
                     
                     {!! app('API')->forms['constructor']->render() !!}
@@ -96,7 +96,7 @@
 			</div>
 			<div class="portlet-body form">
                 @include('mconsole::forms.upload', [
-                    'type' => MX_UPLOAD_TYPE_IMAGE,
+                    'type' => MconsoleUploadType::Image,
                     'multiple' => true,
                     'group' => 'gallery',
                     'preset' => 'pages',
@@ -128,17 +128,17 @@
                             @include('mconsole::forms.select', [
                                 'label' => trans('mconsole::pages.form.enabled'),
                                 'name' => 'enabled',
-                                'type' => MX_SELECT_YESNO,
+                                'type' => MconsoleFormSelectType::YesNo,
                             ])
                             @include('mconsole::forms.select', [
 								'label' => trans('mconsole::pages.form.hide_heading'),
 								'name' => 'hide_heading',
-                                'type' => MX_SELECT_YESNO,
+                                'type' => MconsoleFormSelectType::YesNo,
 							])
 							@include('mconsole::forms.select', [
 								'label' => trans('mconsole::pages.form.fullwidth'),
 								'name' => 'fullwidth',
-                                'type' => MX_SELECT_YESNO,
+                                'type' => MconsoleFormSelectType::YesNo,
 							])
 						</div>
 						<div class="tab-pane fade" id="tab_2">

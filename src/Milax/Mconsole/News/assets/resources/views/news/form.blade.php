@@ -78,7 +78,7 @@
                     @include('mconsole::forms.select', [
                         'label' => trans('mconsole::news.form.indexing'),
                         'name' => 'indexing',
-                        'type' => MX_SELECT_STATE,
+                        'type' => MconsoleFormSelectType::OnOff,
                     ])
                     
                     {!! app('API')->forms['constructor']->render() !!}
@@ -100,14 +100,14 @@
 					</div>
 				</div>
 				<div class="portlet-body form">
-                    @include('mconsole::forms.upload', [
-                        'type' => MX_UPLOAD_TYPE_IMAGE,
-                        'multiple' => false,
-                        'group' => 'cover',
-                        'preset' => 'news_cover',
-                        'id' => isset($item) ? $item->id : null,
-                        'model' => 'Milax\Mconsole\News\Models\News',
-                    ])
+@include('mconsole::forms.upload', [
+    'type' => MconsoleUploadType::Image,
+    'multiple' => false,
+    'group' => 'cover',
+    'preset' => 'news_cover',
+    'id' => isset($item) ? $item->id : null,
+    'model' => 'Milax\Mconsole\News\Models\News',
+])
 				</div>
 			</div>
         @endif
@@ -121,7 +121,7 @@
 				</div>
 				<div class="portlet-body form">
                     @include('mconsole::forms.upload', [
-                        'type' => MX_UPLOAD_TYPE_IMAGE,
+                        'type' => MconsoleUploadType::Image,
                         'multiple' => true,
                         'group' => 'gallery',
                         'preset' => 'news',
@@ -160,7 +160,7 @@
                     'label' => trans('mconsole::news.form.pinned'),
                     'name' => 'pinned',
                     'value' => isset($item) ? $item->pinned : 0,
-                    'type' => MX_SELECT_YESNO,
+                    'type' => MconsoleFormSelectType::YesNo,
                 ])
                 @include('mconsole::forms.state', isset($item) ? $item : [])
 			</div>

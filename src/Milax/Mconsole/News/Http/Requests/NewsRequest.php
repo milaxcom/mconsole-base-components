@@ -2,11 +2,11 @@
 
 namespace Milax\Mconsole\News\Http\Requests;
 
-use App\Http\Requests\Request;
+use Illuminate\Foundation\Http\FormRequest;
 use Milax\Mconsole\News\Models\News;
 use Milax\Mconsole\News\Contracts\Repositories\NewsRepository;
 
-class NewsRequest extends Request
+class NewsRequest extends FormRequest
 {
     /**
      * Create new instance
@@ -33,7 +33,7 @@ class NewsRequest extends Request
      */
     public function rules()
     {
-        switch ($this->method) {
+        switch ($this->method()) {
             case 'PUT':
             case 'UPDATE':
                 return [

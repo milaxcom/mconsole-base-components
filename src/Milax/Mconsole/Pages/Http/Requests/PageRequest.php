@@ -2,11 +2,11 @@
 
 namespace Milax\Mconsole\Pages\Http\Requests;
 
-use App\Http\Requests\Request;
+use Illuminate\Foundation\Http\FormRequest;
 use Milax\Mconsole\Pages\Models\Page;
 use Milax\Mconsole\Pages\Contracts\Repositories\PagesRepository;
 
-class PageRequest extends Request
+class PageRequest extends FormRequest
 {
     /**
      * Create new instance
@@ -33,11 +33,11 @@ class PageRequest extends Request
      */
     public function rules()
     {
-        switch ($this->method) {
+        switch ($this->method()) {
             case 'PUT':
             case 'UPDATE':
                 return [
-                    'slug' => 'max:255|unique:pages,slug,' . $this->repository->find($this->pages)->id,
+                    'slug' => 'max:255|unique:pages,slug,' . $this->repository->find($this->page)->id,
                     'heading' => 'required|max:255',
                 ];
                 break;
@@ -60,7 +60,7 @@ class PageRequest extends Request
         $input = parent::all();
         
         if (strlen($input['slug']) == 0) {
-            foreach (Request::input('heading') as $lang => $heading) {
+            foreach ($this->input('heading') as $lang => $heading) {
                 if (strlen($heading) > 0) {
                     break;
                 }

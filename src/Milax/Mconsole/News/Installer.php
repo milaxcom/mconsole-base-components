@@ -50,7 +50,7 @@ class Installer implements ModuleInstaller
     public static $presets = [
         [
             'key' => 'news_cover',
-            'type' => MX_UPLOAD_TYPE_IMAGE,
+            'type' => \MconsoleUploadType::Image,
             'name' => 'News cover',
             'path' => 'news-cover',
             'extensions' => ['jpg', 'jpeg', 'png'],
@@ -83,7 +83,7 @@ class Installer implements ModuleInstaller
         ],
         [
             'key' => 'news',
-            'type' => MX_UPLOAD_TYPE_IMAGE,
+            'type' => \MconsoleUploadType::Image,
             'name' => 'News',
             'path' => 'news',
             'extensions' => ['jpg', 'jpeg', 'png'],
