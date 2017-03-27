@@ -100,14 +100,14 @@
 					</div>
 				</div>
 				<div class="portlet-body form">
-@include('mconsole::forms.upload', [
-    'type' => MconsoleUploadType::Image,
-    'multiple' => false,
-    'group' => 'cover',
-    'preset' => 'news_cover',
-    'id' => isset($item) ? $item->id : null,
-    'model' => 'Milax\Mconsole\News\Models\News',
-])
+                    @include('mconsole::forms.upload', [
+                        'type' => MconsoleUploadType::Image,
+                        'multiple' => false,
+                        'group' => 'cover',
+                        'preset' => 'news_cover',
+                        'id' => isset($item) ? $item->id : null,
+                        'model' => 'Milax\Mconsole\News\Models\News',
+                    ])
 				</div>
 			</div>
         @endif
