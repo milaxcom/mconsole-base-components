@@ -2,7 +2,7 @@
 
 namespace Milax\Mconsole\News\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Milax\Mconsole\Http\Controllers\ModuleController as Controller;
 use Milax\Mconsole\News\Http\Requests\NewsRequest;
 use Milax\Mconsole\News\Models\News;
 use Milax\Mconsole\Contracts\ListRenderer;
@@ -20,6 +20,8 @@ class NewsController extends Controller
      */
     public function __construct(ListRenderer $list, FormRenderer $form, NewsRepository $repository)
     {
+        parent::__construct();
+        
         $this->setCaption(trans('mconsole::news.menu'));
         $this->redirectTo = mconsole_url('news');
         $this->list = $list;

@@ -2,7 +2,7 @@
 
 namespace Milax\Mconsole\Pages\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Milax\Mconsole\Http\Controllers\ModuleController as Controller;
 use Milax\Mconsole\Pages\Http\Requests\PageRequest;
 use Milax\Mconsole\Pages\Models\Page;
 use Milax\Mconsole\Pages\Models\ContentLink;
@@ -21,6 +21,8 @@ class PagesController extends Controller
      */
     public function __construct(ListRenderer $list, FormRenderer $form, PagesRepository $repository)
     {
+        parent::__construct();
+        
         $this->setCaption(trans('mconsole::pages.menu'));
         $this->list = $list;
         $this->form = $form;
