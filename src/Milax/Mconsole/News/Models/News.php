@@ -21,4 +21,13 @@ class News extends Model
         'title' => 'array',
         'description' => 'array',
     ];
+
+    /**
+     * Check if news has full text
+     * 
+     * @return bool
+     */
+    public function hasText() {
+        return !empty($this->text);
+    }
 }
