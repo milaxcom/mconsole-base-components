@@ -77,7 +77,7 @@
                         'type' => MconsoleFormSelectType::OnOff,
                     ])
                     
-                    {!! app('API')->forms['constructor']->render() !!}
+                    {!! app('API')->forms->constructor->render() !!}
                     
                 </div>
                 <div class="form-actions">
