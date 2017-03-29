@@ -2,6 +2,8 @@
 
 use Milax\Mconsole\Pages\Installer;
 use Milax\Mconsole\Pages\Models\Page;
+use Milax\Mconsole\Models\SitemapItem;
+use Milax\Mconsole\Structs\SitemapChangefreq;
 
 return [
     'name' => 'Pages',
@@ -40,6 +42,18 @@ return [
             ['DELETE', 'pages/{pages}', 'mconsole::pages.acl.destroy'],
         ], 'pages');
         
+        app('API')->sitemap->register(function () {
+            $pages = Page::select('slug', 'updated_at')->get();
+            $items = [];
+            
+            foreach ($pages as $page) {
+                $sitemapItem = new SitemapItem($page->slug, SitemapChangefreq::Always, $page->updated_at);
+                array_push($items, $sitemapItem);
+            }
+
+            return $items;
+        });
+
         // Register in search engine
         app('API')->search->register(function ($text) {
             return Page::select('id', 'slug', 'heading')->where('slug', 'like', sprintf('%%%s%%', $text))->orWhere('title', 'like', sprintf('%%%s%%', $text))->orWhere('heading', 'like', sprintf('%%%s%%', $text))->orWhere('preview', 'like', sprintf('%%%s%%', $text))->orWhere('text', 'like', sprintf('%%%s%%', $text))->get()->transform(function ($result) {
