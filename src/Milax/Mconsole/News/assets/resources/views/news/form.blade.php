@@ -14,10 +14,16 @@
             ])
             <div class="portlet-body form">
     			<div class="form-body">
-                    @include('mconsole::forms.text', [
-    					'label' => trans('mconsole::news.form.slug'),
-    					'name' => 'slug',
-    				])
+                    <div class="form-group">
+						<label>{{ trans('mconsole::news.form.slug') }}</label>
+						<div class="input-group">
+							{!! Form::text('slug', !is_null(Form::getValueAttribute('slug')) ? null : isset($item) ? $item->slug : null, ['class' => 'form-control']) !!}
+							<span class="input-group-btn">
+								<button class="btn blue slugify" type="button">
+								<i class="fa fa-refresh fa-fw"></i> {{ trans('mconsole::news.form.slugify') }}</button>
+							</span>
+						</div>
+					</div>
                     @include('mconsole::forms.date', [
     					'label' => trans('mconsole::news.form.published_at'),
     					'name' => 'published_at',
@@ -173,3 +179,17 @@
 </div>
 
 {!! Form::close() !!}
+
+@section('page.scripts')
+    <script src="/massets/js/slugify.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var slug = $('input[name="slug"]');
+		$('.slugify').click(function () {
+			slug.prop('disabled', true);
+			slugify($('input[name*="heading"]'), function (text) {
+				slug.val(text);
+				slug.prop('disabled', false);
+			});
+		});
+	</script>
+@endsection

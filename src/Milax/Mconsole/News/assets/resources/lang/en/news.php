@@ -25,6 +25,7 @@ return [
         'description' => 'Description',
         'gallery' => 'Gallery',
         'cover' => 'Cover',
+        'slugify' => 'Generate',
     ],
     'settings' => [
         'index' => 'Number of news at index page',

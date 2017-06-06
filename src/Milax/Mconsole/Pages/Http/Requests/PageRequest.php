@@ -51,29 +51,6 @@ class PageRequest extends FormRequest
     }
     
     /**
-     * Modify request input
-     * 
-     * @return array
-     */
-    public function all()
-    {
-        $input = parent::all();
-        
-        if (strlen($input['slug']) == 0) {
-            foreach ($this->input('heading') as $lang => $heading) {
-                if (strlen($heading) > 0) {
-                    break;
-                }
-            }
-            $input['slug'] = str_slug($heading);
-        } else {
-            $input['slug'] = str_slug($input['slug']);
-        }
-        
-        return $input;
-    }
-    
-    /**
      * Set custom validator attribute names
      *
      * @return Validator

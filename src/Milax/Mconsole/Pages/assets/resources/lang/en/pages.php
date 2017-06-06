@@ -27,6 +27,7 @@ return [
         'hide_heading' => 'Hide heading',
         'fullwidth' => 'Full width',
         'enabled' => 'Published',
+        'slugify' => 'Generate',
     ],
     'acl' => [
         'index' => 'Pages: show list',
