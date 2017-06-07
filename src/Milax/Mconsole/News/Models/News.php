@@ -28,6 +28,6 @@ class News extends Model
      * @return bool
      */
     public function hasText() {
-        return !empty($this->text);
+        return !empty($this->text[\App::getLocale()]);
     }
 }
