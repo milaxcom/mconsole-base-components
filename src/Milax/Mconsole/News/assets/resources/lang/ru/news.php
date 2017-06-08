@@ -7,7 +7,7 @@ return [
     ],
     'menu' => 'Новости',
     'table' => [
-        'published' => 'Добавлено',
+        'published' => 'Опубликовано',
         'updated' => 'Обновлено',
         'slug' => 'Адрес',
         'heading' => 'Заголовок',
