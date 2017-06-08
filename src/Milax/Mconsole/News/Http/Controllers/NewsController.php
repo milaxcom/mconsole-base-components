@@ -44,7 +44,7 @@ class NewsController extends Controller
             ], true)
             ->setDateRange(trans('mconsole::news.form.published_at'), 'published_at');
         
-        return $this->list->setQuery($this->repository->index())->setAddAction('news/create')->render(function ($item) {
+        return $this->list->setQuery($this->repository->index()->orderBy('pinned', 'desc')->orderBy('published_at', 'desc'))->setAddAction('news/create')->render(function ($item) {
             return [
                 trans('mconsole::tables.state') => view('mconsole::indicators.state', $item),
                 trans('mconsole::tables.id') => $item->id,
