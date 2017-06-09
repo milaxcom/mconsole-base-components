@@ -127,7 +127,7 @@ class Installer implements ModuleInstaller
         app('API')->options->uninstall(self::$options);
         app('API')->presets->uninstall(self::$presets);
         
-        $repository = new \Milax\Mconsole\News\NewsRepository(\Milax\Mconsole\News\Models\News::class);
+        $repository = app('Milax\Mconsole\News\Contracts\Repositories\NewsRepository');
         foreach ($repository->get() as $instance) {
             $instance->delete();
         }
