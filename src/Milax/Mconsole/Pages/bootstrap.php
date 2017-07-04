@@ -43,7 +43,7 @@ return [
         ], 'pages');
         
         app('API')->sitemap->register(function () {
-            $pages = Page::select('slug', 'updated_at')->get();
+            $pages = Page::select('slug', 'updated_at')->where('enabled', true)->get();
             $items = [];
             
             foreach ($pages as $page) {
