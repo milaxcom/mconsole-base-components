@@ -47,6 +47,11 @@ return [
             $items = [];
             
             foreach ($pages as $page) {
+                // A little fix for index pages
+                if ($page->slug === '/') {
+                    $page->slug = null;
+                }
+
                 $sitemapItem = new SitemapItem($page->slug, SitemapChangefreq::Always, $page->updated_at);
                 array_push($items, $sitemapItem);
             }
