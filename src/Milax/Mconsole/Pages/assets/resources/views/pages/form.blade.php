@@ -42,27 +42,16 @@
                 					])
                                     <hr />
                                     <h3>{{ trans('mconsole::pages.form.content') }}</h3>
-                					@if (app('API')->options->getByKey('textareatype') == 'ckeditor')
-                                        @include('mconsole::forms.ckeditor', [
-                                            'label' => trans('mconsole::pages.form.preview'),
-                    						'name' => 'preview[' . $language->key . ']',
-                                        ])
-                                        @include('mconsole::forms.ckeditor', [
-                                            'label' => trans('mconsole::pages.form.text'),
-                    						'name' => 'text[' . $language->key . ']',
-                                        ])
-                                    @else
-                                        @include('mconsole::forms.textarea', [
-                    						'label' => trans('mconsole::pages.form.preview'),
-                    						'name' => 'preview[' . $language->key . ']',
-                                            'size' => '50x2',
-                    					])
-                    					@include('mconsole::forms.textarea', [
-                    						'label' => trans('mconsole::pages.form.text'),
-                    						'name' => 'text[' . $language->key . ']',
-                                            'size' => '50x15',
-                    					])
-                                    @endif
+									@include('mconsole::forms.textarea', [
+										'label' => trans('mconsole::pages.form.preview'),
+										'name' => 'preview[' . $language->key . ']',
+										'size' => '50x2',
+									])
+									@include('mconsole::forms.textarea', [
+										'label' => trans('mconsole::pages.form.text'),
+										'name' => 'text[' . $language->key . ']',
+										'size' => '50x15',
+									])
                                     <hr />
                                     <h3>{{ trans('mconsole::pages.form.seo') }}</h3>
                                     @include('mconsole::forms.text', [
