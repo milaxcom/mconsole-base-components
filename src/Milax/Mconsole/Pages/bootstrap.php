@@ -36,10 +36,10 @@ return [
             ['GET', 'pages', 'mconsole::pages.acl.index'],
             ['GET', 'pages/create', 'mconsole::pages.acl.create'],
             ['POST', 'pages', 'mconsole::pages.acl.store'],
-            ['GET', 'pages/{pages}/edit', 'mconsole::pages.acl.edit'],
-            ['PUT', 'pages/{pages}', 'mconsole::pages.acl.update'],
-            ['GET', 'pages/{pages}', 'mconsole::pages.acl.show'],
-            ['DELETE', 'pages/{pages}', 'mconsole::pages.acl.destroy'],
+            ['GET', 'pages/{page}/edit', 'mconsole::pages.acl.edit'],
+            ['PUT', 'pages/{page}', 'mconsole::pages.acl.update'],
+            ['GET', 'pages/{page}', 'mconsole::pages.acl.show'],
+            ['DELETE', 'pages/{page}', 'mconsole::pages.acl.destroy'],
         ], 'pages');
         
         app('API')->sitemap->register(function () {
