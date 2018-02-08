@@ -12,7 +12,7 @@
                 'title' => trans('mconsole::forms.tabs.main'),
                 'fullscreen' => true,
             ])
-			<div class="portlet-body form">
+			<div class="portlet-body">
                 <div class="form-body">
 					<div class="form-group">
 						<label>{{ trans('mconsole::pages.form.slug') }}</label>
@@ -87,14 +87,12 @@
 		</div>
 	</div>
 	<div class="col-lg-5 col-md-6">
-        
+
         <div class="portlet light">
-			<div class="portlet-title">
-				<div class="caption">
-					<span class="caption-subject font-blue sbold uppercase">{{ trans('mconsole::pages.form.gallery') }}</span>
-				</div>
-			</div>
-			<div class="portlet-body form">
+			@include('mconsole::partials.portlet-title', [
+                'title' => trans('mconsole::pages.form.gallery'),
+            ])
+			<div class="portlet-body">
                 @include('mconsole::forms.upload', [
                     'type' => MconsoleUploadType::Image,
                     'multiple' => true,
@@ -107,19 +105,16 @@
 		</div>
         
 		<div class="portlet light">
-			<div class="portlet-title">
-				<div class="caption">
-					<span class="caption-subject font-blue sbold uppercase">{{ trans('mconsole::forms.tabs.settings') }}</span>
-				</div>
-			</div>
-			<div class="portlet-body form">
-				
+			@include('mconsole::partials.portlet-title', [
+				'title' => trans('mconsole::forms.tabs.settings'),
+			])
+			<div class="portlet-body">
 				<div class="tabbable-line">
-					<ul class="nav nav-tabs">
-						<li class="active">
+					<ul class="nav nav-tabs nav-justified">
+						<li role="presentation" class="active">
 							<a href="#tab_1" data-toggle="tab"> {{ trans('mconsole::pages.form.options') }}  </a>
 						</li>
-						<li>
+						<li role="presentation">
 							<a href="#tab_2" data-toggle="tab"> {{ trans('mconsole::forms.links.label') }} <span class="badge badge-default">{{ (isset($item) && $item->allLinks->count() > 0) ? $item->allLinks->count() : null }}</span> </a>
 						</li>
 					</ul>
