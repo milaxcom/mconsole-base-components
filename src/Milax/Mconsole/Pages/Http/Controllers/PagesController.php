@@ -54,7 +54,9 @@ class PagesController extends Controller
                     if (strlen($val) > 0) {
                         return sprintf('<div class="label label-info">%s</div> %s', $key, $val);
                     }
-                })->values()->implode('<br />'),
+                })->values()->reject(function ($lang) {
+                    return is_null($lang);
+                })->implode('<br />'),
             ];
         });
     }

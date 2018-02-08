@@ -23,6 +23,7 @@ return [
         'seo' => 'SEO Settings',
         'title' => 'Title',
         'description' => 'Description',
+        'keywords' => 'Keywords',
         'indexing' => 'Search engines indexing',
         'hide_heading' => 'Hide heading',
         'fullwidth' => 'Full width',

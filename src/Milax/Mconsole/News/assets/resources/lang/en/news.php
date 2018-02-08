@@ -23,6 +23,7 @@ return [
         'seo' => 'SEO Settings',
         'title' => 'Title',
         'description' => 'Description',
+        'keywords' => 'Keywords',
         'gallery' => 'Gallery',
         'cover' => 'Cover',
         'slugify' => 'Generate',

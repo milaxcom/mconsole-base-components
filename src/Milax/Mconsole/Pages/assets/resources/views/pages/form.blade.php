@@ -62,6 +62,10 @@
     									'label' => trans('mconsole::pages.form.description'),
     									'name' => 'description[' . $language->key . ']',
     								])
+									@include('mconsole::forms.text', [
+    									'label' => trans('mconsole::pages.form.keywords'),
+    									'name' => 'keywords[' . $language->key . ']',
+    								])
     							</div>
                             @endforeach
 						</div>

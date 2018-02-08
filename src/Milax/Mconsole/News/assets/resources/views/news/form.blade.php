@@ -61,11 +61,14 @@
                     					'label' => trans('mconsole::news.form.title'),
                     					'name' => 'title[' . $language->key . ']',
                     				])
-                                    @include('mconsole::forms.textarea', [
-                    					'label' => trans('mconsole::news.form.description'),
-                    					'name' => 'description[' . $language->key . ']',
-                                        'size' => '50x3',
-                    				])
+                                    @include('mconsole::forms.text', [
+    									'label' => trans('mconsole::news.form.description'),
+    									'name' => 'description[' . $language->key . ']',
+    								])
+									@include('mconsole::forms.text', [
+    									'label' => trans('mconsole::news.form.keywords'),
+    									'name' => 'keywords[' . $language->key . ']',
+    								])
                                 </div>
                             @endforeach
                         </div>

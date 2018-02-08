@@ -8,7 +8,7 @@ class News extends Model
 {
     use \CascadeDelete, \HasTags, \HasUploads, \HasState;
     
-    protected $fillable = ['slug', 'title', 'heading', 'preview', 'text', 'description', 'indexing', 'pinned', 'enabled', 'published_at', 'published'];
+    protected $fillable = ['slug', 'title', 'heading', 'preview', 'text', 'description', 'keywords', 'indexing', 'pinned', 'enabled', 'published_at', 'published'];
     
     protected $dates = [
         'published_at',
@@ -20,6 +20,7 @@ class News extends Model
         'text' => 'array',
         'title' => 'array',
         'description' => 'array',
+        'keywords' => 'array',
     ];
 
     /**
