@@ -14,7 +14,7 @@ class ModifyPagesTableAddKeywordsColumn extends Migration
     public function up()
     {
         Schema::table('pages', function (Blueprint $table) {
-            $table->string('keywords')->nullable()->after('description');
+            $table->json('keywords')->nullable()->after('description');
         });
     }
 

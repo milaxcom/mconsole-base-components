@@ -14,7 +14,7 @@ class ModifyNewsTableAddKeywordsColumn extends Migration
     public function up()
     {
         Schema::table('news', function (Blueprint $table) {
-            $table->string('keywords')->nullable()->after('description');
+            $table->json('keywords')->nullable()->after('description');
         });
     }
 
