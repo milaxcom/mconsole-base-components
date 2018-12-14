@@ -5,6 +5,7 @@ namespace Milax\Mconsole\News\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Milax\Mconsole\News\Models\News;
 use Milax\Mconsole\News\Contracts\Repositories\NewsRepository;
+use Illuminate\Validation\Rule;
 
 class NewsRequest extends FormRequest
 {
@@ -33,18 +34,26 @@ class NewsRequest extends FormRequest
      */
     public function rules()
     {
+        $slugRule = Rule::unique('news')->whereNot('slug', NULL);
+
         switch ($this->method()) {
             case 'PUT':
             case 'UPDATE':
                 return [
-                    'slug' => 'max:255|unique:news,slug,' . $this->repository->find($this->news)->id,
+                    'slug' => [
+                        'max:255',
+                        $slugRule->whereNot('id', $this->repository->find($this->news)->id),
+                    ],
                     'heading' => 'required|max:255',
                 ];
                 break;
             
             default:
                 return [
-                    'slug' => 'max:255|unique:news',
+                    'slug' => [
+                        'max:255',
+                        $slugRule,
+                    ],
                     'heading' => 'required|max:255',
                 ];
         }
