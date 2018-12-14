@@ -17,7 +17,15 @@ return [
         'pinned' => 'Pinned to top',
         'published_at' => 'Published at',
         'heading' => 'Heading',
-        'slug' => 'Slug',
+        'slug' => [
+            'name' => 'Slug',
+            'hint' => [
+                'news' => 'News link: new-slug',
+                'local' => 'Local link: /contacts/',
+                'outside' => 'Outside link: //site.com',
+                'without' => 'Without link: empty field',
+            ],
+        ],
         'preview' => 'Preview text',
         'text' => 'Full text',
         'seo' => 'SEO Settings',

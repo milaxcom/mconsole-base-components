@@ -17,7 +17,15 @@ return [
         'pinned' => 'Закрепить в топе',
         'published_at' => 'Дата публикации',
         'heading' => 'Заголовок',
-        'slug' => 'Адрес',
+        'slug' => [
+            'name' => 'Адрес',
+            'hint' => [
+                'news' => 'Новость: new-slug',
+                'local' => 'Местная ссылка: /contacts/',
+                'outside' => 'Внешняя ссылка: //site.com',
+                'without' => 'Без ссылки: пустое поле',
+            ],
+        ],
         'preview' => 'Превью',
         'text' => 'HTML',
         'seo' => 'Настройки SEO',

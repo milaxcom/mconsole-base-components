@@ -15,13 +15,16 @@
             <div class="portlet-body form">
     			<div class="form-body">
                     <div class="form-group">
-						<label>{{ trans('mconsole::news.form.slug') }}</label>
+						<label>{{ trans('mconsole::news.form.slug.name') }}</label>
 						<div class="input-group">
-							{!! Form::text('slug', !is_null(Form::getValueAttribute('slug')) ? null : isset($item) ? $item->slug : null, ['class' => 'form-control']) !!}
+                            {!! Form::text('slug', !is_null(Form::getValueAttribute('slug')) ? null : isset($item) ? $item->slug : null, ['class' => 'form-control']) !!}
 							<span class="input-group-btn">
 								<button class="btn blue slugify" type="button">
-								<i class="fa fa-refresh fa-fw"></i> {{ trans('mconsole::news.form.slugify') }}</button>
-							</span>
+                                <i class="fa fa-refresh fa-fw"></i> {{ trans('mconsole::news.form.slugify') }}</button>
+                            </span>
+                            <span class="input-group-addon">
+                            <span id="popover-slug" class="glyphicon glyphicon-question-sign" data-content="{{ trans('mconsole::news.form.slug.hint.news') }}<br>{{ trans('mconsole::news.form.slug.hint.local') }}<br>{{ trans('mconsole::news.form.slug.hint.outside') }}<br>{{ trans('mconsole::news.form.slug.hint.without') }}" data-toggle="popover"></span>
+                            </span>
 						</div>
 					</div>
                     @include('mconsole::forms.date', [
@@ -164,7 +167,7 @@
                     'type' => MconsoleFormSelectType::YesNo,
                 ])
                 @include('mconsole::forms.state', isset($item) ? $item : [])
-			</div>
+            </div>
 		</div>
     </div>
     
@@ -183,5 +186,14 @@
 				slug.prop('disabled', false);
 			});
 		});
+
+        //$('[data-toggle="tooltip"]').tooltip();
+        $('#popover-slug').popover({
+            html : true,
+            placement : 'bottom',
+            trigger : 'hover',
+        });
+
+        $('[data-toggle="tooltip"]').tooltip();
 	</script>
 @endsection
