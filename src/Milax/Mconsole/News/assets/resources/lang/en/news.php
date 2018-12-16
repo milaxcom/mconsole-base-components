@@ -17,15 +17,7 @@ return [
         'pinned' => 'Pinned to top',
         'published_at' => 'Published at',
         'heading' => 'Heading',
-        'slug' => [
-            'name' => 'Slug',
-            'hint' => [
-                'news' => 'News link: new-slug',
-                'local' => 'Local link: /contacts/',
-                'outside' => 'Outside link: //site.com',
-                'without' => 'Without link: empty field',
-            ],
-        ],
+        'slug' => 'Slug',
         'preview' => 'Preview text',
         'text' => 'Full text',
         'seo' => 'SEO Settings',
@@ -53,5 +45,13 @@ return [
         'update' => 'News: updating',
         'show' => 'News: view',
         'destroy' => 'News: delete',
+    ],
+    'help' => [
+        'slug' => [
+            'news' => 'News link: new-slug',
+            'local' => 'Local link: /contacts/',
+            'outside' => 'Outside link: //site.com',
+            'without' => 'Without link: empty field',
+        ],
     ],
 ];

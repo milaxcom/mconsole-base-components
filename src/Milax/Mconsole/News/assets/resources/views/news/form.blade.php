@@ -15,7 +15,7 @@
             <div class="portlet-body form">
     			<div class="form-body">
                     <div class="form-group">
-						<label>{{ trans('mconsole::news.form.slug.name') }}</label>
+						<label>{{ trans('mconsole::news.form.slug') }}</label>
 						<div class="input-group">
                             {!! Form::text('slug', !is_null(Form::getValueAttribute('slug')) ? null : isset($item) ? $item->slug : null, ['class' => 'form-control']) !!}
 							<span class="input-group-btn">
@@ -23,7 +23,7 @@
                                 <i class="fa fa-refresh fa-fw"></i> {{ trans('mconsole::news.form.slugify') }}</button>
                             </span>
                             <span class="input-group-addon">
-                            <span id="popover-slug" class="glyphicon glyphicon-question-sign" data-content="{{ trans('mconsole::news.form.slug.hint.news') }}<br>{{ trans('mconsole::news.form.slug.hint.local') }}<br>{{ trans('mconsole::news.form.slug.hint.outside') }}<br>{{ trans('mconsole::news.form.slug.hint.without') }}" data-toggle="popover"></span>
+                            <span id="popover-slug" class="glyphicon glyphicon-question-sign" data-content="{{ trans('mconsole::news.help.slug.news') }}<br>{{ trans('mconsole::news.help.slug.local') }}<br>{{ trans('mconsole::news.help.slug.outside') }}<br>{{ trans('mconsole::news.help.slug.without') }}" data-toggle="popover"></span>
                             </span>
 						</div>
 					</div>
