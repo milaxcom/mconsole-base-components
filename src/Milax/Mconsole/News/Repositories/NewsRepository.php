@@ -20,11 +20,7 @@ class NewsRepository extends EloquentRepository implements Repository
     
     public function getByDate($fromDate = null, $toDate = null, $take = null, $skip = null, $tag = null)
     {
-        if (!is_null($tag)) {
-            $query = $this->tagQuery($tag);
-        } else {
-            $query = $this->query();
-        }
+        $query = is_null($tag) ? $this->query() : $this->tagQuery($tag);
         
         $query = $query->orderBy('pinned', 'desc')->orderBy('published_at', 'desc');
         
@@ -58,7 +54,7 @@ class NewsRepository extends EloquentRepository implements Repository
         $news = $query->get();
         
         foreach ($news as $key => $new) {
-            $news[$key] = $this->findBySlug($new->slug, \App::getLocale());
+            $news[$key] = $this->findById($new->slug, \App::getLocale());
         }
         
         return $news;
