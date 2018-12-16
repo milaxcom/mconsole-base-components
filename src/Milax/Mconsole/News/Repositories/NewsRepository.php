@@ -69,4 +69,10 @@ class NewsRepository extends EloquentRepository implements Repository
         $page = $this->query()->where('slug', $slug)->firstOrFail();
         return $this->compiler->set($page)->localize($lang)->render()->get();
     }
+
+    public function findById($id, $lang = null)
+    {
+        $page = $this->query()->where('id', $id)->firstOrFail();
+        return $this->compiler->set($page)->localize($lang)->render()->get();
+    }
 }

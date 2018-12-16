@@ -34,4 +34,14 @@ interface NewsRepository
      * @return News
      */
     public function findBySlug($slug, $lang = null);
+
+    /**
+     * Get news by ID
+     * 
+     * @param  string $id
+     * @param  string $lang
+     * 
+     * @return News
+     */
+    public function findById($id, $lang = null);
 }
