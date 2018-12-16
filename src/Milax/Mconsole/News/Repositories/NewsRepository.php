@@ -54,7 +54,7 @@ class NewsRepository extends EloquentRepository implements Repository
         $news = $query->get();
         
         foreach ($news as $key => $new) {
-            $news[$key] = $this->findById($new->slug, \App::getLocale());
+            $news[$key] = $this->findById($new->id, \App::getLocale());
         }
         
         return $news;
