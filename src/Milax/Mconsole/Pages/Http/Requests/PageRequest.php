@@ -37,14 +37,14 @@ class PageRequest extends FormRequest
             case 'PUT':
             case 'UPDATE':
                 return [
-                    'slug' => 'max:255|unique:pages,slug,' . $this->repository->find($this->page)->id,
+                    'slug' => 'required|max:255|unique:pages,slug,' . $this->repository->find($this->page)->id,
                     'heading' => 'required|max:255',
                 ];
                 break;
             
             default:
                 return [
-                    'slug' => 'max:255|unique:pages',
+                    'slug' => 'required|max:255|unique:pages',
                     'heading' => 'required|max:255',
                 ];
         }
