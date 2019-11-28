@@ -31,4 +31,14 @@ class News extends Model
     public function hasText() {
         return !empty($this->text[\App::getLocale()]);
     }
+
+    /**
+     * Get image cover
+     * 
+     * @return Upload || null
+     */
+    public function getCover()
+    {
+        return $this->uploads->where('group', 'cover')->first() ?? null;
+    }
 }
