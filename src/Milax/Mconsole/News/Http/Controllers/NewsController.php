@@ -43,13 +43,15 @@ class NewsController extends Controller
                 '0' => trans('mconsole::settings.options.off'),
             ], true)
             ->setDateRange(trans('mconsole::news.form.published_at'), 'published_at');
+
+        $dateFormat = \Auth::user()->lang == 'en' ? 'Y-m-d' : 'd-m-Y';
         
-        return $this->list->setQuery($this->repository->index()->orderBy('pinned', 'desc')->orderBy('published_at', 'desc'))->setAddAction('news/create')->render(function ($item) {
+        return $this->list->setQuery($this->repository->index()->orderBy('pinned', 'desc')->orderBy('published_at', 'desc'))->setAddAction('news/create')->render(function ($item) use ($dateFormat) {
             return [
                 trans('mconsole::tables.state') => view('mconsole::indicators.state', $item),
                 trans('mconsole::tables.id') => $item->id,
-                trans('mconsole::news.table.published') => $item->published_at ? $item->published_at->format('m.d.Y') : null,
-                trans('mconsole::news.table.updated') => $item->updated_at->format('m.d.Y'),
+                trans('mconsole::news.table.published') => $item->published_at ? $item->published_at->format($dateFormat) : null,
+                trans('mconsole::news.table.updated') => $item->updated_at->format($dateFormat),
                 trans('mconsole::news.table.slug') => $item->slug,
                 trans('mconsole::news.table.heading') => collect($item->heading)->transform(function ($val, $key) {
                     if (strlen($val) > 0) {
