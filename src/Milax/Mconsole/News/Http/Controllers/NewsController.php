@@ -44,9 +44,15 @@ class NewsController extends Controller
             ], true)
             ->setDateRange(trans('mconsole::news.form.published_at'), 'published_at');
 
-        $dateFormat = \Auth::user()->lang == 'en' ? 'Y-m-d' : 'd-m-Y';
+        $user = \Auth::user();
+        $dateFormat = $user->lang == 'en' ? 'Y-m-d' : 'd-m-Y';
+
+        $query = $this->repository->index()->orderBy('pinned', 'desc')->orderBy('published_at', 'desc');
+
+        if ($user->update_own)
+            $query = $query->where('author_id', $user->id);
         
-        return $this->list->setQuery($this->repository->index()->orderBy('pinned', 'desc')->orderBy('published_at', 'desc'))->setAddAction('news/create')->render(function ($item) use ($dateFormat) {
+        return $this->list->setQuery($query)->setAddAction('news/create')->render(function ($item) use ($dateFormat) {
             return [
                 trans('mconsole::tables.state') => view('mconsole::indicators.state', $item),
                 trans('mconsole::tables.id') => $item->id,

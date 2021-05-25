@@ -43,8 +43,14 @@ class PagesController extends Controller
                 '1' => trans('mconsole::settings.options.on'),
                 '0' => trans('mconsole::settings.options.off'),
             ], true);
+
+        $user = \Auth::user();
+        $query = $this->repository->index();
+
+        if ($user->update_own)
+            $query = $query->where('author_id', $user->id);
         
-        return $this->list->setQuery($this->repository->index())->setAddAction('pages/create')->render(function ($item) {
+        return $this->list->setQuery($query)->setAddAction('pages/create')->render(function ($item) {
             return [
                 trans('mconsole::tables.state') => view('mconsole::indicators.state', $item),
                 trans('mconsole::tables.id') => $item->id,

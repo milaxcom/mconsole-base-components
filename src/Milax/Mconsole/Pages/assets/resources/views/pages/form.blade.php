@@ -1,5 +1,9 @@
 @if (isset($item))
-	{!! Form::model($item, ['method' => 'PUT', 'url' => mconsole_url(sprintf('pages/%s', $item->id))]) !!}
+	@if(Auth::user()->update_own && Auth::user()->id != $item->author_id) 
+        <script>window.location = '/';</script>
+    @else
+		{!! Form::model($item, ['method' => 'PUT', 'url' => mconsole_url(sprintf('pages/%s', $item->id))]) !!}
+	@endif
 @else
 	{!! Form::open(['method' => 'POST', 'url' => mconsole_url('pages')]) !!}
 @endif
@@ -134,6 +138,10 @@
 								'label' => trans('mconsole::pages.form.fullwidth'),
 								'name' => 'fullwidth',
                                 'type' => MconsoleFormSelectType::YesNo,
+							])
+							@includeWhen(!isset($item), 'mconsole::forms.hidden', [
+								'name' => 'author_id',
+                                'value' => Auth::user()->id,
 							])
 						</div>
 						<div class="tab-pane fade" id="tab_2">

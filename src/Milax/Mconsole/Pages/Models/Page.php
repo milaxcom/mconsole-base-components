@@ -9,7 +9,7 @@ class Page extends Model
 {
     use \CascadeDelete, \HasUploads, \HasLinks, \HasState, \System;
     
-    protected $fillable = ['slug', 'linkable_id', 'title', 'heading', 'preview', 'text', 'description', 'keywords', 'hide_heading', 'fullwidth', 'indexing', 'settings', 'system', 'enabled'];
+    protected $fillable = ['slug', 'linkable_id', 'title', 'heading', 'preview', 'text', 'description', 'keywords', 'hide_heading', 'fullwidth', 'indexing', 'settings', 'system', 'enabled', 'author_id'];
     
     protected $casts = [
         'heading' => 'array',
