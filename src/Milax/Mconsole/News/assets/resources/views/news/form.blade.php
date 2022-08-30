@@ -21,7 +21,7 @@
                     <div class="form-group">
 						<label>{{ trans('mconsole::news.form.slug') }}</label>
 						<div class="input-group">
-                            {!! Form::text('slug', !is_null(Form::getValueAttribute('slug')) ? null : isset($item) ? $item->slug : null, ['class' => 'form-control']) !!}
+                            {!! Form::text('slug', !is_null(Form::getValueAttribute('slug')) ? null : (isset($item) ? $item->slug : null), ['class' => 'form-control']) !!}
 							<span class="input-group-btn">
 								<button class="btn blue slugify" type="button">
                                 <i class="fa fa-refresh fa-fw"></i> {{ trans('mconsole::news.form.slugify') }}</button>
