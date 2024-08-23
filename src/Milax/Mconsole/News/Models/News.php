@@ -10,10 +10,6 @@ class News extends Model
     
     protected $fillable = ['slug', 'title', 'heading', 'preview', 'text', 'description', 'keywords', 'indexing', 'pinned', 'enabled', 'published_at', 'published', 'author_id'];
     
-    protected $dates = [
-        'published_at',
-    ];
-    
     protected $casts = [
         'heading' => 'array',
         'preview' => 'array',
@@ -21,6 +17,7 @@ class News extends Model
         'title' => 'array',
         'description' => 'array',
         'keywords' => 'array',
+        'published_at' => 'datetime',
     ];
 
     /**
