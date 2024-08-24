@@ -2,11 +2,14 @@
 	@if(Auth::user()->update_own && Auth::user()->id != $item->author_id) 
         <script>window.location = '/';</script>
     @else
-		{!! Form::model($item, ['method' => 'PUT', 'url' => mconsole_url(sprintf('pages/%s', $item->id))]) !!}
+		<form method="POST" action="{{ mconsole_url(sprintf('pages/%s', $item->id)) }}" enctype="multipart/form-data">
+			@method('PUT')
 	@endif
 @else
-	{!! Form::open(['method' => 'POST', 'url' => mconsole_url('pages')]) !!}
+	<form method="POST" action="{{ mconsole_url('pages') }}" enctype="multipart/form-data">
 @endif
+
+@csrf
 
 <div class="row">
 	<div class="col-lg-7 col-md-6">
@@ -21,7 +24,7 @@
 					<div class="form-group">
 						<label>{{ trans('mconsole::pages.form.slug') }}</label>
 						<div class="input-group">
-							{!! Form::text('slug', !is_null(Form::getValueAttribute('slug')) ? null : (isset($item) ? $item->slug : null), ['class' => 'form-control']) !!}
+							<input class="form-control {{ isset($class) ? $class : '' }}" type="text" autocomplete="off" placeholder="" name="slug" value="{{ isset($item->slug) ? $item->slug : (is_null(old('slug')) ? null : old('slug')) }}">
 							<span class="input-group-btn">
 								<button class="btn blue slugify" type="button">
 								<i class="fa fa-refresh fa-fw"></i> {{ trans('mconsole::pages.form.slugify') }}</button>
@@ -43,6 +46,7 @@
                                     @include('mconsole::forms.text', [
                 						'label' => trans('mconsole::pages.form.heading'),
                 						'name' => 'heading[' . $language->key . ']',
+										'value' => $item->heading[$language->key] ?? null,
                 					])
                                     <hr />
                                     <h3>{{ trans('mconsole::pages.form.content') }}</h3>
@@ -50,25 +54,30 @@
 										'label' => trans('mconsole::pages.form.preview'),
 										'name' => 'preview[' . $language->key . ']',
 										'size' => '50x2',
+										'value' => $item->preview[$language->key] ?? null,
 									])
 									@include('mconsole::forms.textarea', [
 										'label' => trans('mconsole::pages.form.text'),
 										'name' => 'text[' . $language->key . ']',
 										'size' => '50x15',
+										'value' => $item->text[$language->key] ?? null,
 									])
                                     <hr />
                                     <h3>{{ trans('mconsole::pages.form.seo') }}</h3>
                                     @include('mconsole::forms.text', [
     									'label' => trans('mconsole::pages.form.title'),
     									'name' => 'title[' . $language->key . ']',
+										'value' => $item->title[$language->key] ?? null,
     								])
     								@include('mconsole::forms.text', [
     									'label' => trans('mconsole::pages.form.description'),
     									'name' => 'description[' . $language->key . ']',
+										'value' => $item->description[$language->key] ?? null,
     								])
 									@include('mconsole::forms.text', [
     									'label' => trans('mconsole::pages.form.keywords'),
     									'name' => 'keywords[' . $language->key . ']',
+										'value' => $item->keywords[$language->key] ?? null,
     								])
     							</div>
                             @endforeach
@@ -79,6 +88,7 @@
                         'label' => trans('mconsole::pages.form.indexing'),
                         'name' => 'indexing',
                         'type' => MconsoleFormSelectType::OnOff,
+						'value' => $item->indexing ?? null,
                     ])
                     
                     {!! app('API')->forms->constructor->render() !!}
@@ -128,16 +138,19 @@
                                 'label' => trans('mconsole::pages.form.enabled'),
                                 'name' => 'enabled',
                                 'type' => MconsoleFormSelectType::YesNo,
+								'value' => $item->enabled ?? null,
                             ])
                             @include('mconsole::forms.select', [
 								'label' => trans('mconsole::pages.form.hide_heading'),
 								'name' => 'hide_heading',
                                 'type' => MconsoleFormSelectType::YesNo,
+								'value' => $item->hide_heading ?? null,
 							])
 							@include('mconsole::forms.select', [
 								'label' => trans('mconsole::pages.form.fullwidth'),
 								'name' => 'fullwidth',
                                 'type' => MconsoleFormSelectType::YesNo,
+								'value' => $item->fullwidth ?? null,
 							])
 							@includeWhen(!isset($item), 'mconsole::forms.hidden', [
 								'name' => 'author_id',
@@ -158,7 +171,7 @@
 	</div>
 </div>
 
-{!! Form::close() !!}
+</form>
 
 @section('page.scripts')
     <script src="/massets/js/slugify.js" type="text/javascript"></script>
