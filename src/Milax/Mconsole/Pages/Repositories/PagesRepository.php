@@ -9,6 +9,8 @@ use View;
 
 class PagesRepository extends EloquentRepository implements Repository
 {
+    protected $compiler, $localizator;
+
     public $model = \Milax\Mconsole\Pages\Models\Page::class;
     
     public function __construct(ContentCompiler $compiler)

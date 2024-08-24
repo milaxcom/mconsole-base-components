@@ -15,6 +15,8 @@ class PagesController extends Controller
     use \HasRedirects, \DoesNotHaveShow, \UseLayout;
 
     protected $model = 'Milax\Mconsole\Pages\Models\Page';
+
+    protected $form, $list, $module, $repository, $redirectTo;
     
     /**
      * Create new class instance

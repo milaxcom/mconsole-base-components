@@ -14,6 +14,8 @@ class NewsController extends Controller
     use \HasRedirects, \DoesNotHaveShow, \UseLayout;
 
     protected $model = 'Milax\Mconsole\News\Models\News';
+
+    protected $list, $form, $repository, $redirectTo, $module;
     
     /**
      * Create new class instance

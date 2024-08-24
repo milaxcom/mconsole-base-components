@@ -10,6 +10,8 @@ use Milax\Mconsole\Traits\Repositories\TaggableRepository;
 class NewsRepository extends EloquentRepository implements Repository
 {
     use TaggableRepository;
+
+    protected $compiler, $localizator;
     
     public $model = \Milax\Mconsole\News\Models\News::class;
     
