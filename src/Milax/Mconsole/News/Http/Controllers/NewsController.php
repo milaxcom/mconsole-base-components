@@ -62,7 +62,7 @@ class NewsController extends Controller
                 trans('mconsole::news.table.updated') => $item->updated_at->format($dateFormat),
                 trans('mconsole::news.table.slug') => $item->slug,
                 trans('mconsole::news.table.heading') => collect($item->heading)->transform(function ($val, $key) {
-                    if (strlen($val) > 0) {
+                    if (!is_null($val) && strlen($val) > 0) {
                         return sprintf('<div class="label label-info">%s</div> %s', $key, $val);
                     }
                 })->values()->implode('<br />'),

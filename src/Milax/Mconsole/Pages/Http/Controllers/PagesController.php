@@ -59,7 +59,7 @@ class PagesController extends Controller
                 trans('mconsole::pages.table.updated') => $item->updated_at->format('m.d.Y'),
                 trans('mconsole::pages.table.slug') => $item->slug,
                 trans('mconsole::pages.table.heading') => collect($item->heading)->transform(function ($val, $key) {
-                    if (strlen($val) > 0) {
+                    if (!is_null($val) && strlen($val) > 0) {
                         return sprintf('<div class="label label-info">%s</div> %s', $key, $val);
                     }
                 })->values()->reject(function ($lang) {
@@ -104,6 +104,9 @@ class PagesController extends Controller
      */
     public function edit($id)
     {
+        #$test = $this->repository->query()->with(['links', 'uploads'])->findOrFail($id);
+        #$links = $test->uploads;
+        #dd($test, $links);
         return $this->form->render('mconsole::pages.form', [
             'item' => $this->repository->query()->with('links')->with('uploads')->findOrFail($id),
         ]);
@@ -120,9 +123,10 @@ class PagesController extends Controller
     public function update(PageRequest $request, $id)
     {
         $page = $this->repository->find($id);
-        
         $this->handleUploads($page);
         app('API')->links->sync($page);
+
+        #$this->repository->update($id, $request->except('links'));
         $page->update($request->all());
         
         $this->redirect();
